@@ -3,7 +3,11 @@ import Head from "next/head"
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 
 export default function Home() {
-  const { } = useContext(NFTMarketplaceContext)
+  const { checkIfWalletIsConnected } = useContext(NFTMarketplaceContext)
+
+  useEffect(() => {
+    checkIfWalletIsConnected
+  },[])
 
   return (
     <div>

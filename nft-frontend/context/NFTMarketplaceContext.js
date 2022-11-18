@@ -36,7 +36,7 @@ export const NFTMarketplaceContext = React.createContext();
 
 export const NFTMarketplaceProvider = (({children}) => {
 
-    const [currentAccout, setCurrentAccount] = useState("")
+    const [currentAccount, setCurrentAccount] = useState("")
         
     const checkIfWalletIsConnected = async() => {
         try {
@@ -222,13 +222,14 @@ export const NFTMarketplaceProvider = (({children}) => {
     return(
         <NFTMarketplaceContext.Provider 
             value={{
+                checkIfWalletIsConnected,
                 connectWallet,
                 uploadToIPFS,
                 createNFT,
                 fetchNFTs,
                 fetchMyOrListedNFTs,
                 buyNFT,
-                children
+                currentAccount
             }}>
             {children}
         </NFTMarketplaceContext.Provider>
