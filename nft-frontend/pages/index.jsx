@@ -3,11 +3,8 @@ import Head from "next/head"
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 
 export default function Home() {
-  const { checkContract } = useContext(NFTMarketplaceContext)
+  const { } = useContext(NFTMarketplaceContext)
 
-  useEffect(() => {
-    checkContract()
-  },[])
   return (
     <div>
       <Head>
