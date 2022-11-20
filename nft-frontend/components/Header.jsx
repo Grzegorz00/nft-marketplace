@@ -1,7 +1,7 @@
 function Header(){
     return(
         <div>
-            <h1>Siema eluwina </h1>
+            <h1> </h1>
         </div>
     )
 }

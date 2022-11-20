@@ -2,22 +2,26 @@ import Link from 'next/link'
 
 export default function Navbar(){
     return(
-    <nav class="flex items-center bg-gradient-to-r from-cyan-500 to-blue-500 p-3 flex-wrap">
-        <div
-        class="hidden top-navbar w-full lg:inline-flex lg:flex-grow lg:w-auto"
-        id="navigation">
-            <div class="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start flex flex-col lg:h-auto space-x-3">
+<nav class="
+    relative
+    w-full
+    flex flex-wrap
+    items-center
+    justify-between
+    py-4
+    bg-gray-100
+    shadow-lg
+    navbar navbar-expand-lg navbar-light">
+        <div class="">
+            <div class="space-x-3 px-3 font-mono text-xl">
                 <Link
                     href="/"
-                    class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-dark-400 items-center justify-center hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white
-                    bg-pink-500 shadow-lg font-bold mt-4">
+                    class="text-dark-400 text-pink-500 hover:text-indigo-500">
                     Home
                     </Link>
                 <Link 
                     href="create-nft" 
-                    class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-dark-400 items-center justify-center hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white
-                    bg-pink-500 shadow-lg font-bold mt-4"
-                    >
+                    class="text-dark-400 text-pink-500 hover:text-indigo-500">
                     Create Nft
                 </Link>
             </div>

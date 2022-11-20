@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Navbar from '../components/Navbar'
 
 export default function CreateNFT() {
@@ -20,7 +19,7 @@ export default function CreateNFT() {
             type="file"
             name="Asset"
             className="my-4"/>
-            <button className="font-bold mt-4 bg-pink-500 text-white rounded p-4 shadow-lg hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+            <button className="font-mono mt-4 bg-pink-500 text-white rounded p-4 shadow-lg hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
             Create NFT
             </button>
             </div>
