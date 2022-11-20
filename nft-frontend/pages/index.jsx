@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import Head from "next/head"
+import Head from 'next/head'
+import Navbar from '../components/Navbar'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 
 export default function Home() {
@@ -10,10 +11,11 @@ export default function Home() {
   },[])
 
   return (
-    <div>
+    <div className="">
       <Head>
         <title>NFT Marketplace</title>
       </Head>
+      <Navbar/>
     </div>
   )
 }
