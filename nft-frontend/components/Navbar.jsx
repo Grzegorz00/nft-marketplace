@@ -42,7 +42,12 @@ export default function Navbar(){
                 <input
                     type="text"
                     placeholder="Search"
-                    className="appearance-none border-2 border-indigo-500 rounded-2xl w-full pr-2 pl-10 py-0 text-indigo-900 leading-tight focus:outline-none focus:border-purple-500"/>
+                    className="appearance-none border-2 border-indigo-500 rounded-2xl w-full pr-2 pl-10 py-0 text-indigo-900 leading-tight focus:outline-none focus:border-pink-500"/>
+            </div>
+            <div className='relative flex items-center'>
+                <svg className='w-10 h-10 absolute ml-20 pointer-events-auto'>
+                    <FontAwesomeIcon icon={solid('wallet')} className='text-indigo-500 hover:text-pink-500'/>
+                </svg>
             </div>
         </div>
     </nav>
