@@ -5,7 +5,22 @@ import Router from "next/router"
 import axios from "axios"
 import {create as ipfsHttpClient} from 'ipfs-http-client'
 
-const client = ipfsHttpClient("https://ipfs.infura.io:5001/ipfs/api/v0")
+const projectId = process.env.PROJECT_ID;
+const projectSecretKey = process.env.PROJECT_SECRET_KEY;
+const auth = `Basic ${Buffer.from(`${projectId}:${projectSecretKey}`).toString(
+  "base64"
+)}`;
+
+const subdomain = process.env.SUBDOMAIN;
+
+const client = ipfsHttpClient({
+    host: "infura-ipfs.io",
+    port: 5001,
+    protocol: "https",
+    headers: {
+      authorization: auth,
+    },
+  })
 
 // Internal import
 import { NFTMarketplaceAddress, NFTMarketplaceABI } from "./constants"
@@ -82,10 +97,10 @@ export const NFTMarketplaceProvider = (({children}) => {
     const uploadToIPFS = async(file) => {
         try {
             const added = await client.add({ content: file})
-            const url = `https://ipfs.infura.io/ipfs/${added.path}`
+            const url = `${subdomain}/ipfs/${added.path}`;
             return url
         } catch (error) {
-            console.log("Error uploading the file to IPFS")
+            console.log("Error uploading the file to IPFS", error)
         }
     }
 
@@ -98,7 +113,7 @@ export const NFTMarketplaceProvider = (({children}) => {
 
         try {
             const added = await client.add(data)
-            const url = `https://ipfs.infura.io/ipfs/${added.path}`
+            const url = `https://infura-ipfs.io/ipfs/${added.path}`
 
             await createSale(url, price)
         } catch (error) {

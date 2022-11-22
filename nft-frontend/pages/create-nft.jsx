@@ -1,7 +1,11 @@
-import Form from '../components/Form'
+import React, { useState, useEffect, useContext } from "react";
+import Form from '../components/UploadNFT'
+import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 
 export default function CreateNFT() {
+  const { uploadToIPFS, createNFT } = useContext(NFTMarketplaceContext);
+
   return (
-    <Form/>
+    <Form uploadToIPFS={uploadToIPFS} createNFT={createNFT} />
   )
 }
