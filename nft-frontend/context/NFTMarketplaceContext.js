@@ -5,13 +5,13 @@ import Router from "next/router"
 import axios from "axios"
 import {create as ipfsHttpClient} from 'ipfs-http-client'
 
-const projectId = process.env.PROJECT_ID;
-const projectSecretKey = process.env.PROJECT_SECRET_KEY;
+const projectId = process.env.PROJECT_ID
+const projectSecretKey = process.env.PROJECT_SECRET_KEY
 const auth = `Basic ${Buffer.from(`${projectId}:${projectSecretKey}`).toString(
   "base64"
-)}`;
+)}`
 
-const subdomain = process.env.SUBDOMAIN;
+const subdomain = process.env.SUBDOMAIN
 
 const client = ipfsHttpClient({
     host: "infura-ipfs.io",
@@ -94,28 +94,28 @@ export const NFTMarketplaceProvider = (({children}) => {
         }
     }
 
-    const uploadToIPFS = async(file) => {
+    const uploadToIPFS = async (file) => {
         try {
-            const added = await client.add({ content: file})
-            const url = `${subdomain}/ipfs/${added.path}`;
+            const added = await client.add(file)
+            const url = `${subdomain}/ipfs/${added.path}`
             return url
         } catch (error) {
             console.log("Error uploading the file to IPFS", error)
         }
     }
 
-    const createNFT = async(formInput, fileUrl, router) => {
-        const { name, description, price } = formInput
+    const createNFT = async(name, description, price, fileUrl, router) => {
         if(!name || !description || !price || !fileUrl)
             console.log("Data is missing")
 
-        const data = JSON.stringify({ name, description, image: fileUrl })
+        const data = JSON.stringify({ name, description, price, fileUrl: fileUrl })
 
         try {
             const added = await client.add(data)
             const url = `https://infura-ipfs.io/ipfs/${added.path}`
 
             await createSale(url, price)
+            router.push('/')
         } catch (error) {
             console.log(error)
         }

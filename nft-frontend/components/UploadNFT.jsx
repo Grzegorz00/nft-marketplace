@@ -28,11 +28,7 @@ export default function Form({ uploadToIPFS, createNFT }){
                     type="file"
                     name="Asset"
                     className="my-4"
-                    onChange={(e) => 
-                        {
-                            setFileUrl(uploadToIPFS(e.target.value))
-                            console.log("Elo")
-                        }
+                    onChange={async (e) => setFileUrl(await uploadToIPFS(e.target.files[0]))
                     }/>
                     {
                         fileUrl && (
@@ -41,14 +37,15 @@ export default function Form({ uploadToIPFS, createNFT }){
                     }
                     <button 
                     className="font-mono mt-4 bg-indigo-400 text-white rounded p-4 shadow-lg hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
-                    onClick={async () => 
+                    onClick={async () => {
+                        
                         createNFT(
                             name,
                             description,
                             price,
                             fileUrl,
                             router
-                          )
+                          )}
                     }>
                     Create NFT
                     </button>
