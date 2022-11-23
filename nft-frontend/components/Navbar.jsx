@@ -10,7 +10,7 @@ import {
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 
 export default function Navbar(){
-    const { connectWallet } = useContext(NFTMarketplaceContext);
+    const {  currentAccount, connectWallet } = useContext(NFTMarketplaceContext);
 
     return(
         <nav className=" py-4 bg-gray-100 shadow-lg font-mono text-2xl">
@@ -41,13 +41,15 @@ export default function Navbar(){
                                 Marketplace
                             </Link>
                         </li>
-                        <li>
-                            <Link
-                                href="create-nft" 
-                                className="text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-indigo-500">
-                                Create Nft
-                            </Link>
-                        </li>
+                        {currentAccount != "" ? (
+                            <li>
+                                <Link
+                                    href="create-nft" 
+                                    className="text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-indigo-500">
+                                    Create Nft
+                                </Link>
+                            </li>
+                        ):""}
                     </ul>
 
                     <span className="flex items-center">
@@ -62,23 +64,22 @@ export default function Navbar(){
                     </span>
                 </div>
 
-                {/* WALLET */}
+                {/* WALLET / PROFILE */}
                 <div className='items-center flex space-x-5'>
-
-                    <button className='flex' onClick={()=>connectWallet()}>
-                        <svg className='w-10 h-10'>
-                            <FontAwesomeIcon icon={solid('wallet')} className='text-indigo-500 hover:text-pink-500'/>
-                        </svg>
-                    </button>
-
-                    <button className='flex' onClick={()=>console.log("User")}>
-                        <svg className='w-9 h-9'>
-                            <FontAwesomeIcon icon={solid('user-secret')} className='text-indigo-500 hover:text-pink-500'/>
-                        </svg>
-                    </button>
-
+                    {currentAccount == "" ? (
+                        <button className='flex' onClick={()=>connectWallet()}>
+                            <svg className='w-10 h-10'>
+                                <FontAwesomeIcon icon={solid('wallet')} className='text-indigo-500 hover:text-pink-500'/>
+                            </svg>
+                        </button>
+                    ) : (
+                        <button className='flex' onClick={()=>console.log("User")}>
+                            <svg className='w-9 h-9'>
+                                <FontAwesomeIcon icon={solid('user-secret')} className='text-indigo-500 hover:text-pink-500'/>
+                            </svg>
+                        </button>
+                    )}
                 </div>
-
 
             </div>
         </nav>
