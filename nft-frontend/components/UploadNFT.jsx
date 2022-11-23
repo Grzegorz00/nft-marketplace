@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 
-export default function Form({ uploadToIPFS, createNFT }){
+export default function UploadNFT({ uploadToIPFS, createNFT }){
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");

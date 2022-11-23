@@ -5,13 +5,13 @@ import Router from "next/router"
 import axios from "axios"
 import {create as ipfsHttpClient} from 'ipfs-http-client'
 
-const projectId = process.env.PROJECT_ID
-const projectSecretKey = process.env.PROJECT_SECRET_KEY
+const projectId = "2HuJj5bmbvfGRO5P1LMfVhgcu5I"
+const projectSecretKey = "66812464be7de0bfbbc1ef472f779527"
 const auth = `Basic ${Buffer.from(`${projectId}:${projectSecretKey}`).toString(
   "base64"
 )}`
 
-const subdomain = process.env.SUBDOMAIN
+const subdomain = "https://nft-marketplace-gsps.infura-ipfs.io"
 
 const client = ipfsHttpClient({
     host: "infura-ipfs.io",
@@ -23,12 +23,12 @@ const client = ipfsHttpClient({
   })
 
 // Internal import
-import { NFTMarketplaceAddress, NFTMarketplaceABI } from "./constants"
+import { NFTMarketplaceAdress, NFTMarketplaceABI } from "./constants"
 
 // Fetch smart contract
 const fetchContract = (providerOrSigner) => 
     new ethers.Contract(
-        NFTMarketplaceAddress,
+        NFTMarketplaceAdress,
         NFTMarketplaceABI,
         providerOrSigner
     )
@@ -38,12 +38,12 @@ const connectWithSmartContract = async() => {
     try{
         const web3Modal = new Web3Modal()
         const connection = await web3Modal.connect()
-        const provider = new ethers.providers.Web3Provider(connection)
+        const provider = new ethers.providers.Web3Provider(connection)    
         const signer = provider.getSigner()
         const contract = fetchContract(signer)
         return contract
     } catch (error){
-        console.log("Error while connecting with the smart contract")
+        console.log("Error while connecting with the smart contract: " + error)
     }
 }
 
@@ -135,7 +135,7 @@ export const NFTMarketplaceProvider = (({children}) => {
                     value: listingFee.toString(),
                 })
 
-                await transaction.wait()
+            await transaction.wait()
         } catch (error) {
             console.log()
         }
