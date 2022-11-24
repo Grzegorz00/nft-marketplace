@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import Image from 'next/image'
 
 export default function UploadNFT({ uploadToIPFS, createNFT }){
     const [name, setName] = useState("");
@@ -32,7 +33,7 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
                     }/>
                     {
                         fileUrl && (
-                            <img className="rounded mt-4" width="350" src={fileUrl} />
+                            <Image src={fileUrl} width={500} height={500} className="rounded mt-4"/>
                         )
                     }
                     <button 
