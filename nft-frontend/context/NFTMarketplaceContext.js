@@ -154,7 +154,7 @@ export const NFTMarketplaceProvider = (({children}) => {
                         const tokenURI = await contract.tokenURI(tokenId)
 
                         const {
-                            data: {image, name, description}
+                            data: {fileUrl, name, description}
                         } = await axios.get(tokenURI)
                         const price = ethers.utils.formatUnits(
                             unformattedPrice.toString(),
@@ -166,7 +166,7 @@ export const NFTMarketplaceProvider = (({children}) => {
                             tokenId: tokenId.toNumber(),
                             seller,
                             owner,
-                            image,
+                            fileUrl,
                             name,
                             description,
                             tokenURI
@@ -193,7 +193,7 @@ export const NFTMarketplaceProvider = (({children}) => {
                 data.map(async ({tokenId, seller, owner, price: unformattedPrice}) => {
                     const tokenURI = await contract.tokenURI(tokenId)
                     const {
-                        data: {image, name, description}
+                        data: {fileUrl, name, description}
                     } = await axios.get(tokenURI)
                     const price = ethers.utils.formatUnits(
                         unformattedPrice.toString(),
@@ -205,7 +205,7 @@ export const NFTMarketplaceProvider = (({children}) => {
                         tokenId: tokenId.toNumber(),
                         seller,
                         owner,
-                        image,
+                        fileUrl,
                         name,
                         description,
                         tokenURI
@@ -219,9 +219,9 @@ export const NFTMarketplaceProvider = (({children}) => {
         }
     }
 
-    const buyNFT = async(nft) => {
+    const buyNFT = async(nft, router) => {
         try {
-            const contract = await connectWithSmartContract
+            const contract = await connectWithSmartContract()
             const price = ethers.utils.parseUnits(nft.price.toString(), "ether")
 
             const transaction = await contract.createMarketSale(nft.tokenId, {
@@ -229,8 +229,9 @@ export const NFTMarketplaceProvider = (({children}) => {
             })
 
             await transaction.wait()
+            router.push("/")
         } catch (error) {
-            console.log("Error while buing NFT")
+            console.log("Error while buing NFT: " + error)
         }
     }
 
