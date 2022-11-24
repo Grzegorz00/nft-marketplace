@@ -20,7 +20,7 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
     return(
         <div className='justify-center flex mt-10'>
             <div className="w-full max-w-2xl font-mono">
-                <div className="flex flex-wra">
+                <div className="flex flex-wrap">
                     
                     {/* NAME & PRICE */}
                     <div className="w-full md:w-2/3 mb-4 pr-3">
