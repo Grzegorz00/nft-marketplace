@@ -39,14 +39,13 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
                     <button 
                     className="button"
                     onClick={async () => {
-                        
                         createNFT(
                             name,
                             description,
                             price,
                             fileUrl,
                             router
-                          )}
+                        )}
                     }>
                     Create NFT
                     </button>

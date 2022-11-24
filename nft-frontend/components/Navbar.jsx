@@ -17,23 +17,16 @@ export default function Navbar(){
             
             <div className="flex justify-between items-center ml-10 mr-10"> 
                 {/* LOGO */}
-                <div className='flex items-center space-x-5'>
-                    <svg className='w-14 h-14'>
+                <Link className='flex items-center space-x-5' href="/">
+                    <svg className='w-11 h-11'>
                         <FontAwesomeIcon icon={solid('store')} className='text-indigo-500'/>
                     </svg>
-                    <span className="text-4xl text-transparent bg-clip-text gradient">NFT Marketplace</span>
-                </div>
+                    <span className="text-3xl text-transparent bg-clip-text gradient">NFT Marketplace</span>
+                </Link>
 
                 {/* LINK SEARCHBAR*/}
                 <div className="flex items-center">
                     <ul className='flex items-center space-x-5 px-7'>
-                        <li>
-                            <Link
-                                href="/"
-                                className="text-transparent bg-clip-text hover:gradient bg-indigo-500">
-                                Home
-                            </Link>
-                        </li>
                         <li>
                             <Link 
                                 href="marketplace" 

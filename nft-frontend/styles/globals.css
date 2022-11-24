@@ -12,7 +12,6 @@
 @layer components {
     .button {
         @apply
-        font-mono
         mt-4 
         bg-indigo-400 
         text-white 
