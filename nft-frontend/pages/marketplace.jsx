@@ -28,7 +28,7 @@ export default function Marketplace() {
           {
             nfts.map((nft, i) => (
               <div key={i} className="border shadow rounded-xl overflow-hidden">
-                <Image src={nft.fileUrl} width={500} height={500}/>
+                <Image src={nft.fileUrl} width={500} height={500} alt='NFT'/>
                 <div className="p-4">
                   <p className="text-2xl font-semibold">{nft.name}</p>
                     <p className="text-gray-400">{nft.description}</p>

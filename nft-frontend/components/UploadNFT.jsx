@@ -49,7 +49,7 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
                 />
                 {
                     fileUrl && (
-                        <Image src={fileUrl} width={500} height={500} className="rounded mt-4"/>
+                        <Image src={fileUrl} width={500} height={500} alt='NFT' className="rounded mt-4"/>
                     )
                 }
                 <button 
