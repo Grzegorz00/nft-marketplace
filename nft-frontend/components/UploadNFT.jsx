@@ -17,55 +17,81 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
     const router = useRouter();
 
     return(
-        <div className="flex justify-center">
-            <div className="w-1/2 flex flex-col pb-12">
-                <input 
-                    placeholder="Asset Name"
-                    className="mt-8 rounded p-4 focus:outline-none border-2 border-indigo-200 text-indigo-900 focus:border-pink-200"
-                    onChange={(e) => setName(e.target.value)}
-                />
-                <input
-                    placeholder="Asset Description"
-                    className="mt-2 rounded p-4 focus:outline-none border-2 border-indigo-200 text-indigo-900 focus:border-pink-200"
-                    onChange={(e) => setDescription(e.target.value)}
-                />
-                <div className='flex items-center mt-2'>
-                    <svg className='w-8 h-8 absolute ml-3'>
-                        <FontAwesomeIcon icon={brands('ethereum')} className='text-indigo-300'/>
-                    </svg>
-                    <input
-                        placeholder="Asset Price in Eth"
-                        className="rounded p-4 focus:outline-none border-2 border-indigo-200 text-indigo-900 focus:border-pink-200 pl-12 "
+        <div className='justify-center flex mt-10'>
+            <form className="w-full max-w-lg font-mono">
+                <div className="flex flex-wra">
+                    
+                    {/* NAME & PRICE */}
+                    <div className="w-full md:w-2/3 mb-4 pr-3">
+                        <input 
+                            className="block w-full py-3 mb-3 p-4 rounded focus:outline-none border-2 border-indigo-200 text-indigo-900 focus:border-pink-300 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100" 
+                            type="text" 
+                            placeholder="Asset Name"
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                    </div>
+                    
+                    <div className="w-full md:w-1/3">
+                        <svg className='w-8 h-8 absolute ml-3 mt-2'>
+                            <FontAwesomeIcon icon={brands('ethereum')} className='text-indigo-300'/>
+                        </svg>
+                    <input 
+                        className="block w-full py-3 px-4 mb-3 t rounded p-4 focus:outline-none border-2 border-indigo-200 text-indigo-900 focus:border-pink-300 pl-12 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100" 
+                        type="text" 
+                        placeholder="Asset Price"
                         onChange={(e) => setPrice(e.target.value)}
                     />
+                    </div>
                 </div>
 
-                <input
-                    type="file"
-                    name="Asset"
-                    className="my-4"
-                    onChange={async (e) => setFileUrl(await uploadToIPFS(e.target.files[0]))
+                {/* dESCRIPTION */}
+                <div className="flex flex-wrap">
+                    <div className="w-full">
+
+                        <label className="block uppercase tracking-wide text-indigo-900 text-xs font-bold mb-2">
+                            Description
+                        </label>
+
+                        <textarea 
+                            rows="5" 
+                            className=" block w-full focus:outline-none rounded p-4 border-2 border-indigo-200 text-indigo-900 focus:border-pink-300 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100"
+                            onChange={(e) => setDescription(e.target.value)}
+                        />
+
+                    </div>
+                </div>
+                
+                {/* BUTTON */}
+                <div className='flex flex-wrap'>
+                    <button 
+                        className="block w-full font-mono mt-4 bg-indigo-400 text-white rounded p-4 shadow-lg hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+                        onClick={async () => {
+                            createNFT(
+                                name,
+                                description,
+                                price,
+                                fileUrl,
+                                router
+                            )}
+                        }>
+                            Create NFT
+                    </button>
+                </div>
+                <div className='flex flex-wrap'>
+                    <input
+                        type="file"
+                        name="Asset"
+                        className="my-4"
+                        onChange={async (e) => setFileUrl(await uploadToIPFS(e.target.files[0]))
+                        }
+                    />
+                    {
+                        fileUrl && (
+                            <Image src={fileUrl} width={500} height={500} alt='NFT' className="rounded mt-4"/>
+                        )
                     }
-                />
-                {
-                    fileUrl && (
-                        <Image src={fileUrl} width={500} height={500} alt='NFT' className="rounded mt-4"/>
-                    )
-                }
-                <button 
-                    className="button"
-                    onClick={async () => {
-                        createNFT(
-                            name,
-                            description,
-                            price,
-                            fileUrl,
-                            router
-                        )}
-                    }>
-                    Create NFT
-                </button>
-            </div>
+                </div>
+            </form>
         </div>
     )
 }
