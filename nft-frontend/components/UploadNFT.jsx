@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Dropzone from '../components/Dropzone'
 import {
     solid,
     regular,
@@ -18,7 +19,7 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
 
     return(
         <div className='justify-center flex mt-10'>
-            <form className="w-full max-w-lg font-mono">
+            <div className="w-full max-w-2xl font-mono">
                 <div className="flex flex-wra">
                     
                     {/* NAME & PRICE */}
@@ -52,7 +53,7 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
                             Description
                         </label>
 
-                        <textarea 
+                        <input 
                             rows="5" 
                             className=" block w-full focus:outline-none rounded p-4 border-2 border-indigo-200 text-indigo-900 focus:border-pink-300 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100"
                             onChange={(e) => setDescription(e.target.value)}
@@ -91,7 +92,7 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
                         )
                     }
                 </div>
-            </form>
+            </div>
         </div>
     )
 }
