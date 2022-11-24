@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    html {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+  }
+
+
+@layer components {
+    .button {
+        @apply
+        font-mono
+        mt-4 
+        bg-indigo-400 
+        text-white 
+        rounded 
+        p-4 
+        shadow-lg 
+        hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
+    }
+
+    .gradient{
+        @apply
+        bg-gradient-to-r 
+        from-indigo-500 
+        via-purple-500
+        to-pink-500 
+        bg-indigo-500
+    }
+  }

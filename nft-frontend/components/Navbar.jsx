@@ -13,7 +13,7 @@ export default function Navbar(){
     const {  currentAccount, connectWallet } = useContext(NFTMarketplaceContext);
 
     return(
-        <nav className=" py-4 bg-gray-100 shadow-lg font-mono text-2xl">
+        <nav className=" py-4 bg-gray-100 shadow-lg text-2xl">
             
             <div className="flex justify-between items-center ml-10 mr-10"> 
                 {/* LOGO */}
@@ -21,23 +21,23 @@ export default function Navbar(){
                     <svg className='w-14 h-14'>
                         <FontAwesomeIcon icon={solid('store')} className='text-indigo-500'/>
                     </svg>
-                    <span className="text-4xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">NFT Marketplace</span>
+                    <span className="text-4xl text-transparent bg-clip-text gradient">NFT Marketplace</span>
                 </div>
 
-                {/* LINK NAVBAR*/}
+                {/* LINK SEARCHBAR*/}
                 <div className="flex items-center">
                     <ul className='flex items-center space-x-5 px-7'>
                         <li>
                             <Link
                                 href="/"
-                                className="text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-indigo-500">
+                                className="text-transparent bg-clip-text hover:gradient bg-indigo-500">
                                 Home
                             </Link>
                         </li>
                         <li>
                             <Link 
                                 href="marketplace" 
-                                className="text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-indigo-500">
+                                className="text-transparent bg-clip-text hover:gradient bg-indigo-500">
                                 Marketplace
                             </Link>
                         </li>
@@ -45,7 +45,7 @@ export default function Navbar(){
                             <li>
                                 <Link
                                     href="create-nft" 
-                                    className="text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-indigo-500">
+                                    className="text-transparent bg-clip-text hover:gradient bg-indigo-500">
                                     Create Nft
                                 </Link>
                             </li>

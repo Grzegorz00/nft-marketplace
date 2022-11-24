@@ -36,7 +36,7 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
                         )
                     }
                     <button 
-                    className="font-mono mt-4 bg-indigo-400 text-white rounded p-4 shadow-lg hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+                    className="button"
                     onClick={async () => {
                         
                         createNFT(
