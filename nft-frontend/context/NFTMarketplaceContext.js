@@ -5,13 +5,14 @@ import Router from "next/router"
 import axios from "axios"
 import {create as ipfsHttpClient} from 'ipfs-http-client'
 
-const projectId = "2HuJj5bmbvfGRO5P1LMfVhgcu5I"
-const projectSecretKey = "66812464be7de0bfbbc1ef472f779527"
+// const test = props.host
+const projectId = process.env.PROJECT_ID
+const projectSecretKey = process.env.PROJECT_SECRET_KEY
 const auth = `Basic ${Buffer.from(`${projectId}:${projectSecretKey}`).toString(
   "base64"
 )}`
 
-const subdomain = "https://nft-marketplace-gsps.infura-ipfs.io"
+const subdomain = process.env.SUBDOMAIN
 
 const client = ipfsHttpClient({
     host: "infura-ipfs.io",
@@ -49,7 +50,7 @@ const connectWithSmartContract = async() => {
 
 export const NFTMarketplaceContext = React.createContext();
 
-export const NFTMarketplaceProvider = (({children}) => {
+export const NFTMarketplaceProvider = ({children}) => {
 
     const [currentAccount, setCurrentAccount] = useState("")
         
@@ -181,6 +182,12 @@ export const NFTMarketplaceProvider = (({children}) => {
         }
     }
 
+    useEffect(() => {
+        if (currentAccount) {
+          fetchNFTs();
+        }
+      }, []);
+
     const fetchMyOrListedNFTs = async(type) => {
         try {
             const contract = await connectWithSmartContract()
@@ -219,7 +226,11 @@ export const NFTMarketplaceProvider = (({children}) => {
         }
     }
 
-    const buyNFT = async(nft, router) => {
+    useEffect(() => {
+        fetchMyOrListedNFTs();
+      }, []);
+
+    const buyNFT = async(nft, router,) => {
         try {
             const contract = await connectWithSmartContract()
             const price = ethers.utils.parseUnits(nft.price.toString(), "ether")
@@ -250,4 +261,4 @@ export const NFTMarketplaceProvider = (({children}) => {
             {children}
         </NFTMarketplaceContext.Provider>
     )
-})
+}

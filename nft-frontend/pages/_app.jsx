@@ -9,11 +9,10 @@ const MyApp = ({ Component, pageProps }) => (
             <title>NFT Marketplace</title>
         </Head>
         <div>
-        <NFTMarketplaceProvider>
+            <NFTMarketplaceProvider>
                 <Navbar/>
                 <Component {...pageProps}/>
             </NFTMarketplaceProvider>
-
         </div>
     </>
 );
