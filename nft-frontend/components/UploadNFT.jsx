@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Dropzone from './Dropzone'
+import { Dropzone } from "../components/componentsIndex";
 import {
     solid,
     regular,
