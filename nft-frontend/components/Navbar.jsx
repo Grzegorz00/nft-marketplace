@@ -66,11 +66,11 @@ export default function Navbar(){
                             </svg>
                         </button>
                     ) : (
-                        <button className='flex' onClick={()=>console.log("User")}>
+                        <Link href="user" className='flex'>
                             <svg className='w-9 h-9'>
                                 <FontAwesomeIcon icon={solid('user-secret')} className='text-indigo-500 hover:text-pink-500'/>
                             </svg>
-                        </button>
+                        </Link>
                     )}
                 </div>
 

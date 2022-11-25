@@ -253,6 +253,7 @@ export const NFTMarketplaceProvider = ({children}) => {
                 connectWallet,
                 uploadToIPFS,
                 createNFT,
+                createSale,
                 fetchNFTs,
                 fetchMyOrListedNFTs,
                 buyNFT,
