@@ -10,15 +10,11 @@ export default function Marketplace() {
   const router = useRouter();
 
   useEffect(()=> {
-    loadNFTs()
-  },[])
-
-  async function loadNFTs(){
     fetchNFTs().then((items) => {
-      setNfts(items.reverse());
+      setNfts(items);
     });
     setLoadingState('loaded') 
-  }
+  },[])
 
   if (loadingState === 'loaded' && !nfts.length) return (<h1 className="py-10 px-20 text-3xl">No NFTs listed</h1>)
   return (
@@ -31,7 +27,7 @@ export default function Marketplace() {
                 <Image src={nft.fileUrl} width={500} height={500} alt='NFT'/>
                 <div className="p-4">
                   <p className="text-2xl font-semibold">{nft.name}</p>
-                    <p className="text-gray-400">{nft.description}</p>
+                  <p className="text-gray-400">{nft.description}</p>
                 </div>
                 <div className="p-4 bg-black">
                   <p className="text-2xl font-bold text-white">{nft.price} ETH</p>
