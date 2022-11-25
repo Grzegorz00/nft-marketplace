@@ -1,12 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
-import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
+import React, { useContext } from "react"
+import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-    solid,
-    regular,
-    brands,
-    icon
-  } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 export default function NotLoggedIn() {
   const { connectWallet } = useContext(NFTMarketplaceContext);

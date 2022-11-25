@@ -3,7 +3,7 @@ import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 import { UploadNFT, NotLoggedIn } from '../components/componentsIndex'
 
 export default function CreateNFT() {
-  const { uploadToIPFS, createNFT, currentAccount, connectWallet } = useContext(NFTMarketplaceContext);
+  const { uploadToIPFS, createNFT, currentAccount } = useContext(NFTMarketplaceContext);
 
   if (currentAccount == "") return (<NotLoggedIn />)
   return (

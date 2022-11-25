@@ -2,12 +2,7 @@ import React, { useState, useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 import Image from "next/image"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  solid,
-  regular,
-  brands,
-  icon
-} from '@fortawesome/fontawesome-svg-core/import.macro'
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 
 export default function Dropzone ({uploadToIPFS, setFileUrl, name, description, price}) {
