@@ -97,7 +97,7 @@ export const NFTMarketplaceProvider = ({children}) => {
 
     const uploadToIPFS = async (file) => {
         try {
-            const added = await client.add(file)
+            const added = await client.add({content: file})
             const url = `${subdomain}/ipfs/${added.path}`
             return url
         } catch (error) {

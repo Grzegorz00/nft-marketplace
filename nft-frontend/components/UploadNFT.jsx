@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Dropzone from '../components/Dropzone'
+import Dropzone from './Dropzone'
 import {
     solid,
     regular,
@@ -16,6 +16,7 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
     const [price, setPrice] = useState("");
     const [fileUrl, setFileUrl] = useState(null);
     const router = useRouter();
+    const [image, setImage] = useState(null)
 
     return(
         <div className='justify-center flex mt-10'>
@@ -53,13 +54,23 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
                             Description
                         </label>
 
-                        <input 
+                        <textarea 
                             rows="5" 
                             className=" block w-full focus:outline-none rounded p-4 border-2 border-indigo-200 text-indigo-900 focus:border-pink-300 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100"
                             onChange={(e) => setDescription(e.target.value)}
                         />
 
                     </div>
+                </div>
+
+                <div className='mt-7 mb-5'>
+                    <Dropzone
+                        name={name}
+                        description={description}
+                        price={price}
+                        setImage={setImage}
+                        uploadToIPFS={uploadToIPFS}
+                          />
                 </div>
                 
                 {/* BUTTON */}
@@ -77,20 +88,6 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
                         }>
                             Create NFT
                     </button>
-                </div>
-                <div className='flex flex-wrap'>
-                    <input
-                        type="file"
-                        name="Asset"
-                        className="my-4"
-                        onChange={async (e) => setFileUrl(await uploadToIPFS(e.target.files[0]))
-                        }
-                    />
-                    {
-                        fileUrl && (
-                            <Image src={fileUrl} width={500} height={500} alt='NFT' className="rounded mt-4"/>
-                        )
-                    }
                 </div>
             </div>
         </div>
