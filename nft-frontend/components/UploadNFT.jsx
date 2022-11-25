@@ -11,12 +11,11 @@ import {
 } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 export default function UploadNFT({ uploadToIPFS, createNFT }){
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [price, setPrice] = useState("");
-    const [fileUrl, setFileUrl] = useState(null);
-    const router = useRouter();
-    const [image, setImage] = useState(null)
+    const [name, setName] = useState("")
+    const [description, setDescription] = useState("")
+    const [price, setPrice] = useState("")
+    const [fileUrl, setFileUrl] = useState(null)
+    const router = useRouter()
 
     return(
         <div className='justify-center flex mt-10'>
@@ -68,7 +67,6 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
                         name={name}
                         description={description}
                         price={price}
-                        setImage={setImage}
                         uploadToIPFS={uploadToIPFS}
                         setFileUrl={setFileUrl}
                     />

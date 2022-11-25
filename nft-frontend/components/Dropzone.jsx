@@ -11,7 +11,6 @@ import {
 
 
 export default function Dropzone ({uploadToIPFS, setFileUrl, name, description, price}) {
-
     const [image, setImage] = useState(null);
 
     const onDrop = useCallback(async (acceptedFile) => {
