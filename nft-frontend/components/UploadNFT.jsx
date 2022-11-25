@@ -70,7 +70,8 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
                         price={price}
                         setImage={setImage}
                         uploadToIPFS={uploadToIPFS}
-                          />
+                        setFileUrl={setFileUrl}
+                    />
                 </div>
                 
                 {/* BUTTON */}
