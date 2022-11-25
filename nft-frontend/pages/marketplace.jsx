@@ -8,17 +8,19 @@ import { Loader } from "../components/componentsIndex";
 export default function Marketplace() {
   const { fetchNFTs, buyNFT } = useContext(NFTMarketplaceContext);
   const [nfts, setNfts] = useState([])
-  const [loadingState, setLoadingState] = useState('not-loaded')
   const router = useRouter();
 
   useEffect(()=> {
-    fetchNFTs().then((items) => {
-      setNfts(items);
-    });
-    setLoadingState('loaded') 
+    try{
+      fetchNFTs().then((items) => {
+        setNfts(items);
+      });
+    } catch (error){
+      alert("Please reload browser")
+      console.log("Marketplace error: " + error)
+    }
   },[])
 
-  // if (loadingState === 'loaded' && !nfts.length) return (<h1 className="py-20 px-20 text-3xl text-transparent bg-clip-text gradient">No NFTs listed</h1>)
   return (
     <div>
       { nfts.length == 0 ? <Loader /> :

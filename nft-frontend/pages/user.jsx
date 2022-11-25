@@ -9,17 +9,27 @@ export default function Marketplace() {
   const [myNFTs, setMyNFTs] = useState([])
   const [listedNFTs, setListedNFTs] = useState([])
 
-  useEffect(() => {
-    fetchMyOrListedNFTs("fetchMyNFTs").then((items) => {
-      setMyNFTs(items);
-    });
-  }, []);
+  useEffect(()=> {
+    try{
+      fetchMyOrListedNFTs("fetchMyNFTs").then((items) => {
+        setMyNFTs(items);
+      });
+    } catch (error){
+      alert("Please reload browser")
+      console.log("User (myNFTs) error: " + error)
+    }
+  },[])
 
-  useEffect(() => {
-    fetchMyOrListedNFTs("FetchItemsListed").then((items) => {
-      setListedNFTs(items);
-    });
-  }, []);
+  useEffect(()=> {
+    try{
+      fetchMyOrListedNFTs("FetchItemsListed").then((items) => {
+        setListedNFTs(items);
+      });
+    } catch (error){
+      alert("Please reload browser")
+      console.log("User (listedNFTs) error: " + error)
+    }
+  },[])
   
   if (currentAccount == "") return (<NotLoggedIn />)
   return (
