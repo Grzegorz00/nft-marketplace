@@ -45,4 +45,16 @@
         via-purple-200 
         to-pink-200
     }
+
+    .button-buy-sell{
+        @apply
+        rounded-xl 
+        py-5 
+        px-6 
+        absolute right-0 border-2 border-indigo-300
+        bg-indigo-400 
+        text-white 
+        shadow-lg 
+        hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
+    }
   }

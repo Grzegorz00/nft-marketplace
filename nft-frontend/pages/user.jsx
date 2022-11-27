@@ -1,11 +1,10 @@
 import { useEffect, useState, useContext } from 'react'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
-import { useRouter } from "next/router";
-import Image from 'next/image'
 import NotLoggedIn from "../components/NotLoggedIn";
+import CartNFT from '../components/CartNFT';
 
 export default function Marketplace() {
-  const { fetchMyOrListedNFTs, createSale, currentAccount } = useContext(NFTMarketplaceContext);
+  const { fetchMyOrListedNFTs, currentAccount } = useContext(NFTMarketplaceContext);
   const [myNFTs, setMyNFTs] = useState([])
   const [listedNFTs, setListedNFTs] = useState([])
 
@@ -31,18 +30,17 @@ export default function Marketplace() {
         <div className="px-4" style={{ maxWidth: '1600px' }}>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
             {
-              listedNFTs.map((nft, i) => (
-                <div key={i} className="border shadow rounded-xl overflow-hidden">
-                  <Image src={nft.fileUrl} width={500} height={500} alt='NFT'/>
-                  <div className="p-4">
-                    <p className="text-2xl font-semibold">{nft.name}</p>
-                    <p className="text-gray-400">{nft.description}</p>
-                  </div>
-                  <div className="p-4 bg-black">
-                    <p className="text-2xl font-bold text-white">{nft.price} ETH</p>
-                    <button className="button bg-pink-500 w-full" onClick={() => createSale(nft.fileUrl, nft.price + 1, true, nft.tokenId)}>Sell</button>
-                  </div>
-                </div>
+              myNFTs.map((nft, i) => (
+                <div key={i}>
+                <CartNFT
+                name={nft.name}
+                description={nft.description}
+                price={nft.price}
+                fileUrl={nft.fileUrl}
+                type={"sell"}
+                tokenId={nft.tokenId}
+              />
+              </div>
               ))
             }
           </div>

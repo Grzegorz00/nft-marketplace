@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 import { useRouter } from "next/router";
-import Image from 'next/image'
+import CartNFT from '../components/CartNFT';
 
 export default function Marketplace() {
   const { fetchNFTs, buyNFT } = useContext(NFTMarketplaceContext);
@@ -23,16 +23,15 @@ export default function Marketplace() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
           {
             nfts.map((nft, i) => (
-              <div key={i} className="border shadow rounded-xl overflow-hidden">
-                <Image src={nft.fileUrl} width={500} height={500} alt='NFT'/>
-                <div className="p-4">
-                  <p className="text-2xl font-semibold">{nft.name}</p>
-                  <p className="text-gray-400">{nft.description}</p>
-                </div>
-                <div className="p-4 bg-black">
-                  <p className="text-2xl font-bold text-white">{nft.price} ETH</p>
-                  <button className="button w-full" onClick={() => buyNFT(nft, router)}>Buy</button>
-                </div>
+              <div key={i}>
+              <CartNFT
+                name={nft.name}
+                description={nft.description}
+                price={nft.price}
+                fileUrl={nft.fileUrl}
+                nft={nft}
+                type={"buy"}
+              />
               </div>
             ))
           }
