@@ -1,9 +1,9 @@
 import Image from "next/image"
+import { useContext } from 'react'
+import { useRouter } from "next/router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { brands } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
-import { useContext } from 'react'
-import { useRouter } from "next/router";
 
 export default function CartNFT({name, description, price, fileUrl, type, nft, tokenId}){
 

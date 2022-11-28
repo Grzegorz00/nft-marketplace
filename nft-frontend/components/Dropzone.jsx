@@ -2,7 +2,8 @@ import React, { useState, useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
-import CartNFT from './CartNFT'
+import { CartNFT } from "../components/componentsIndex"
+
 
 
 export default function Dropzone ({uploadToIPFS, setFileUrl, name, description, price}) {

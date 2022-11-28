@@ -1,9 +1,7 @@
 import { useEffect, useState, useContext } from 'react'
 import { useRouter } from "next/router";
-import Image from 'next/image'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
-import { Loader } from "../components/componentsIndex";
-import CartNFT from '../components/CartNFT';
+import { Loader, CartNFT } from "../components/componentsIndex";
 
 export default function Marketplace() {
   const { fetchNFTs, buyNFT } = useContext(NFTMarketplaceContext);
@@ -25,7 +23,6 @@ export default function Marketplace() {
     <div>
       { nfts.length == 0 ? <Loader /> :
         <div className="flex justify-center">
-
           <div className="px-4" style={{ maxWidth: '1600px' }}>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
               {
