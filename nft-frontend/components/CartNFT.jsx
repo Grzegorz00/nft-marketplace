@@ -15,7 +15,7 @@ export default function CartNFT({nftDetails, type}){
     return(
         <div className="flex justify-center w-2xl">
                 <div className="border shadow rounded-xl overflow-hidden">
-                    <Link href={type == "create" ? "" : { pathname: "/details-nft", query: nftDetails}} >
+                    <Link href={type == "create" ? "" : { pathname: "/nft", query: nftDetails}} >
                         <Image src={nftDetails.fileUrl}
                             className='h-80 w-80 object-cover transition-transform duration-300 hover:scale-125'
                             width={500} height={500} alt='NFT'/>
