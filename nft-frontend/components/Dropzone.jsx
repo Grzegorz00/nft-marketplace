@@ -21,7 +21,7 @@ export default function Dropzone ({uploadToIPFS, setFileUrl, name, description, 
             <input{...getInputProps()} />
             <div>
               <label
-                className="flex justify-center w-full h-32 transition gradient-200 border-2 border-indigo-400 border-dashed rounded-md appearance-none cursor-pointer hover:border-indigo-600 focus:outline-none">
+                className=" outline-none flex justify-center w-full h-32 transition gradient-200 border-2 border-indigo-400 border-dashed rounded-md appearance-none cursor-pointer hover:border-indigo-600 focus:outline-none">
                 <span className="flex items-center space-x-12">
                       <svg className='w-11 h-11 absolute'>
                           <FontAwesomeIcon icon={solid('cloud-arrow-up')} className='text-indigo-600'/>
