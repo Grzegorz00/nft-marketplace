@@ -1,9 +1,9 @@
 import Image from "next/image"
-import { useContext } from 'react'
-import { useRouter } from "next/router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { brands } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
+import { useContext } from 'react'
+import { useRouter } from "next/router";
 
 export default function CartNFT({name, description, price, fileUrl, type, nft, tokenId}){
 
@@ -14,9 +14,9 @@ export default function CartNFT({name, description, price, fileUrl, type, nft, t
     
     return(
         <div className="flex justify-center w-2xl">
-            <div className="border shadow rounded-xl overflow-hidden">
+            <div className="border shadow rounded-xl overflow-hidden group">
                 <Image src={fileUrl}
-                    className='h-80 w-80 object-cover transition-transform duration-300 hover:scale-125'
+                    className='h-80 w-80 object-cover transition-transform duration-300 group-hover:scale-110'
                     width={500} height={500} alt='NFT'/>
                 <div className='p-4 relative bg-white'>
                     <p className="text-2xl text-indigo-900">{name}</p>
@@ -31,12 +31,14 @@ export default function CartNFT({name, description, price, fileUrl, type, nft, t
                             {(() => {
                             if (type == "buy") {
                                 return (
-                                    <button className="button-buy-sell" onClick={() => buyNFT(nft, router)}>Buy</button>
+                                    <button className="button-buy-sell" 
+                                        onClick={() => buyNFT(nft, router)}>Buy</button>
                                 )
                             } 
                             else if (type == "sell") {
                                 return (
-                                    <button className="button-buy-sell" onClick={() => createSale(fileUrl, price + 1, true, tokenId)}>Sell</button>
+                                    <button className="button-buy-sell" 
+                                        onClick={() => createSale(fileUrl, price + 1, true, tokenId)}>Sell</button>
                                 )
                             }
                          })()}
