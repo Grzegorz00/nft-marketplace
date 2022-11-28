@@ -40,16 +40,16 @@ export default function Navbar(){
                         ):""}
                     </ul>
 
-                    <span className="flex items-center">
+                    <div className="flex items-center group">
                         <svg className='w-5 h-5 absolute ml-3'>
-                            <FontAwesomeIcon icon={solid('magnifying-glass-dollar')} className='text-indigo-500'/>
+                            <FontAwesomeIcon icon={solid('magnifying-glass-dollar')} className='text-indigo-500 focus:outline-none hover:text-pink-500'/>
                         </svg>
                         <input
                             type="text"
                             placeholder="Search"
                             className="border-2 border-indigo-500 rounded-2xl pr-2 pl-10 py-0 text-indigo-900 leading-tight focus:outline-none focus:border-pink-500" 
                         />
-                    </span>
+                    </div>
                 </div>
 
                 {/* WALLET / PROFILE */}
