@@ -49,7 +49,7 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
 
                         <textarea 
                             rows="5" 
-                            className=" block w-full focus:outline-none rounded p-4 border-2 border-indigo-200 text-indigo-900 focus:border-pink-300 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100"
+                            className="block w-full focus:outline-none rounded p-4 border-2 border-indigo-200 text-indigo-900 focus:border-pink-300 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100"
                             onChange={(e) => setDescription(e.target.value)}
                         />
 
