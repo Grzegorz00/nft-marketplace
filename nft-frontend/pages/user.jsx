@@ -1,6 +1,8 @@
 import { useEffect, useState, useContext } from 'react'
+import { useRouter } from "next/router";
+import Image from 'next/image'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
-import NotLoggedIn from "../components/NotLoggedIn";
+import { NotLoggedIn, Loader } from "../components/componentsIndex";
 import CartNFT from '../components/CartNFT';
 
 export default function Marketplace() {
@@ -8,17 +10,27 @@ export default function Marketplace() {
   const [myNFTs, setMyNFTs] = useState([])
   const [listedNFTs, setListedNFTs] = useState([])
 
-  useEffect(() => {
-    fetchMyOrListedNFTs("fetchMyNFTs").then((items) => {
-      setMyNFTs(items);
-    });
-  }, []);
+  useEffect(()=> {
+    try{
+      fetchMyOrListedNFTs("fetchMyNFTs").then((items) => {
+        setMyNFTs(items);
+      });
+    } catch (error){
+      alert("Please reload browser")
+      console.log("User (myNFTs) error: " + error)
+    }
+  },[])
 
-  useEffect(() => {
-    fetchMyOrListedNFTs("FetchItemsListed").then((items) => {
-      setListedNFTs(items);
-    });
-  }, []);
+  useEffect(()=> {
+    try{
+      fetchMyOrListedNFTs("FetchItemsListed").then((items) => {
+        setListedNFTs(items);
+      });
+    } catch (error){
+      alert("Please reload browser")
+      console.log("User (listedNFTs) error: " + error)
+    }
+  },[])
   
   if (currentAccount == "") return (<NotLoggedIn />)
   return (
@@ -32,20 +44,20 @@ export default function Marketplace() {
             {
               myNFTs.map((nft, i) => (
                 <div key={i}>
-                <CartNFT
-                name={nft.name}
-                description={nft.description}
-                price={nft.price}
-                fileUrl={nft.fileUrl}
-                type={"sell"}
-                tokenId={nft.tokenId}
-              />
+                  <CartNFT
+                  name={nft.name}
+                  description={nft.description}
+                  price={nft.price}
+                  fileUrl={nft.fileUrl}
+                  type={"sell"}
+                  tokenId={nft.tokenId}
+                />
               </div>
               ))
             }
           </div>
-        </div>
-      </div>
+       </div>
     </div>
+   </div>
   )
 }

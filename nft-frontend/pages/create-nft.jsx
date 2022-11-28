@@ -1,20 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
-import UploadNFT from '../components/UploadNFT'
+import React, { useContext } from "react";
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import NotLoggedIn from "../components/NotLoggedIn";
-import {
-    solid,
-    regular,
-    brands,
-    icon
-  } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { UploadNFT, NotLoggedIn } from '../components/componentsIndex'
 
 export default function CreateNFT() {
-  const { uploadToIPFS, createNFT, currentAccount, connectWallet } = useContext(NFTMarketplaceContext);
+  const { uploadToIPFS, createNFT, currentAccount } = useContext(NFTMarketplaceContext);
 
   if (currentAccount == "") return (<NotLoggedIn />)
   return (
-    <UploadNFT uploadToIPFS={uploadToIPFS} createNFT={createNFT} />
+    <div>
+      <UploadNFT uploadToIPFS={uploadToIPFS} createNFT={createNFT} />
+    </div>
   )
 }

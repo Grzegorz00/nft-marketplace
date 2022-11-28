@@ -1,12 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-    solid,
-    regular,
-    brands,
-    icon
-  } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 
 export default function Navbar(){

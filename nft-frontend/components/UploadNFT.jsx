@@ -1,14 +1,8 @@
-import React, { useState } from "react";
-import { useRouter } from "next/router";
-import Image from 'next/image'
+import React, { useState } from "react"
+import { useRouter } from "next/router"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Dropzone from './Dropzone'
-import {
-    solid,
-    regular,
-    brands,
-    icon
-} from '@fortawesome/fontawesome-svg-core/import.macro'
+import { Dropzone } from "../components/componentsIndex"
+import { brands } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 export default function UploadNFT({ uploadToIPFS, createNFT }){
     const [name, setName] = useState("")
