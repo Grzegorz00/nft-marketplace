@@ -7,6 +7,7 @@ import { NotLoggedIn, Loader } from "../components/componentsIndex";
 export default function Marketplace() {
   const { fetchMyOrListedNFTs, createSale, currentAccount } = useContext(NFTMarketplaceContext);
   const [myNFTs, setMyNFTs] = useState([])
+  const [listedNFTs, setListedNFTs] = useState([])
 
   useEffect(()=> {
     try{

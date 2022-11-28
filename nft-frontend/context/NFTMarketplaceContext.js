@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import Web3Modal from 'web3modal'
 import { ethers } from 'ethers'
-import Router from "next/router"
 import axios from "axios"
 import {create as ipfsHttpClient} from 'ipfs-http-client'
 
@@ -242,7 +241,7 @@ export const NFTMarketplaceProvider = ({children}) => {
             await transaction.wait()
             router.push("/")
         } catch (error) {
-            console.log("Error while buing NFT: " + error)
+            console.log("Error while buying NFT: " + error)
         }
     }
 
