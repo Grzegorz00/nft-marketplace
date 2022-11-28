@@ -42,7 +42,7 @@ export default function CartNFT({nftDetails, type}){
                             else if (type == "sell") {
                                 return (
                                     <button className="button-buy-sell" 
-                                        onClick={() => createSale(nftDetails.fileUrl, nftDetails.price + 1, true, nftDetails.tokenId)}>Sell</button>
+                                        onClick={() => createSale(nftDetails.fileUrl, nftDetails.price + 1, true, nftDetails.tokenId, router)}>Sell</button>
                                 )
                             }
                         })()}

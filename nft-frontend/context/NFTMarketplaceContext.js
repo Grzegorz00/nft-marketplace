@@ -50,7 +50,6 @@ const connectWithSmartContract = async() => {
 export const NFTMarketplaceContext = React.createContext();
 
 export const NFTMarketplaceProvider = ({children}) => {
-
     const [currentAccount, setCurrentAccount] = useState("")
         
     const checkIfWalletIsConnected = async() => {
@@ -121,7 +120,7 @@ export const NFTMarketplaceProvider = ({children}) => {
         }
     }
 
-    const createSale = async(url, inputPrice, isReselling, id) => {
+    const createSale = async(url, inputPrice, isReselling, id, router) => {
         try {
             const price = ethers.utils.parseUnits(inputPrice, "ether")
             const contract = await connectWithSmartContract()
@@ -136,6 +135,7 @@ export const NFTMarketplaceProvider = ({children}) => {
                 })
 
             await transaction.wait()
+            router.reload(window.location.pathname)
         } catch (error) {
             console.log()
         }
@@ -239,7 +239,7 @@ export const NFTMarketplaceProvider = ({children}) => {
             })
 
             await transaction.wait()
-            router.push("/")
+            router.push("/user")
         } catch (error) {
             console.log("Error while buying NFT: " + error)
         }
