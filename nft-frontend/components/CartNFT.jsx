@@ -5,9 +5,10 @@ import Link from "next/link";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { brands } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
+import { type } from 'os';
 
 
-export default function CartNFT({nftDetails, type}){
+export default function CartNFT({nftDetails}){
 
     const { createSale } = useContext(NFTMarketplaceContext);
     const { buyNFT } = useContext(NFTMarketplaceContext)
@@ -16,7 +17,7 @@ export default function CartNFT({nftDetails, type}){
     return(
         <div className="flex justify-center">
             <div className="rounded-xl overflow-hidden group shadow-lg shadow-cyan-500/50">
-                <Link href={type == "create" ? "" : { pathname: "/nft", query: nftDetails}}>
+                <Link href={typeof(nftDetails.sold) === "undefined" ? "" : { pathname: "/nft", query: nftDetails}}>
                     <Image src={nftDetails.fileUrl}
                         className='h-80 w-80 object-cover transition-transform duration-300 group-hover:scale-110'
                         width={500} height={500} alt='NFT'/>
@@ -33,13 +34,13 @@ export default function CartNFT({nftDetails, type}){
                             <FontAwesomeIcon icon={brands('ethereum')} className='text-indigo-500'/>
                         </svg>
                         {(() => {
-                            if (type == "buy") {
+                            if (nftDetails.sold == false) {
                                 return (
                                     <button className="button-buy-sell" 
                                         onClick={() => buyNFT(nftDetails, router)}>Buy</button>
                                 )
                             } 
-                            else if (type == "sell") {
+                            else if (nftDetails.sold == true) {
                                 return (
                                     <button className="button-buy-sell" 
                                         onClick={() => createSale(nftDetails.fileUrl, nftDetails.price + 1, true, nftDetails.tokenId, router)}>Sell</button>

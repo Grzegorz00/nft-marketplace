@@ -42,7 +42,6 @@ export default function Dropzone ({uploadToIPFS, setFileUrl, name, description, 
                   name,
                   description
                 }}
-                type={"create"}
               />
             )
           }  

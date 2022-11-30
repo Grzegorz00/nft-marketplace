@@ -42,7 +42,7 @@ export default function Marketplace() {
               {
                 myNFTs.map((nft, i) => (
                   <div key={i}>
-                    <CartNFT nftDetails={nft} type={"sell"} />
+                    <CartNFT nftDetails={nft}/>
                   </div>
                 ))
               }

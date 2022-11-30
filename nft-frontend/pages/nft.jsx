@@ -15,7 +15,8 @@ export default function DetailsNFT() {
         owner: "",
         price: "",
         seller: "",
-        description: ""
+        description: "",
+        sold: ""
       });
     useEffect(() => {
         if (!router.isReady) return;
@@ -24,7 +25,13 @@ export default function DetailsNFT() {
 
     return (
         <div className="flex justify-center">
-          <div className="flex items-start gap-10 mt-10">            
+          <div className="flex items-start gap-10 mt-10"> 
+                
+            <Image 
+                src={nft.fileUrl} width={450} height={450}
+                className="object-cover h-fit w-auto max-w-md rounded-xl"
+            />
+
             <div>
                 <div className="rounded-xl border-2 border-indigo-200 mb-3">
                     <p className="text-3xl text-center font-bold text-indigo-900 py-3">
@@ -82,10 +89,7 @@ export default function DetailsNFT() {
                         Buy
                     </button>
             </div>
-                <Image 
-                    src={nft.fileUrl} width={450} height={450}
-                    className="object-cover h-96 w-auto max-w-sm rounded-xl"
-                />
+
 
             </div>
         </div>
