@@ -5,7 +5,6 @@ import Link from "next/link";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { brands } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
-import { type } from 'os';
 
 
 export default function CartNFT({nftDetails}){

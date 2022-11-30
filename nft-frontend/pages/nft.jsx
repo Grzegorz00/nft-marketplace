@@ -7,6 +7,7 @@ import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 
 export default function DetailsNFT() {
     const router = useRouter();
+    const { createSale } = useContext(NFTMarketplaceContext);
     const { buyNFT } = useContext(NFTMarketplaceContext)
     const [nft, setNft] = useState({
         fileUrl: "",
@@ -22,6 +23,32 @@ export default function DetailsNFT() {
         if (!router.isReady) return;
         setNft(router.query);
     }, [router.isReady]);
+
+    function buyButton(){
+        return(
+            <button
+                onClick={() => buyNFT(nft, router)} 
+                className="px-4 py-5 w-full rounded-xl bg-pink-500 hover:scale-110 duration-200 items-center flex justify-center text-pink-100 text-2xl hover:bg-pink-400">
+                <svg className='w-7 h-7 mr-2'>
+                    <FontAwesomeIcon icon={solid('sack-dollar')} className='text-pink-100'/>
+                </svg>
+                Buy
+            </button>
+        )
+    }
+
+    function sellButton(){
+        return(
+            <button
+                onClick={() => createSale(nft.fileUrl, nft.price + 1, true, nft.tokenId, router)}
+                className="px-4 py-5 w-full rounded-xl bg-cyan-600 hover:scale-110 duration-200 items-center flex justify-center text-white text-2xl hover:bg-cyan-400">
+                <svg className='w-7 h-7 mr-2'>
+                    <FontAwesomeIcon icon={solid('sack-dollar')} className='text-white'/>
+                </svg>
+                Sell
+            </button>
+        )
+    }
 
     return (
         <div className="flex justify-center">
@@ -80,14 +107,19 @@ export default function DetailsNFT() {
                         </div>
                     </div>
                     
-                    <button
-                        onClick={() => buyNFT(nft, router)} 
-                        className="px-4 py-5 w-full rounded-xl bg-pink-500 hover:scale-110 duration-200 items-center flex justify-center text-pink-100 text-2xl hover:bg-pink-400">
-                        <svg className='w-7 h-7 mr-2'>
-                            <FontAwesomeIcon icon={solid('sack-dollar')} className='text-pink-100'/>
-                        </svg>
-                        Buy
-                    </button>
+
+                    {(() => {
+                            if (nft.sold == "false") {
+                                return (
+                                    buyButton()
+                                )
+                            } 
+                            else if (nft.sold == "true") {
+                                return (
+                                    sellButton()
+                                )
+                            }
+                    })()}
             </div>
 
 
