@@ -48,8 +48,8 @@
 
     .button-buy-sell{
         @apply
-        text-xl
-        py-5 
+        text-2xl
+        py-4 
         px-5
         w-full
         right-0
@@ -57,8 +57,6 @@
         text-transparent 
         transition-transform duration-300
         group-hover:text-pink-100
-        group-hover:bg-purple-500/70
-        shadow-lg 
-        group-hover:border-indigo-400 
+        group-hover:bg-pink-500/70
     }
   }

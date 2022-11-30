@@ -42,7 +42,7 @@ export default function Navbar(){
 
                     <div className="flex items-center group">
                         <svg className='w-5 h-5 absolute ml-3'>
-                            <FontAwesomeIcon icon={solid('magnifying-glass-dollar')} className='text-indigo-500 focus:outline-none hover:text-pink-500'/>
+                            <FontAwesomeIcon icon={solid('magnifying-glass-dollar')} className='text-indigo-500 group-focus:outline-none'/>
                         </svg>
                         <input
                             type="text"
