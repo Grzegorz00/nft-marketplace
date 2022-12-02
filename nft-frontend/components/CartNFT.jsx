@@ -18,7 +18,7 @@ export default function CartNFT({nftDetails}){
             <div className="rounded-xl overflow-hidden group shadow-lg shadow-cyan-500/50">
                 <Link href={typeof(nftDetails.sold) === "undefined" ? "" : { pathname: "/nft", query: nftDetails}}>
                     <Image src={nftDetails.fileUrl}
-                        className='h-80 w-80 object-cover transition-transform duration-300 group-hover:scale-110'
+                        className='h-80 w-80 object-cover transition-transform duration-300 group-hover:scale-110 object-top'
                         width={500} height={500} alt='NFT'/>
                     <div className='p-4 relative bg-white w-80'>
                         <p className="text-2xl text-indigo-900">{nftDetails.name}</p>

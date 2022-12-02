@@ -6,6 +6,7 @@ export default function Home() {
   const { checkIfWalletIsConnected } = useContext(NFTMarketplaceContext)
   const [nfts, setNfts] = useState([])
 
+
   useEffect(() => {
     checkIfWalletIsConnected
   },[])
