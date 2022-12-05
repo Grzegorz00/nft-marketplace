@@ -11,6 +11,9 @@ module.exports = {
         '128': '32rem',
         '144': '36rem',
         '160' : '42rem'
+      },
+      fontFamily: {
+        nftName: "'Libre Barcode 39 Text', cursive"
       }
     }
   },
