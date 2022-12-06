@@ -13,8 +13,8 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
 
     return(
         <div className='justify-center flex mt-10'>
-            <div className="w-full max-w-2xl font-mono">
-                <div className="flex flex-wrap">
+            <div className="w-full max-w-2xl">
+                <div className="flex">
                     
                     {/* NAME & PRICE */}
                     <div className="w-full md:w-2/3 mb-4 pr-3">
@@ -39,7 +39,7 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
                     </div>
                 </div>
 
-                {/* dESCRIPTION */}
+                {/* DESCRIPTION */}
                 <div className="flex flex-wrap">
                     <div className="w-full">
 
@@ -57,14 +57,14 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
                 </div>
 
                 <div className='mt-7 mb-5'>
-                    <Dropzone
-                        name={name}
-                        description={description}
-                        price={price}
-                        uploadToIPFS={uploadToIPFS}
-                        setFileUrl={setFileUrl}
-                    />
-                </div>
+                <Dropzone
+                    name={name}
+                    description={description}
+                    price={price}
+                    uploadToIPFS={uploadToIPFS}
+                    setFileUrl={setFileUrl}
+                />
+            </div>
                 
                 {/* BUTTON */}
                 <div className='flex flex-wrap'>

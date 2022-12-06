@@ -55,7 +55,7 @@ export default function Navbar(){
                 {/* WALLET / PROFILE */}
                 <div className='items-center flex space-x-5'>
                     {currentAccount == "" ? (
-                        <button className='flex' onClick={()=>connectWallet()}>
+                        <button className='flex bg-transparent' onClick={()=>connectWallet()}>
                             <svg className='w-10 h-10'>
                                 <FontAwesomeIcon icon={solid('wallet')} className='text-indigo-500 hover:text-pink-500'/>
                             </svg>

@@ -4,9 +4,11 @@ import Image from "next/image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid, brands } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
+import SellWindow from "../components/SellWindow";
 
 export default function DetailsNFT({data}) {
     const router = useRouter();
+    const [showSellWindow, setSellWidnow] = useState(false)
     const { createSale } = useContext(NFTMarketplaceContext)
     const { buyNFT } = useContext(NFTMarketplaceContext)
     const [nft, setNft] = useState({
@@ -87,13 +89,14 @@ export default function DetailsNFT({data}) {
                     </div>
                     <div className="px-5 pb-3">
                     <button
-                        onClick={() => createSale(nft.fileUrl, nft.price + 1, true, nft.tokenId, router)}
+                        onClick={() => setSellWidnow(true)}
                         className="px-4 py-5 w-full rounded-xl bg-cyan-600 hover:scale-105 duration-200 items-center flex justify-center text-white text-2xl hover:bg-cyan-400">
                         Sell
                         <svg className='w-7 h-7 ml-2'>
                             <FontAwesomeIcon icon={solid('gavel')} className='text-white'/>
                         </svg>
                     </button>
+                    <SellWindow showSellWindow={showSellWindow} nft={nft} onClose={() => setSellWidnow(false)}/>
                     </div>
                 </div>
         )
