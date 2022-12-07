@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid, brands } from '@fortawesome/fontawesome-svg-core/import.macro'
-import TransactWindow from "../components/TransactWindow";
+import { TransactWindow } from "../components/componentsIndex";
 
 export default function DetailsNFT({data}) {
     const router = useRouter();

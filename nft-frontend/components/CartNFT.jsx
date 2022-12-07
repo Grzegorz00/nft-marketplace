@@ -3,7 +3,7 @@ import Image from "next/image"
 import Link from "next/link";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { brands } from '@fortawesome/fontawesome-svg-core/import.macro'
-import TransactWindow from './TransactWindow';
+import { TransactWindow } from './componentsIndex';
 
 export default function CartNFT({nftDetails}){
     const [showWindow, setWidnow] = useState(false)
