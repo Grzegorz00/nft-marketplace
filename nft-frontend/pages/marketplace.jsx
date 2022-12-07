@@ -1,47 +1,65 @@
 import { useEffect, useState, useContext } from 'react'
-import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
-import { useRouter } from "next/router";
-import Image from 'next/image'
+import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext"
+import { Loader, CartNFT, SearchBar } from "../components/componentsIndex"
 
 export default function Marketplace() {
-  const { fetchNFTs, buyNFT } = useContext(NFTMarketplaceContext);
+  const { fetchNFTs } = useContext(NFTMarketplaceContext)
   const [nfts, setNfts] = useState([])
-  const [loadingState, setLoadingState] = useState('not-loaded')
-  const router = useRouter();
+  const [nftsCopy, setNftsCopy] = useState([])
 
   useEffect(()=> {
-    loadNFTs()
+    try{
+      fetchNFTs().then((items) => {
+        setNfts(items)
+        setNftsCopy(items)
+      })
+    } catch (error){
+      alert("Please reload browser")
+      console.log("Marketplace error: " + error)
+    }
   },[])
 
-  async function loadNFTs(){
-    fetchNFTs().then((items) => {
-      setNfts(items.reverse());
-    });
-    setLoadingState('loaded') 
-  }
+  const onHandleSearch = (value) => {
+    const filteredNFTS = nfts.filter(({ name }) =>
+      name.toLowerCase().includes(value.toLowerCase())
+    );
 
-  if (loadingState === 'loaded' && !nfts.length) return (<h1 className="py-10 px-20 text-3xl">No NFTs listed</h1>)
+    if (filteredNFTS.length === 0) {
+      setNfts(nftsCopy);
+    } else {
+      setNfts(filteredNFTS);
+    }
+
+  };
+
+  const onClearSearch = () => {
+    if (nfts.length && nftsCopy.length) {
+      setNfts(nftsCopy);
+    }
+  };
   return (
-    <div className="flex justify-center">
-      <div className="px-4" style={{ maxWidth: '1600px' }}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
-          {
-            nfts.map((nft, i) => (
-              <div key={i} className="border shadow rounded-xl overflow-hidden">
-                <Image src={nft.fileUrl} width={500} height={500} alt='NFT'/>
-                <div className="p-4">
-                  <p className="text-2xl font-semibold">{nft.name}</p>
-                    <p className="text-gray-400">{nft.description}</p>
-                </div>
-                <div className="p-4 bg-black">
-                  <p className="text-2xl font-bold text-white">{nft.price} ETH</p>
-                  <button className="button w-full" onClick={() => buyNFT(nft, router)}>Buy</button>
-                </div>
-              </div>
-            ))
-          }
-        </div>
+    <div>
+      <div className='flex justify-center py-4 text-2xl'>
+        <SearchBar
+          onHandleSearch={onHandleSearch}
+          onClearSearch={onClearSearch}
+        />
       </div>
+      { nfts.length == 0 ? <Loader /> :
+        <div className="flex justify-center">
+          <div className="px-4" style={{ maxWidth: '1600px' }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+              {
+                nfts.map((nft, i) => (
+                  <div key={i}>
+                    <CartNFT nftDetails = {nft}/>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      }
     </div>
   )
 }

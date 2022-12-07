@@ -1,26 +1,20 @@
-import React, { useState } from "react";
-import { useRouter } from "next/router";
-import Image from 'next/image'
+import React, { useState } from "react"
+import { useRouter } from "next/router"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Dropzone from '../components/Dropzone'
-import {
-    solid,
-    regular,
-    brands,
-    icon
-} from '@fortawesome/fontawesome-svg-core/import.macro'
+import { Dropzone } from "../components/componentsIndex"
+import { brands } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 export default function UploadNFT({ uploadToIPFS, createNFT }){
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [price, setPrice] = useState("");
-    const [fileUrl, setFileUrl] = useState(null);
-    const router = useRouter();
+    const [name, setName] = useState("")
+    const [description, setDescription] = useState("")
+    const [price, setPrice] = useState("")
+    const [fileUrl, setFileUrl] = useState(null)
+    const router = useRouter()
 
     return(
         <div className='justify-center flex mt-10'>
-            <div className="w-full max-w-2xl font-mono">
-                <div className="flex flex-wra">
+            <div className="w-full max-w-2xl">
+                <div className="flex">
                     
                     {/* NAME & PRICE */}
                     <div className="w-full md:w-2/3 mb-4 pr-3">
@@ -45,7 +39,7 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
                     </div>
                 </div>
 
-                {/* dESCRIPTION */}
+                {/* DESCRIPTION */}
                 <div className="flex flex-wrap">
                     <div className="w-full">
 
@@ -53,14 +47,24 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
                             Description
                         </label>
 
-                        <input 
+                        <textarea 
                             rows="5" 
-                            className=" block w-full focus:outline-none rounded p-4 border-2 border-indigo-200 text-indigo-900 focus:border-pink-300 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100"
+                            className="block w-full focus:outline-none rounded p-4 border-2 border-indigo-200 text-indigo-900 focus:border-pink-300 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100"
                             onChange={(e) => setDescription(e.target.value)}
                         />
 
                     </div>
                 </div>
+
+                <div className='mt-7 mb-5'>
+                <Dropzone
+                    name={name}
+                    description={description}
+                    price={price}
+                    uploadToIPFS={uploadToIPFS}
+                    setFileUrl={setFileUrl}
+                />
+            </div>
                 
                 {/* BUTTON */}
                 <div className='flex flex-wrap'>
@@ -77,20 +81,6 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
                         }>
                             Create NFT
                     </button>
-                </div>
-                <div className='flex flex-wrap'>
-                    <input
-                        type="file"
-                        name="Asset"
-                        className="my-4"
-                        onChange={async (e) => setFileUrl(await uploadToIPFS(e.target.files[0]))
-                        }
-                    />
-                    {
-                        fileUrl && (
-                            <Image src={fileUrl} width={500} height={500} alt='NFT' className="rounded mt-4"/>
-                        )
-                    }
                 </div>
             </div>
         </div>

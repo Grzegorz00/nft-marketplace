@@ -6,7 +6,18 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      spacing: {
+        '128': '32rem',
+        '144': '36rem',
+        '160' : '42rem',
+        '500' : '500px',
+        '600' : '600px'
+      },
+      fontFamily: {
+        nftName: "'Audiowide', cursive"
+      }
+    }
   },
   plugins: [],
 }

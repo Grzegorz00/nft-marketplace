@@ -29,4 +29,48 @@
         to-pink-500 
         bg-indigo-500
     }
+
+    .gradient-100{
+        @apply
+        bg-gradient-to-r 
+        from-indigo-100
+        via-purple-100 
+        to-pink-100
+    }
+
+    .gradient-200{
+        @apply
+        bg-gradient-to-r 
+        from-indigo-200
+        via-purple-200 
+        to-pink-200
+    }
+
+    .button-buy{
+        @apply
+        text-2xl
+        py-4 
+        px-5
+        w-full
+        right-0
+        absolute 
+        text-transparent 
+        transition-transform duration-300
+        group-hover:text-pink-100
+        group-hover:bg-pink-500/70
+    }
+
+    .button-sell{
+        @apply
+        text-2xl
+        py-4 
+        px-5
+        w-full
+        right-0
+        absolute 
+        text-transparent 
+        transition-transform duration-300
+        group-hover:text-pink-100
+        group-hover:bg-cyan-600/70
+    }
   }

@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import Web3Modal from 'web3modal'
 import { ethers } from 'ethers'
-import Router from "next/router"
 import axios from "axios"
 import {create as ipfsHttpClient} from 'ipfs-http-client'
 
@@ -51,7 +50,6 @@ const connectWithSmartContract = async() => {
 export const NFTMarketplaceContext = React.createContext();
 
 export const NFTMarketplaceProvider = ({children}) => {
-
     const [currentAccount, setCurrentAccount] = useState("")
         
     const checkIfWalletIsConnected = async() => {
@@ -97,7 +95,7 @@ export const NFTMarketplaceProvider = ({children}) => {
 
     const uploadToIPFS = async (file) => {
         try {
-            const added = await client.add(file)
+            const added = await client.add({content: file})
             const url = `${subdomain}/ipfs/${added.path}`
             return url
         } catch (error) {
@@ -122,7 +120,7 @@ export const NFTMarketplaceProvider = ({children}) => {
         }
     }
 
-    const createSale = async(url, inputPrice, isReselling, id) => {
+    const createSale = async(url, inputPrice, isReselling, id, router) => {
         try {
             const price = ethers.utils.parseUnits(inputPrice, "ether")
             const contract = await connectWithSmartContract()
@@ -137,6 +135,7 @@ export const NFTMarketplaceProvider = ({children}) => {
                 })
 
             await transaction.wait()
+            router.push("/marketplace")
         } catch (error) {
             console.log()
         }
@@ -151,7 +150,7 @@ export const NFTMarketplaceProvider = ({children}) => {
 
             const items = await Promise.all(
                 data.map(
-                    async({tokenId, seller, owner, price: unformattedPrice}) => {
+                    async({tokenId, seller, owner, price: unformattedPrice, sold}) => {
                         const tokenURI = await contract.tokenURI(tokenId)
 
                         const {
@@ -170,7 +169,8 @@ export const NFTMarketplaceProvider = ({children}) => {
                             fileUrl,
                             name,
                             description,
-                            tokenURI
+                            tokenURI,
+                            sold
                         }
                     }
                 )
@@ -197,7 +197,7 @@ export const NFTMarketplaceProvider = ({children}) => {
             : await contract.fetchMyNFTs() 
 
             const items = await Promise.all(
-                data.map(async ({tokenId, seller, owner, price: unformattedPrice}) => {
+                data.map(async ({tokenId, seller, owner, price: unformattedPrice, sold}) => {
                     const tokenURI = await contract.tokenURI(tokenId)
                     const {
                         data: {fileUrl, name, description}
@@ -215,7 +215,8 @@ export const NFTMarketplaceProvider = ({children}) => {
                         fileUrl,
                         name,
                         description,
-                        tokenURI
+                        tokenURI,
+                        sold
                     }
                 })
             )
@@ -240,9 +241,9 @@ export const NFTMarketplaceProvider = ({children}) => {
             })
 
             await transaction.wait()
-            router.push("/")
+            router.push("/user")
         } catch (error) {
-            console.log("Error while buing NFT: " + error)
+            console.log("Error while buying NFT: " + error)
         }
     }
 
@@ -253,6 +254,7 @@ export const NFTMarketplaceProvider = ({children}) => {
                 connectWallet,
                 uploadToIPFS,
                 createNFT,
+                createSale,
                 fetchNFTs,
                 fetchMyOrListedNFTs,
                 buyNFT,
