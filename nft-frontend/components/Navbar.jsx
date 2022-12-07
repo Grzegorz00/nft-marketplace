@@ -16,7 +16,7 @@ export default function Navbar(){
                     <svg className='w-11 h-11'>
                         <FontAwesomeIcon icon={solid('store')} className='text-indigo-500'/>
                     </svg>
-                    <span className="text-3xl text-transparent bg-clip-text gradient">NFT Marketplace</span>
+                    <span className="font-nf    tName text-3xl text-transparent bg-clip-text gradient">NFT Marketplace</span>
                 </Link>
 
                 {/* LINK SEARCHBAR*/}
