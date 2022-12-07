@@ -13,7 +13,7 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <div id ="sell-window-root"></div>
+          <div id ="transact-window-root"></div>
         </body>
       </Html>
     )

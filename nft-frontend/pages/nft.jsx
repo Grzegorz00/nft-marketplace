@@ -3,24 +3,12 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid, brands } from '@fortawesome/fontawesome-svg-core/import.macro'
-import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
-import SellWindow from "../components/SellWindow";
+import TransactWindow from "../components/TransactWindow";
 
 export default function DetailsNFT({data}) {
     const router = useRouter();
-    const [showSellWindow, setSellWidnow] = useState(false)
-    const { createSale } = useContext(NFTMarketplaceContext)
-    const { buyNFT } = useContext(NFTMarketplaceContext)
-    const [nft, setNft] = useState({
-        fileUrl: "",
-        tokenId: "",
-        name: "",
-        owner: "",
-        price: "",
-        seller: "",
-        description: "",
-        sold: ""
-      });
+    const [showWindow, setWindow] = useState(false)
+    const [nft, setNft] = useState({});
     useEffect(() => {
         if (!router.isReady) return;
         setNft(router.query);
@@ -49,13 +37,14 @@ export default function DetailsNFT({data}) {
                         </div>
                     <div className="px-5 pb-3">
                         <button
-                            onClick={() => buyNFT(nft, router)} 
+                            onClick={() => setWindow(true)} 
                             className="px-4 py-5 w-full rounded-xl bg-pink-500 hover:scale-105 duration-200 items-center flex justify-center text-pink-100 text-2xl hover:bg-pink-400">
                             <svg className='w-7 h-7 mr-2'>
                                 <FontAwesomeIcon icon={solid('sack-dollar')} className='text-pink-100'/>
                             </svg>
                             Buy
                         </button>
+                        <TransactWindow showWindow={showWindow} nft={nft} onClose={() => setWindow(false)}/>
                     </div>
                 </div>
         )
@@ -89,14 +78,14 @@ export default function DetailsNFT({data}) {
                     </div>
                     <div className="px-5 pb-3">
                     <button
-                        onClick={() => setSellWidnow(true)}
+                        onClick={() => setWindow(true)}
                         className="px-4 py-5 w-full rounded-xl bg-cyan-600 hover:scale-105 duration-200 items-center flex justify-center text-white text-2xl hover:bg-cyan-400">
                         Sell
                         <svg className='w-7 h-7 ml-2'>
                             <FontAwesomeIcon icon={solid('gavel')} className='text-white'/>
                         </svg>
                     </button>
-                    <SellWindow showSellWindow={showSellWindow} nft={nft} onClose={() => setSellWidnow(false)}/>
+                    <TransactWindow showWindow={showWindow} nft={nft} onClose={() => setWindow(false)}/>
                     </div>
                 </div>
         )

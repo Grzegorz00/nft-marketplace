@@ -1,12 +1,11 @@
 import { useEffect, useState, useContext } from 'react'
-import { useRouter } from "next/router";
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 import { Loader, CartNFT } from "../components/componentsIndex";
 
 export default function Marketplace() {
-  const { fetchNFTs, buyNFT } = useContext(NFTMarketplaceContext);
+  const { fetchNFTs } = useContext(NFTMarketplaceContext);
   const [nfts, setNfts] = useState([])
-  const router = useRouter();
+
 
   useEffect(()=> {
     try{

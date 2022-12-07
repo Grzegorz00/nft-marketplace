@@ -20,7 +20,7 @@ export default function Dropzone ({uploadToIPFS, setFileUrl, name, description, 
       return (
           <div{...getRootProps()}>
             <input{...getInputProps()} />
-            <div>
+            <div className='pb-8'>
               <label
                 className=" outline-none flex justify-center w-full h-32 transition gradient-200 border-2 border-indigo-400 border-dashed rounded-md appearance-none cursor-pointer hover:border-indigo-600 focus:outline-none">
                 <span className="flex items-center space-x-12">
