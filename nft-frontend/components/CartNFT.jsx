@@ -23,16 +23,14 @@ export default function CartNFT({nftDetails}){
 
                 <div className='py-4 gradient-200 rounded-b-xl relative'>
                     <div className='flex items-center space-x-1 relative px-4'>
-                        <p className="px-0 text-2xl text-indigo-900">
                         {(() => {
-                            if (nftDetails.sold == false) {
-                                return (<p className="px-0 text-2xl text-indigo-900">{nftDetails.price} ETH</p>)
-                            } 
-                            else if (nftDetails.sold == true) {
+                            if (nftDetails.sold == true) {
                                 return (<p className="px-0 text-2xl text-indigo-900">Last price {nftDetails.price} ETH</p>)
                             }
+                            else {
+                                return (<p className="px-0 text-2xl text-indigo-900">{nftDetails.price} ETH</p>)
+                            }
                         })()}
-                        </p>
                         <svg className='w-5 h-5'>
                             <FontAwesomeIcon icon={brands('ethereum')} className='text-indigo-500'/>
                         </svg>
