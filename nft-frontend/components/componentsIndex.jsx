@@ -5,6 +5,7 @@ import NotLoggedIn from "./NotLoggedIn"
 import UploadNFT from "./UploadNFT"
 import CartNFT from "./CartNFT"
 import SearchBar from "./SearchBar"
+import TransactWindow from "./TransactWindow"
 
 export {
     Dropzone,
@@ -13,5 +14,6 @@ export {
     SearchBar,
     NotLoggedIn,
     UploadNFT,
-    CartNFT
+    CartNFT,
+    TransactWindow
   };

@@ -10,10 +10,12 @@ module.exports = {
       spacing: {
         '128': '32rem',
         '144': '36rem',
-        '160' : '42rem'
+        '160' : '42rem',
+        '500' : '500px',
+        '600' : '600px'
       },
       fontFamily: {
-        nftName: "'Libre Barcode 39 Text', cursive"
+        nftName: "'Audiowide', cursive"
       }
     }
   },

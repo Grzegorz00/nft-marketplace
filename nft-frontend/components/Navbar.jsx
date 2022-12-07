@@ -16,7 +16,7 @@ export default function Navbar(){
                     <svg className='w-11 h-11'>
                         <FontAwesomeIcon icon={solid('store')} className='text-indigo-500'/>
                     </svg>
-                    <span className="text-3xl text-transparent bg-clip-text gradient">NFT Marketplace</span>
+                    <span className="font-nf    tName text-3xl text-transparent bg-clip-text gradient">NFT Marketplace</span>
                 </Link>
 
                 {/* LINK SEARCHBAR*/}
@@ -44,7 +44,7 @@ export default function Navbar(){
                 {/* WALLET / PROFILE */}
                 <div className='items-center flex space-x-5'>
                     {currentAccount == "" ? (
-                        <button className='flex' onClick={()=>connectWallet()}>
+                        <button className='flex bg-transparent' onClick={()=>connectWallet()}>
                             <svg className='w-10 h-10'>
                                 <FontAwesomeIcon icon={solid('wallet')} className='text-indigo-500 hover:text-pink-500'/>
                             </svg>

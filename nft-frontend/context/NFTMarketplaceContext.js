@@ -135,7 +135,7 @@ export const NFTMarketplaceProvider = ({children}) => {
                 })
 
             await transaction.wait()
-            router.reload(window.location.pathname)
+            router.push("/marketplace")
         } catch (error) {
             console.log()
         }

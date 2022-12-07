@@ -46,7 +46,7 @@
         to-pink-200
     }
 
-    .button-buy-sell{
+    .button-buy{
         @apply
         text-2xl
         py-4 
@@ -58,5 +58,19 @@
         transition-transform duration-300
         group-hover:text-pink-100
         group-hover:bg-pink-500/70
+    }
+
+    .button-sell{
+        @apply
+        text-2xl
+        py-4 
+        px-5
+        w-full
+        right-0
+        absolute 
+        text-transparent 
+        transition-transform duration-300
+        group-hover:text-pink-100
+        group-hover:bg-cyan-600/70
     }
   }
