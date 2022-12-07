@@ -33,7 +33,6 @@ export default function Marketplace() {
   };
 
   const onClearSearch = () => {
-    console.log("clear")
     if (nfts.length && nftsCopy.length) {
       setNfts(nftsCopy);
     }
