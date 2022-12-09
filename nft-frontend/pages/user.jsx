@@ -3,14 +3,15 @@ import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 import { NotLoggedIn, CartNFT } from "../components/componentsIndex";
 
 export default function Marketplace() {
-  const { fetchMyOrListedNFTs, currentAccount } = useContext(NFTMarketplaceContext);
+  const { fetchMyOrListedOrCreatedNFTs, currentAccount } = useContext(NFTMarketplaceContext);
   const [myNFTs, setMyNFTs] = useState([])
   const [listedNFTs, setListedNFTs] = useState([])
+  const [createdNFTs, setCreatedNFTs] = useState([])
   const [active, setactive] = useState("Owned")
 
   useEffect(()=> {
     try{
-      fetchMyOrListedNFTs("fetchMyNFTs").then((items) => {
+      fetchMyOrListedOrCreatedNFTs("FetchMyNFTs").then((items) => {
         setMyNFTs(items);
       });
     } catch (error){
@@ -21,12 +22,23 @@ export default function Marketplace() {
 
   useEffect(()=> {
     try{
-      fetchMyOrListedNFTs("FetchItemsListed").then((items) => {
+      fetchMyOrListedOrCreatedNFTs("FetchListedNFTs").then((items) => {
         setListedNFTs(items);
       });
     } catch (error){
       alert("Please reload browser")
       console.log("User (listedNFTs) error: " + error)
+    }
+  },[])
+
+  useEffect(()=> {
+    try{
+      fetchMyOrListedOrCreatedNFTs("FetchCreatedNFTs").then((items) => {
+        setCreatedNFTs(items);
+      });
+    } catch (error){
+      alert("Please reload browser")
+      console.log("User (createddNFTs) error: " + error)
     }
   },[])
 
@@ -86,7 +98,7 @@ export default function Marketplace() {
       </nav>
 
       <div>
-        {active === "Owned" && showMyNft( myNFTs)}
+        {active === "Owned" && showMyNft( myNFTs )}
         {active === "Created" && noListedNft()}
         {active === "Listed" && showMyNft( listedNFTs )}
       </div>
