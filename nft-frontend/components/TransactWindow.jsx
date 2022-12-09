@@ -23,7 +23,7 @@ export default function SellWindow({showWindow, onClose, nft}){
 
     function sellWindow(){
         return(
-            <div className="absolute w-full h-full flex justify-center items-center bg-center left-0 top-0 bg-black/70">
+            <div className="w-full h-full flex justify-center items-center bg-center left-0 top-0 bg-black/70 fixed">
                 <div className="w-500 h-600 rounded-xl gradient-100">
                     
                     <div className="flex justify-end group px-1 py-1">
@@ -78,7 +78,7 @@ export default function SellWindow({showWindow, onClose, nft}){
 
     function buyWindow(){
         return(
-            <div className="absolute w-full h-full flex justify-center items-center bg-center left-0 top-0 bg-black/70">
+            <div className="w-full h-full flex justify-center items-center bg-center left-0 top-0 bg-black/70 fixed">
                 <div className="w-500 h-600 rounded-xl gradient-100">
                     
                     <div className="flex justify-end group px-1 py-1">

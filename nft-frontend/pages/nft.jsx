@@ -106,7 +106,7 @@ export default function DetailsNFT({data}) {
 
             <div className="items-center">
 
-                <div className="text-8xl text-indigo-900 pb-10 font-nftName">
+                <div className="text-8xl text-indigo-900 pb-10 font-custom">
                     {nft.name}
                 </div>
                 

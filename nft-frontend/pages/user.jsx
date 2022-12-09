@@ -1,11 +1,12 @@
-import { useEffect, useState, useContext } from 'react'
+import  React, { useEffect, useState, useContext } from 'react'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
-import { NotLoggedIn, Loader, CartNFT } from "../components/componentsIndex";
+import { NotLoggedIn, CartNFT } from "../components/componentsIndex";
 
 export default function Marketplace() {
   const { fetchMyOrListedNFTs, currentAccount } = useContext(NFTMarketplaceContext);
   const [myNFTs, setMyNFTs] = useState([])
   const [listedNFTs, setListedNFTs] = useState([])
+  const [active, setactive] = useState("Owned")
 
   useEffect(()=> {
     try{
@@ -28,28 +29,68 @@ export default function Marketplace() {
       console.log("User (listedNFTs) error: " + error)
     }
   },[])
+
+  function noListedNft(){
+    return(
+      <div className="pt-8">
+      <div className="px-4 border-2 w-full rounded-2xl border-indigo-200 h-120 items-center flex justify-center">
+        <h1 className='text-transparent bg-clip-text gradient text-6xl'>No Nfts to display</h1>
+      </div>
+    </div>
+    )
+  }
+
+  function showMyNft(nftList){
+    if(nftList.length == 0)
+      return(noListedNft())
+    else
+      return(
+          <div className="pt-8">
+            <div className="px-4 border-2 w-full rounded-2xl border-indigo-200">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-y-10 gap-x-4 pt-5 pb-5">
+                {
+                  nftList.map((nft, i) => (
+                    <div classname="" key={i}>
+                      <CartNFT nftDetails={nft}/>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        )
+  }
+
   
   if (currentAccount == "") return (<NotLoggedIn />)
   return (
-    <div className='grid grid-cols-1 place-items-center'>
-      <h1 className="text-4xl text-pink-400 py-5">User</h1>
-      <h1 className="text-2xl text-indigo-500 ">User info ...</h1>
-
-      { myNFTs.length == 0 ? <Loader /> :
-        <div className="flex justify-center">
-          <div className="px-4" style={{ maxWidth: '1600px' }}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
-              {
-                myNFTs.map((nft, i) => (
-                  <div key={i}>
-                    <CartNFT nftDetails={nft}/>
-                  </div>
-                ))
-              }
-            </div>
+    <div className='mx-14 py-4'>
+      <nav class="px-2 border-b-2 rounded border-indigo-300 pb-1">
+        <div class="container flex items-center">
+          <div className='space-x-5 text-2xl text-indigo-500'>
+           <button 
+              autoFocus
+              className="userNav focus:outline-none"
+              onClick={() => setactive("Owned")}> Owned
+            </button>
+            <button 
+              className="userNav"
+              onClick={() => setactive("Listed")}> Listed
+            </button>
+            <button 
+              className="userNav"
+              onClick={() => setactive("Created")}> Created
+            </button>
           </div>
         </div>
-      }
+      </nav>
+
+      <div>
+        {active === "Owned" && showMyNft( myNFTs)}
+        {active === "Created" && noListedNft()}
+        {active === "Listed" && showMyNft( listedNFTs )}
+      </div>
+
     </div>
   )
 }

@@ -8,6 +8,43 @@
     }
   }
 
+@layer utilities {
+    .userNav{
+        @apply
+        relative 
+        ml-10
+        font-bold
+        tracking-[1px]
+        text-transparent 
+        bg-clip-text 
+        hover:gradient 
+        bg-indigo-500 
+        focus:gradient
+    }
+
+    .userNav::after {
+        @apply
+        content-['']
+        bg-pink-500
+        h-[4px]
+        w-[0%]
+        left-0
+        -bottom-[7px]
+        rounded-xl
+        absolute
+        duration-300
+    }
+
+    .userNav:hover::after {
+        @apply
+        w-[100%]
+    }
+
+    .userNav:focus::after {
+        @apply
+        w-[100%]
+    }
+}
 
 @layer components {
     .button {

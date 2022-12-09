@@ -8,7 +8,7 @@ export default function Navbar(){
     const {  currentAccount, connectWallet } = useContext(NFTMarketplaceContext);
 
     return(
-        <nav className=" py-4 bg-gray-100 shadow-lg text-2xl">
+        <nav className=" py-4 bg-gray-100 shadow-lg text-2xl ">
             
             <div className="flex justify-between items-center ml-10 mr-10"> 
                 {/* LOGO */}
@@ -16,7 +16,7 @@ export default function Navbar(){
                     <svg className='w-11 h-11'>
                         <FontAwesomeIcon icon={solid('store')} className='text-indigo-500'/>
                     </svg>
-                    <span className="font-nftName text-3xl text-transparent bg-clip-text gradient">NFT Marketplace</span>
+                    <span className="font-custom text-3xl text-transparent bg-clip-text gradient">NFT Marketplace</span>
                 </Link>
 
                 {/* LINK SEARCHBAR*/}
@@ -25,7 +25,7 @@ export default function Navbar(){
                         <li>
                             <Link 
                                 href="marketplace" 
-                                className="text-transparent bg-clip-text hover:gradient bg-indigo-500">
+                                className="text-transparent bg-clip-text hover:gradient focus:gradient bg-indigo-500 font-custom">
                                 Marketplace
                             </Link>
                         </li>
@@ -33,7 +33,7 @@ export default function Navbar(){
                             <li>
                                 <Link
                                     href="create-nft" 
-                                    className="text-transparent bg-clip-text hover:gradient bg-indigo-500">
+                                    className="text-transparent bg-clip-text hover:gradient focus:gradient bg-indigo-500 font-custom">
                                     Create Nft
                                 </Link>
                             </li>
@@ -50,11 +50,13 @@ export default function Navbar(){
                             </svg>
                         </button>
                     ) : (
-                        <Link href="user" className='flex'>
-                            <svg className='w-9 h-9'>
-                                <FontAwesomeIcon icon={solid('user-secret')} className='text-indigo-500 hover:text-pink-500'/>
-                            </svg>
-                        </Link>
+                        <div className="group">
+                            <Link href="user" className='flex'>
+                                <svg className='w-8 h-8 group-hover:bg-transparent'>
+                                    <FontAwesomeIcon icon={solid('user')} className='text-indigo-500 group-hover:text-pink-500'/>
+                                </svg>
+                            </Link>
+                        </div>
                     )}
                 </div>
 

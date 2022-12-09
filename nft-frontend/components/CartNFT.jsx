@@ -16,7 +16,7 @@ export default function CartNFT({nftDetails}){
                         className='h-80 w-80 object-cover transition-transform duration-300 group-hover:scale-110 object-top'
                         width={500} height={500} alt='NFT'/>
                     <div className='p-4 relative bg-white w-80'>
-                        <p className="text-2xl text-indigo-900 font-nftName">{nftDetails.name}</p>
+                        <p className="text-2xl text-indigo-900 font-custom">{nftDetails.name}</p>
                         <p className="text-gray-500">{nftDetails.description}</p>
                     </div>
                 </Link>

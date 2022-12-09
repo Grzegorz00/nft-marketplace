@@ -8,6 +8,7 @@ module.exports = {
   theme: {
     extend: {
       spacing: {
+        '120': '32.25rem',
         '128': '32rem',
         '144': '36rem',
         '160' : '42rem',
@@ -15,7 +16,7 @@ module.exports = {
         '600' : '600px'
       },
       fontFamily: {
-        nftName: "'Audiowide', cursive"
+        custom: "'Audiowide', cursive"
       }
     }
   },
