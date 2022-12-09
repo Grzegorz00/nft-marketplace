@@ -133,6 +133,7 @@ export default function DetailsNFT({data}) {
                             <p>Token ID: {nft.tokenId}</p>
                             <p>Owner: {nft.owner}</p>  
                             <p>Seller: {nft.seller}</p>    
+                            <p>Created by: {nft.creator}</p>    
                         </div>
                     </div>
 
