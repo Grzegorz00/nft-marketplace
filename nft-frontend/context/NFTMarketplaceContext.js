@@ -150,7 +150,7 @@ export const NFTMarketplaceProvider = ({children}) => {
 
             const items = await Promise.all(
                 data.map(
-                    async({tokenId, seller, owner, price: unformattedPrice, sold}) => {
+                    async({tokenId, seller, owner, creator, price: unformattedPrice, sold}) => {
                         const tokenURI = await contract.tokenURI(tokenId)
 
                         const {
@@ -166,6 +166,7 @@ export const NFTMarketplaceProvider = ({children}) => {
                             tokenId: tokenId.toNumber(),
                             seller,
                             owner,
+                            creator,
                             fileUrl,
                             name,
                             description,
@@ -197,7 +198,7 @@ export const NFTMarketplaceProvider = ({children}) => {
             : await contract.fetchMyNFTs() 
 
             const items = await Promise.all(
-                data.map(async ({tokenId, seller, owner, price: unformattedPrice, sold}) => {
+                data.map(async ({tokenId, seller, owner, creator, price: unformattedPrice, sold}) => {
                     const tokenURI = await contract.tokenURI(tokenId)
                     const {
                         data: {fileUrl, name, description}
@@ -212,6 +213,7 @@ export const NFTMarketplaceProvider = ({children}) => {
                         tokenId: tokenId.toNumber(),
                         seller,
                         owner,
+                        creator,
                         fileUrl,
                         name,
                         description,

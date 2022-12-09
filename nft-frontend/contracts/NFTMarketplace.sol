@@ -13,6 +13,7 @@ contract NFTMarketplace is ERC721URIStorage {
     Counters.Counter private _itemsSold;
 
     uint256 listingFee = 0.03 ether;
+    uint256 creatorPercentageFeeFactor = 100;
     address payable owner;
 
     mapping(uint256 => MarketItem) private idToMarketItem;
@@ -21,6 +22,7 @@ contract NFTMarketplace is ERC721URIStorage {
         uint256 tokenId;
         address payable seller;
         address payable owner;
+        address payable creator;
         uint256 price;
         bool sold;
     }
@@ -29,6 +31,7 @@ contract NFTMarketplace is ERC721URIStorage {
         uint256 indexed tokenId,
         address seller,
         address owner,
+        address creator,
         uint256 price,
         bool sold
     );
@@ -78,6 +81,7 @@ contract NFTMarketplace is ERC721URIStorage {
             tokenId,
             payable(msg.sender),
             payable(address(this)),
+            payable(msg.sender),
             price,
             false
         );
@@ -87,6 +91,7 @@ contract NFTMarketplace is ERC721URIStorage {
             tokenId,
             msg.sender,
             address(this),
+            msg.sender,
             price,
             false
         );
@@ -119,7 +124,12 @@ contract NFTMarketplace is ERC721URIStorage {
             msg.value == price,
             "Please submit the asking price in order to complete the purchase"
         );
-        payable(idToMarketItem[tokenId].seller).transfer(msg.value);
+        
+        uint256 moneyForCreator = msg.value / creatorPercentageFeeFactor;
+        uint256 moneyForSeller = price - moneyForCreator;
+
+        payable(idToMarketItem[tokenId].creator).transfer(moneyForCreator);
+        payable(idToMarketItem[tokenId].seller).transfer(moneyForSeller);
         payable(owner).transfer(listingFee);
         _itemsSold.increment();
         _transfer(address(this), msg.sender, tokenId);
@@ -155,6 +165,29 @@ contract NFTMarketplace is ERC721URIStorage {
 
         for (uint256 i = 0; i < totalItemCount; i++) {
             if (idToMarketItem[i + 1].owner == msg.sender) {
+                itemCount += 1;
+            }
+        }
+
+        MarketItem[] memory items = new MarketItem[](itemCount);
+        for (uint256 i = 0; i < totalItemCount; i++) {
+            if (idToMarketItem[i + 1].owner == msg.sender) {
+                uint256 currentId = i + 1;
+                MarketItem storage currentItem = idToMarketItem[currentId];
+                items[currentIndex] = currentItem;
+                currentIndex += 1;
+            }
+        }
+        return items;
+    }
+
+    function fetchMyCreatedNFTs() public view returns (MarketItem[] memory) {
+        uint256 totalItemCount = _tokenIds.current();
+        uint256 itemCount = 0;
+        uint256 currentIndex = 0;
+
+        for (uint256 i = 0; i < totalItemCount; i++) {
+            if (idToMarketItem[i + 1].creator == msg.sender) {
                 itemCount += 1;
             }
         }
