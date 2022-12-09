@@ -76,7 +76,7 @@ export default function Marketplace() {
   
   if (currentAccount == "") return (<NotLoggedIn />)
   return (
-    <div className='mx-14 py-4'>
+    <div className='mx-14 py-10'>
       <nav class="px-2 border-b-2 rounded border-indigo-300 pb-1">
         <div class="container flex items-center">
           <div className='space-x-5 text-2xl text-indigo-500'>

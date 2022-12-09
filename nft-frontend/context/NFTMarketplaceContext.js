@@ -197,6 +197,7 @@ export const NFTMarketplaceProvider = ({children}) => {
             ? await contract.fetchItemsListed() 
             : await contract.fetchMyNFTs() 
 
+   
             // if (type == "FetchMyNFTs") {
             //     data = await contract.fetchMyCreatedNFTs();
             // } else if (type == "FetchListedNFTs") {
