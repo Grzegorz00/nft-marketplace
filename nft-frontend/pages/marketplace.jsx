@@ -64,19 +64,19 @@ export default function Marketplace() {
       )
     }
 
-    function sortLowToHigh(){
+    function sortList(sortType){
+      if(sortType =="highToLow"){
+        const sortedList = nfts.sort((a,b) => b.price - a.price)
+        return(
+          showNfts(sortedList)
+        )
+      }
+      else{
       const sortedList = nfts.sort((a,b) => a.price - b.price)
-      return(
-        showNfts(sortedList)
-      )
-    }
-
-
-    function sortHighToLow(){
-      const sortedList = nfts.sort((a,b) => b.price - a.price)
-      return(
-        showNfts(sortedList)
-      )
+        return(
+          showNfts(sortedList)
+        )
+      }
     }
 
     const handleClick = (event, sortType) => {
@@ -112,8 +112,8 @@ export default function Marketplace() {
 
       </div>
         {sort === "noSorted" && showNfts( nfts )}
-        {sort === "lowToHigh" && sortLowToHigh()}
-        {sort === "highToLow" && sortHighToLow()}
+        {sort === "lowToHigh" && sortList("lowToHigh")}
+        {sort === "highToLow" && sortList("highToLow")}
     </div>
   )
 }
