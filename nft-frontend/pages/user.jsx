@@ -62,7 +62,7 @@ export default function Marketplace() {
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-y-10 gap-x-4 pt-5 pb-5">
                 {
                   nftList.map((nft, i) => (
-                    <div classname="" key={i}>
+                    <div className="" key={i}>
                       <CartNFT nftDetails={nft}/>
                     </div>
                   ))
