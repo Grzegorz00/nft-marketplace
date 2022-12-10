@@ -104,7 +104,7 @@ export default function Marketplace() {
             </svg>
           </button>
           <div className={`absolute grid bg-indigo-50 rounded-xl text-lg mt-1 p-2 border-indigo-300 border-2 text-indigo-500 ${activeDrop ? '' : 'hidden'}`}>
-            <span className='px-2 py-1 border-b-2 border-indigo-300'>Price</span>
+            <span className='px-2 py-1 border-b-2 border-indigo-300 font-bold'>Price</span>
             <button className='px-2 py-1 border-b-2 border-indigo-300 hover:bg-white' onClick={(event) => handleClick(event, "lowToHigh")}> Low to High</button>
             <button className='px-2 py-1 hover:bg-white' onClick={(event) => handleClick(event, "highToLow")}> High to Low</button>
           </div>

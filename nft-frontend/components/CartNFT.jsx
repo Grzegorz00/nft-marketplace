@@ -25,7 +25,7 @@ export default function CartNFT({nftDetails}){
                     <div className='flex items-center space-x-1 relative px-4'>
                         {(() => {
                             if (nftDetails.sold == true) {
-                                return (<p className="px-0 text-2xl text-indigo-900">Last price {nftDetails.price} ETH</p>)
+                                return (<p className="px-0 text-2xl text-indigo-900">{nftDetails.price} ETH</p>)
                             }
                             else {
                                 return (<p className="px-0 text-2xl text-indigo-900">{nftDetails.price} ETH</p>)

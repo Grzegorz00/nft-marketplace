@@ -11,34 +11,12 @@ export default function Marketplace() {
 
   useEffect(()=> {
     try{
-      fetchMyOrListedOrCreatedNFTs("FetchMyNFTs").then((items) => {
-        setMyNFTs(items);
-      });
+      fetchMyOrListedOrCreatedNFTs("FetchMyNFTs").then((items) => setMyNFTs(items))
+      fetchMyOrListedOrCreatedNFTs("FetchListedNFTs").then((items) => setListedNFTs(items))
+      fetchMyOrListedOrCreatedNFTs("FetchCreatedNFTs").then((items) => setCreatedNFTs(items))
     } catch (error){
       alert("Please reload browser")
-      console.log("User (myNFTs) error: " + error)
-    }
-  },[])
-
-  useEffect(()=> {
-    try{
-      fetchMyOrListedOrCreatedNFTs("FetchListedNFTs").then((items) => {
-        setListedNFTs(items);
-      });
-    } catch (error){
-      alert("Please reload browser")
-      console.log("User (listedNFTs) error: " + error)
-    }
-  },[])
-
-  useEffect(()=> {
-    try{
-      fetchMyOrListedOrCreatedNFTs("FetchCreatedNFTs").then((items) => {
-        setCreatedNFTs(items);
-      });
-    } catch (error){
-      alert("Please reload browser")
-      console.log("User (createddNFTs) error: " + error)
+      console.log("User error: " + error)
     }
   },[])
 
@@ -73,12 +51,11 @@ export default function Marketplace() {
         )
   }
 
-  
   if (currentAccount == "") return (<NotLoggedIn />)
   return (
     <div className='mx-14 py-10'>
-      <nav class="px-2 border-b-2 rounded border-indigo-300 pb-1">
-        <div class="container flex items-center">
+      <nav className="px-2 border-b-2 rounded border-indigo-300 pb-1">
+        <div className="container flex items-center">
           <div className='space-x-5 text-2xl text-indigo-500'>
            <button 
               autoFocus
@@ -99,8 +76,8 @@ export default function Marketplace() {
 
       <div>
         {active === "Owned" && showMyNft( myNFTs )}
-        {active === "Created" && noListedNft()}
         {active === "Listed" && showMyNft( listedNFTs )}
+        {active === "Created" && showMyNft( createdNFTs )}
       </div>
 
     </div>
