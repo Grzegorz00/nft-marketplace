@@ -7,6 +7,13 @@ import { TransactWindow } from './componentsIndex';
 
 export default function CartNFT({nftDetails}){
     const [showWindow, setWidnow] = useState(false)
+
+    function stringMaxLengthAdjuster(description, maxLength){
+        if(description.length > maxLength){
+            return description.substr(0, maxLength - 3) + "..."
+        }
+        return description
+    }
     
     return(
         <div className="flex justify-center">
@@ -16,8 +23,8 @@ export default function CartNFT({nftDetails}){
                         className='h-80 w-80 object-cover transition-transform duration-300 group-hover:scale-110 object-top'
                         width={500} height={500} alt='NFT'/>
                     <div className='p-4 relative bg-white w-80'>
-                        <p className="text-2xl text-indigo-900 font-custom">{nftDetails.name}</p>
-                        <p className="text-gray-500">{nftDetails.description}</p>
+                        <p className="text-2xl text-indigo-900 font-custom">{stringMaxLengthAdjuster(nftDetails.name,18)}</p>
+                        <p className="text-gray-500">{stringMaxLengthAdjuster(nftDetails.description, 32)}</p>
                     </div>
                 </Link>
 
