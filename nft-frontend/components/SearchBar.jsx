@@ -2,24 +2,35 @@ import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 
-export default function SearchBar({ onHandleSearch, onClearSearch }) {
-    const [search, setSearch] = useState("");
-    const [searchItem, setSearchItem] = useState(search);
-  
-    // to do wyrzucenia
+export default function SearchBar({nfts, setNfts, nftsCopy}) {
+    const [search, setSearch] = useState("")
+
     useEffect(() => {
-        const timer = setTimeout(() => setSearch(searchItem), 200);
-        return () => clearTimeout(timer);
-      }, [searchItem]);
-    
-    useEffect(() => {
-    
-    if (search) {
-        onHandleSearch(search);
-    } else {
-        onClearSearch();
-    }
+        if (search) {
+            onHandleSearch(search);
+        } else {
+            onClearSearch();
+        }
     }, [search]);
+
+    const onHandleSearch = (value) => {
+        const filteredNFTS = nfts.filter(({ name }) =>
+          name.toLowerCase().includes(value.toLowerCase())
+        );
+    
+        if (filteredNFTS.length === 0) {
+          setNfts(nftsCopy);
+        } else {
+          setNfts(filteredNFTS);
+        }
+    
+      };
+    
+      const onClearSearch = () => {
+        if (nfts.length && nftsCopy.length) {
+          setNfts(nftsCopy);
+        }
+      };
 
     return (
         <div className="flex items-center group">

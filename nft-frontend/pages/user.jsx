@@ -1,6 +1,6 @@
 import  React, { useEffect, useState, useContext } from 'react'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
-import { NotLoggedIn, DisplayNftGrid, SortButton } from "../components/componentsIndex";
+import { NotLoggedIn, DisplayNftGrid, SortButton, SearchBar } from "../components/componentsIndex";
 
 export default function Marketplace() {
   const { fetchMyOrListedOrCreatedNFTs, currentAccount } = useContext(NFTMarketplaceContext);
@@ -20,10 +20,6 @@ export default function Marketplace() {
       console.log("User error: " + error)
     }
   },[])
-
-  const handleSort = value => {
-    setSort(value)
-  };
 
   if (currentAccount == "") return (<NotLoggedIn />)
   return (
@@ -47,7 +43,10 @@ export default function Marketplace() {
               </button>
             </div>
           </div>
-          <SortButton handleSort={handleSort}/>
+          {active === "Owned" && <SearchBar nfts={myNFTs} setNfts={setMyNFTs} nftsCopy={myNFTs} />}
+          {active === "Listed" && <SearchBar nfts={myNFTs} setNfts={setListedNFTs} nftsCopy={listedNFTs} />}
+          {active === "Created" && <SearchBar nfts={myNFTs} setNfts={setCreatedNFTs} nftsCopy={createdNFTs} />}
+          <SortButton setSort={setSort}/>
         </div>
       </nav>
 

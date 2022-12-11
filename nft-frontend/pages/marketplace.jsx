@@ -21,39 +21,11 @@ export default function Marketplace() {
     }
   },[])
 
-  const onHandleSearch = (value) => {
-    const filteredNFTS = nfts.filter(({ name }) =>
-      name.toLowerCase().includes(value.toLowerCase())
-    );
-
-    if (filteredNFTS.length === 0) {
-      setNfts(nftsCopy);
-    } else {
-      setNfts(filteredNFTS);
-    }
-
-  };
-
-  const onClearSearch = () => {
-    if (nfts.length && nftsCopy.length) {
-      setNfts(nftsCopy);
-    }
-  };
-
-  const handleSort = value => {
-    setSort(value)
-  };
-
   return (
     <div>
       <div className='flex justify-center py-4 text-2xl'>
-        <SearchBar
-          onHandleSearch={onHandleSearch}
-          onClearSearch={onClearSearch}
-        />
-
-        <SortButton handleSort={handleSort}/>
-
+        <SearchBar nfts={nfts} setNfts={setNfts} nftsCopy={nftsCopy} />
+        <SortButton setSort={setSort}/>
       </div>
         <DisplayNftGrid nftList={nfts} sortType={sort}/>
     </div>

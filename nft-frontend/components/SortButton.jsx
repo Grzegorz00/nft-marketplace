@@ -3,15 +3,14 @@ import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 
-export default function SortButton({ handleSort }){
+export default function SortButton({ setSort }){
     const [activeDrop, setActiveDrop] = useState(false)
-    const [sort, setSort] = useState("noSorted")
-
+    const [buttonName, setButtonName] = useState(false)
     const handleClick = (event, sortType) => {
-        event.preventDefault();
-        setSort(sortType);
-        setActiveDrop(!activeDrop);
-        handleSort(sortType)
+        event.preventDefault()
+        setButtonName(sortType)
+        setSort(sortType)
+        setActiveDrop(!activeDrop)
     }
 
 
@@ -20,7 +19,7 @@ export default function SortButton({ handleSort }){
                 <button 
                     className='rounded-2xl text-lg bg-white border-2 border-indigo-300 px-7 flex items-center text-indigo-300 group-hover:bg-indigo-50 group-hover:text-indigo-500 duration-50'
                     onClick={() => setActiveDrop(!activeDrop)}>            
-                    {sort == "noSorted"? "Sort" : sort}
+                    {buttonName == ""? "Sort" : buttonName}
                 <svg className={`duration-50 w-4 h-5 ml-4 ${activeDrop ? 'rotate-180' : ' '}`}>
                     <FontAwesomeIcon icon={solid('chevron-down')} className='text-indigo-300 group-hover:text-indigo-500'/>
                 </svg>
