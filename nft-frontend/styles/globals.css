@@ -12,7 +12,7 @@
     .userNav{
         @apply
         relative 
-        ml-10
+        ml-0
         font-bold
         tracking-[1px]
         text-transparent 
