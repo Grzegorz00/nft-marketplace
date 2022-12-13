@@ -33,18 +33,17 @@ export default function SearchBar({nfts, setNfts, nftsCopy}) {
       };
 
     return (
-        <div className="flex items-center group">
-            <svg className='w-5 h-5 absolute ml-3'>
-                <FontAwesomeIcon icon={solid('magnifying-glass-dollar')} className='text-indigo-500 group-focus:outline-none'/>
-            </svg>
-            <input
-                type="text"
-                placeholder="Search"
-                className="border-2 border-indigo-500 rounded-2xl pr-2 pl-10 py-0 text-indigo-900 leading-tight focus:outline-none focus:border-pink-500" 
-                // zmień na searchItem żeby sie ładowało
-                onChange={e => setSearch(e.target.value)}
-                value={search}
-            />
-        </div>
+      <div className='relative w-max mx-auto'>
+        <svg className='absolute w-12 h-7 inset-y-0 my-auto mt-2.5'>
+            <FontAwesomeIcon icon={solid('magnifying-glass-dollar')} className='text-indigo-500 group-focus:outline-none'/>
+        </svg>
+        <input 
+          type="search" 
+          className='searchBar' 
+          placeholder="Search"
+          onChange={e => setSearch(e.target.value)}
+          value={search}
+          />      
+      </div>
     )
 } 

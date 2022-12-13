@@ -17,7 +17,7 @@ export default function SortButton({ setSort }){
     return(
             <div className='group'>
                 <button 
-                    className='rounded-2xl text-lg bg-white border-2 border-indigo-300 px-7 flex items-center text-indigo-300 group-hover:bg-indigo-50 group-hover:text-indigo-500 duration-50'
+                    className='rounded-3xl text-lg bg-white border-2 border-indigo-300 px-7 h-12 flex items-center text-indigo-300 group-hover:bg-indigo-50 group-hover:text-indigo-500 duration-50'
                     onClick={() => setActiveDrop(!activeDrop)}>            
                     {buttonName == ""? "Sort" : buttonName}
                 <svg className={`duration-50 w-4 h-5 ml-4 ${activeDrop ? 'rotate-180' : ' '}`}>

@@ -4,22 +4,32 @@ import { NotLoggedIn, DisplayNftGrid, SortButton, SearchBar } from "../component
 
 export default function Marketplace() {
   const { fetchMyOrListedOrCreatedNFTs, currentAccount } = useContext(NFTMarketplaceContext);
-  const [myNFTs, setMyNFTs] = useState([])
-  const [listedNFTs, setListedNFTs] = useState([])
-  const [createdNFTs, setCreatedNFTs] = useState([])
+  const [nfts, setNfts] = useState([])
+  const [nftsCopy, setNftsCopy] = useState([])
   const [active, setactive] = useState("Owned")
   const [sort, setSort] = useState("");
 
+
   useEffect(()=> {
     try{
-      fetchMyOrListedOrCreatedNFTs("FetchMyNFTs").then((items) => setMyNFTs(items))
-      fetchMyOrListedOrCreatedNFTs("FetchListedNFTs").then((items) => setListedNFTs(items))
-      fetchMyOrListedOrCreatedNFTs("FetchCreatedNFTs").then((items) => setCreatedNFTs(items))
+      if(active == "Owned"){
+        fetchMyOrListedOrCreatedNFTs("FetchMyNFTs").then((items) =>{ 
+          setNfts(items) 
+          setNftsCopy(items)})
+      } else if(active == "Listed"){
+        fetchMyOrListedOrCreatedNFTs("FetchListedNFTs").then((items) =>{ 
+          setNfts(items) 
+          setNftsCopy(items)})
+      } else if(active == "Created"){
+      fetchMyOrListedOrCreatedNFTs("FetchCreatedNFTs").then((items) =>{ 
+        setNfts(items) 
+        setNftsCopy(items)})
+      }
     } catch (error){
       alert("Please reload browser")
       console.log("User error: " + error)
     }
-  },[])
+  },[active])
 
   if (currentAccount == "") return (<NotLoggedIn />)
   return (
@@ -28,9 +38,9 @@ export default function Marketplace() {
         <div className="flex items-center justify-between">
           <div>
             <div className='space-x-5 text-2xl text-indigo-500'>
-            <button 
+            <button
                 autoFocus
-                className="userNav focus:outline-none"
+                className="userNav"
                 onClick={() => setactive("Owned")}> Owned
               </button>
               <button 
@@ -43,17 +53,15 @@ export default function Marketplace() {
               </button>
             </div>
           </div>
-          {active === "Owned" && <SearchBar nfts={myNFTs} setNfts={setMyNFTs} nftsCopy={myNFTs} />}
-          {active === "Listed" && <SearchBar nfts={myNFTs} setNfts={setListedNFTs} nftsCopy={listedNFTs} />}
-          {active === "Created" && <SearchBar nfts={myNFTs} setNfts={setCreatedNFTs} nftsCopy={createdNFTs} />}
-          <SortButton setSort={setSort}/>
+          <div className='flex items-center space-x-2'>
+            <SearchBar nfts={nfts} setNfts={setNfts} nftsCopy={nftsCopy} />
+            <SortButton setSort={setSort}/>
+          </div>
         </div>
       </nav>
 
       <div className='pt-5'>
-        {active === "Owned" && <DisplayNftGrid nftList={myNFTs} sortType={sort} />}
-        {active === "Listed" && <DisplayNftGrid nftList={listedNFTs} sortType={sort} />}
-        {active === "Created" && <DisplayNftGrid nftList={createdNFTs} sortType={sort} />}
+        <DisplayNftGrid nftList={nfts} sortType={sort} />
       </div>
 
     </div>
