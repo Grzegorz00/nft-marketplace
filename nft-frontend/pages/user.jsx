@@ -1,6 +1,6 @@
 import  React, { useEffect, useState, useContext } from 'react'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
-import { NotLoggedIn, DisplayNftGrid, SortButton, SearchBar } from "../components/componentsIndex";
+import { NotLoggedIn, DisplayNftGrid, SortButton, SearchBar, ResizeCart } from "../components/componentsIndex";
 
 export default function Marketplace() {
   const { fetchMyOrListedOrCreatedNFTs, currentAccount } = useContext(NFTMarketplaceContext);
@@ -8,6 +8,7 @@ export default function Marketplace() {
   const [nftsCopy, setNftsCopy] = useState([])
   const [active, setactive] = useState("Owned")
   const [sort, setSort] = useState("");
+  const [cardSize, setCardSize] = useState("lg")
 
 
   useEffect(()=> {
@@ -30,6 +31,7 @@ export default function Marketplace() {
       console.log("User error: " + error)
     }
   },[active])
+  
 
   if (currentAccount == "") return (<NotLoggedIn />)
   return (
@@ -38,7 +40,7 @@ export default function Marketplace() {
         <div className="flex items-center justify-between">
           <div>
             <div className='space-x-5 text-2xl text-indigo-500'>
-            <button
+              <button
                 autoFocus
                 className="userNav"
                 onClick={() => setactive("Owned")}> Owned
@@ -53,15 +55,16 @@ export default function Marketplace() {
               </button>
             </div>
           </div>
-          <div className='flex items-center space-x-2'>
+          <div className='flex items-center space-x-3'>
             <SearchBar nfts={nfts} setNfts={setNfts} nftsCopy={nftsCopy} />
+            <ResizeCart setCardSize={setCardSize}/>
             <SortButton setSort={setSort}/>
           </div>
         </div>
       </nav>
 
       <div className='pt-5'>
-        <DisplayNftGrid nftList={nfts} sortType={sort} />
+        <DisplayNftGrid nftList={nfts} sortType={sort} cardSize={cardSize}/>
       </div>
 
     </div>

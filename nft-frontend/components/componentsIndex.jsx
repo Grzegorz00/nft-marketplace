@@ -8,6 +8,7 @@ import SearchBar from "./SearchBar"
 import TransactWindow from "./TransactWindow"
 import DisplayNftGrid from "./DisplayNftGrid"
 import SortButton from "./SortButton"
+import ResizeCart from "./ResizeCart"
 
 export {
     Dropzone,
@@ -19,5 +20,6 @@ export {
     CartNFT,
     TransactWindow,
     DisplayNftGrid,
-    SortButton
+    SortButton,
+    ResizeCart
   };

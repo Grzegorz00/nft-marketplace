@@ -2,9 +2,9 @@ import React from "react"
 import { useState, useEffect } from "react"
 import { Loader, CartNFT } from "../components/componentsIndex"
 
-export default function DisplayNftGrid({nftList, sortType}){
+export default function DisplayNftGrid({nftList, sortType, cardSize}){
     const [sortedList, setSortedList] = useState([]);
-
+  
     const sortList = () => {
         let newList = [...nftList]
 
@@ -34,7 +34,7 @@ export default function DisplayNftGrid({nftList, sortType}){
                     {
                         sortedList.map((nft, i) => (
                         <div className="" key={i}>
-                            <CartNFT nftDetails={nft}/>
+                            <CartNFT nftDetails={nft} cardSize={cardSize}/>
                         </div>
                         ))
                     }
