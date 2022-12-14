@@ -13,12 +13,11 @@ export default function SortButton({ setSort }){
         setActiveDrop(!activeDrop)
     }
 
-
     return(
             <div className='group'>
                 <button 
-                    className='rounded-3xl text-lg bg-white border-2 border-indigo-300 px-7 h-12 flex items-center text-indigo-300 group-hover:bg-indigo-50 group-hover:text-indigo-500 duration-50'
-                    onClick={() => setActiveDrop(!activeDrop)}>            
+                    className='rounded-3xl text-lg bg-transparent border-2 border-indigo-300 px-7 h-12 flex items-center text-indigo-300 group-hover:bg-indigo-50 group-hover:text-indigo-500 duration-50'
+                    onClick={() => setActiveDrop(!activeDrop)}>
                     {buttonName == ""? "Sort" : buttonName}
                 <svg className={`duration-50 w-4 h-5 ml-4 ${activeDrop ? 'rotate-180' : ' '}`}>
                     <FontAwesomeIcon icon={solid('chevron-down')} className='text-indigo-300 group-hover:text-indigo-500'/>

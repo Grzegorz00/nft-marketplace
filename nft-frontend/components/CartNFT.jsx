@@ -22,10 +22,10 @@ export default function CartNFT({nftDetails, cardSize}){
             <div className="rounded-xl overflow-hidden group shadow-lg shadow-cyan-500/50">
                 <Link href={typeof(nftDetails.sold) === "undefined" ? "" : { pathname: "/nft", query: nftDetails}}>
                     <Image src={nftDetails.fileUrl}
-                        className={`object-cover transition-transform duration-300 group-hover:scale-110 object-top ${cardSize == 'lg' ? 'h-80 w-80' : 'h-52 w-52'}`}
+                        className={`object-cover transition-transform duration-300 group-hover:scale-110 object-top ${cardSize == 'sm' ? 'h-52 w-52' : 'h-80 w-80'}`}
                         width={500} height={500} alt='NFT'/>
                     <div 
-                        className={`p-4 relative bg-white ${cardSize == 'lg' ? 'w-80' : 'w-52'}`}>
+                        className={`p-4 relative bg-white ${cardSize == 'sm' ? 'w-52' : 'w-80'}`}>
                         <p className="text-2xl text-indigo-900 font-custom">{stringMaxLengthAdjuster(nftDetails.name,18)}</p>
                         <p className="text-gray-500">{stringMaxLengthAdjuster(nftDetails.description, 32)}</p>
                     </div>

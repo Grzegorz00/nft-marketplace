@@ -9,6 +9,8 @@ import TransactWindow from "./TransactWindow"
 import DisplayNftGrid from "./DisplayNftGrid"
 import SortButton from "./SortButton"
 import ResizeCart from "./ResizeCart"
+import UserBackgroundDropzone from "./UserBackgroundDropzone"
+import UserAvatarDropzone from "./UserAvatarDropzone"
 
 export {
     Dropzone,
@@ -21,5 +23,7 @@ export {
     TransactWindow,
     DisplayNftGrid,
     SortButton,
-    ResizeCart
+    ResizeCart,
+    UserBackgroundDropzone,
+    UserAvatarDropzone
   };
