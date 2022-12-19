@@ -1,4 +1,4 @@
-const { users } =  require('./database.js');
+const { prisma } =  require('./database.js');
 
 const resolvers = {
 
@@ -10,23 +10,24 @@ const resolvers = {
 
     Query: {
       user: (parent, args) => {
-        return users.find((user) => user.id === Number(args.id))
+        return prisma.user.findFirst({
+          where: { id: Number(args.id) },
+        });
       },
       users: (parent,args) => {
-        return users
+        return prisma.user.findMany()
       }
     },
 
     Mutation: {
       registerUser: (parent, args) => {
-        users.push({
-          id: users.length + 1,
-          address: args.address,
-          name: args.name,
-        })
-        return users[users.length - 1]
+        return prisma.user.create({
+          data: {
+            address: args.address,
+            name: args.name,
+          },
+        });
       },
-    
     },
 
   }
