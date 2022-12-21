@@ -8,12 +8,12 @@ import SearchBar from "./SearchBar"
 import TransactWindow from "./TransactWindow"
 
 export {
-    Dropzone,
-    Loader,
-    Navbar,
-    SearchBar,
-    NotLoggedIn,
-    UploadNFT,
-    CartNFT,
-    TransactWindow
-  };
+  Dropzone,
+  Loader,
+  Navbar,
+  SearchBar,
+  NotLoggedIn,
+  UploadNFT,
+  CartNFT,
+  TransactWindow
+};

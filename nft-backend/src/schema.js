@@ -9,14 +9,12 @@ const typeDefs = gql`
   }
 
   type Query {
-    enrollment: [User!]
     users: [User!]!
-    user(id: ID!): User
+    user(address: String!): User
   }
 
   type Mutation {
-    registerUser(address: String!, name: String): User!
-    enroll(id: ID!): User
+    addUser(address: String!, name: String): User!
   }
 `
 module.exports = {

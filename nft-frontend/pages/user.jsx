@@ -1,6 +1,8 @@
 import  React, { useEffect, useState, useContext } from 'react'
+import { useQuery } from '@apollo/react-hooks';
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 import { NotLoggedIn, CartNFT } from "../components/componentsIndex";
+import { GET_USER } from '../queries/users';
 
 export default function Marketplace() {
   const { fetchMyOrListedOrCreatedNFTs, currentAccount } = useContext(NFTMarketplaceContext);
@@ -8,6 +10,7 @@ export default function Marketplace() {
   const [listedNFTs, setListedNFTs] = useState([])
   const [createdNFTs, setCreatedNFTs] = useState([])
   const [active, setactive] = useState("Owned")
+  const { loading, error, data } = useQuery(GET_USER, {variables: {address: currentAccount}});
 
   useEffect(()=> {
     try{
@@ -19,6 +22,9 @@ export default function Marketplace() {
       console.log("User error: " + error)
     }
   },[])
+
+  if (loading) return 'Loading...';
+  if (error) return `Error! ${error.message}`;
 
   function noListedNft(){
     return(
@@ -54,6 +60,7 @@ export default function Marketplace() {
   if (currentAccount == "") return (<NotLoggedIn />)
   return (
     <div className='mx-14 py-10'>
+      <p>User name: {data.user.name}</p>
       <nav className="px-2 border-b-2 rounded border-indigo-300 pb-1">
         <div className="container flex items-center">
           <div className='space-x-5 text-2xl text-indigo-500'>

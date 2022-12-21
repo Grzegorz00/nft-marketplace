@@ -11,7 +11,7 @@ const resolvers = {
     Query: {
       user: (parent, args) => {
         return prisma.user.findFirst({
-          where: { id: Number(args.id) },
+          where: { address: args.address },
         });
       },
       users: (parent,args) => {
@@ -20,7 +20,7 @@ const resolvers = {
     },
 
     Mutation: {
-      registerUser: (parent, args) => {
+      addUser: (parent, args) => {
         return prisma.user.create({
           data: {
             address: args.address,
