@@ -41,13 +41,17 @@ export default function Marketplace() {
   if (currentAccount == "") return (<NotLoggedIn />)
   return (
     <>
-      <div className='flex pb-32'>
+      <div className='grid pb-28'>
           <UserBackgroundDropzone/>
 
           <div className='absolute transform pt-40 px-6'>
             <UserAvatarDropzone/>
           </div>
+          
+          <p className='text-xl ml-80 mt-2 text-indigo-800'> Unnamed </p>
+          <p className='text-lg ml-[19rem] text-indigo-700'> 0x71bE63f3384f5fb98995898A86B02Fb2426c5788 </p>
       </div>
+
       <div className='mx-14 py-10'>
         <nav className="px-2 border-b-2 rounded border-indigo-300 pb-1">
           <div className="flex items-center justify-between">

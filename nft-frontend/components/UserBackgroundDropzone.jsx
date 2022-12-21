@@ -1,6 +1,8 @@
 import React, { useState, useCallback, useContext } from 'react'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 import { useDropzone } from 'react-dropzone'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 import Image from 'next/image'
 
@@ -18,13 +20,21 @@ export default function UserBackgroundDropzone () {
   return (
     <div{...getRootProps()}>
       <input{...getInputProps()} />
-      <div className='outline-none w-screen h-80 bg-blue-500 cursor-pointer focus:outline-none shadow-lg shadow-grey-700/50'>
+      <div className='outline-none w-screen h-80 cursor-pointer focus:outline-none shadow-lg shadow-grey-700/50 group'>
+            
+            <div className='flex justify-center'>
+                <svg className="absolute w-8 h-8 mt-40">
+                  <FontAwesomeIcon icon={solid('plus')} className='text-transparent group-hover:text-white'/>
+                </svg>
+            </div>
+            
             {imageUrl &&
             <Image 
                 src={imageUrl}
-                className="object-cover w-screen h-80 "
+                className="object-cover w-screen h-80 group-hover:brightness-50"
                 width={500} height={500} alt='NFT'/>
             }
+            
       </div>
     </div>
   )
