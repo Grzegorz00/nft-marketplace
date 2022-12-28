@@ -1,12 +1,14 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useContext } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { CartNFT } from "../components/componentsIndex"
+import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 
 
 
-export default function Dropzone ({uploadToIPFS, setFileUrl, name, description, price}) {
+export default function Dropzone ({setFileUrl, name, description, price}) {
+    const { uploadToIPFS } = useContext(NFTMarketplaceContext);
     const [imageUrl, setImageUrl] = useState(null)
 
     const onDrop = useCallback(async (acceptedFile) => {

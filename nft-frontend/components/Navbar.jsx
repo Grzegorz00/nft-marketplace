@@ -8,9 +8,9 @@ export default function Navbar(){
     const {  currentAccount, connectWallet } = useContext(NFTMarketplaceContext);
 
     return(
-        <nav className=" py-4 bg-gray-100 shadow-lg text-2xl ">
+        <nav className=" py-4 bg-gray-100 shadow-lg text-2xl">
             
-            <div className="flex justify-between items-center ml-10 mr-10"> 
+            <div className="flex justify-between items-center mr-10 ml-10"> 
                 {/* LOGO */}
                 <Link className='flex items-center space-x-5' href="/">
                     <svg className='w-11 h-11'>
@@ -19,9 +19,8 @@ export default function Navbar(){
                     <span className="font-custom text-3xl text-transparent bg-clip-text gradient">NFT Marketplace</span>
                 </Link>
 
-                {/* LINK SEARCHBAR*/}
-                <div className="flex items-center">
-                    <ul className='flex items-center space-x-5 px-7'>
+                <div className="flex items-center mr-72">
+                    <ul className='flex items-center space-x-5'>
                         <li>
                             <Link 
                                 href="marketplace" 

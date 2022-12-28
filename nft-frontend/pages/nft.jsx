@@ -104,13 +104,14 @@ export default function DetailsNFT({data}) {
                 className="object-cover h-160 w-160 object-top mx-auto rounded-lg"
             />
 
-            <div className="items-center">
+            <div className="items-center w-160">
 
                 <div className="text-8xl text-indigo-900 pb-10 font-custom">
                     {nft.name}
                 </div>
                 
                 <div className="rounded-lg overflow-hidden border-2 border-indigo-200 bg-indigo-50 text-xl mb-10">
+                    
                         <div className="px-4 py-3 border-b-2 border-indigo-200 flex items-center bg-white">
                             <svg className='w-5 h-5'>
                                 <FontAwesomeIcon icon={solid('book-open')} className='text-indigo-500'/>

@@ -9,10 +9,38 @@
   }
 
 @layer utilities {
+
+    .searchBar{
+        @apply
+        text-indigo-900
+        border-2
+        border-indigo-300
+        bg-transparent
+        relative
+        rounded-full
+        outline-none 
+        ml-0
+        tracking-[1px]
+        pl-11
+        w-12
+        h-12
+        duration-300
+        cursor-pointer
+        caret-indigo-900
+    }
+
+    .searchBar:focus {
+        @apply
+        pl-12
+        w-80
+        pr-4
+        border-indigo-500
+    }
+
     .userNav{
         @apply
         relative 
-        ml-10
+        ml-0
         font-bold
         tracking-[1px]
         text-transparent 
@@ -20,6 +48,7 @@
         hover:gradient 
         bg-indigo-500 
         focus:gradient
+        focus:outline-none
     }
 
     .userNav::after {
@@ -35,17 +64,15 @@
         duration-300
     }
 
-    .userNav:hover::after {
+     .userNav:hover::after {
         @apply
         w-[100%]
-    }
+    } 
 
     .userNav:focus::after {
         @apply
         w-[100%]
     }
-
-    
 }
 
 @layer components {
