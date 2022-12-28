@@ -5,8 +5,8 @@ import { NotLoggedIn, DisplayNftGrid, SortButton, SearchBar, ResizeCart, UserBac
 import { GET_USER } from '../queries/users';
 
 export default function Marketplace() {
-  const { loading, error, data } = useQuery(GET_USER, {variables: {address: currentAccount}});
-  const { fetchMyOrListedOrCreatedNFTs, currentAccount } = useContext(NFTMarketplaceContext);
+  const { fetchMyOrListedOrCreatedNFTs, currentAccount } = useContext(NFTMarketplaceContext)
+  const { loading, error, data } = useQuery(GET_USER, {variables: {address: currentAccount}})
   const [nfts, setNfts] = useState([])
   const [nftsCopy, setNftsCopy] = useState([])
   const [active, setactive] = useState("Owned")
