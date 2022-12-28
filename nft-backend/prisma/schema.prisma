@@ -14,4 +14,6 @@ model User {
   id       Int     @id @default(autoincrement())
   address  String
   name     String
+  backgroundUrl String
+  avatarUrl String
 }

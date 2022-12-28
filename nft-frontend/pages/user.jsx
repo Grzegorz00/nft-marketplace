@@ -52,8 +52,8 @@ export default function Marketplace() {
             <UserAvatarDropzone/>
           </div>
           
-          <p className='text-xl ml-80 mt-2 text-indigo-800'> Unnamed </p>
-          <p className='text-lg ml-[19rem] text-indigo-700'> 0x71bE63f3384f5fb98995898A86B02Fb2426c5788 </p>
+          <p className='text-xl ml-80 mt-2 text-indigo-800'>{data.user.name} </p>
+          <p className='text-lg ml-[19rem] text-indigo-700'>{data.user.address} </p>
       </div>
 
       <div className='mx-14 py-10'>
