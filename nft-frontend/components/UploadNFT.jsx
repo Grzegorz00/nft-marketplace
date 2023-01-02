@@ -13,16 +13,22 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
 
     return(
         <div className='justify-center flex mt-10'>
-            <div className="w-full max-w-2xl">
+            <form className="w-full max-w-2xl" 
+                onSubmit={(event) => {
+                    event.preventDefault();
+                    createNFT(name, description, price, fileUrl, router);
+                }}>
                 <div className="flex">
                     
                     {/* NAME & PRICE */}
                     <div className="w-full md:w-2/3 mb-4 pr-3">
-                        <input 
-                            className="block w-full py-3 mb-3 p-4 rounded focus:outline-none border-2 border-indigo-200 text-indigo-900 focus:border-pink-300 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100" 
+                        <input
+                            className='inputForm'
                             type="text" 
                             placeholder="Asset Name"
-                            onChange={(e) => setName(e.target.value)}
+                            onChange={(e) => 
+                                setName(e.target.value)
+                            }
                         />
                     </div>
                     
@@ -31,7 +37,7 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
                             <FontAwesomeIcon icon={brands('ethereum')} className='text-indigo-300'/>
                         </svg>
                     <input 
-                        className="block w-full py-3 px-4 mb-3 t rounded p-4 focus:outline-none border-2 border-indigo-200 text-indigo-900 focus:border-pink-300 pl-12 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100" 
+                        className="inputForm px-4 pl-12 " 
                         type="text" 
                         placeholder="Asset Price"
                         onChange={(e) => setPrice(e.target.value)}
@@ -42,47 +48,35 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
                 {/* DESCRIPTION */}
                 <div className="flex flex-wrap">
                     <div className="w-full">
-
-                        <label className="block uppercase tracking-wide text-indigo-900 text-xs font-bold mb-2">
-                            Description
-                        </label>
-
                         <textarea 
                             rows="5" 
-                            className="block w-full focus:outline-none rounded p-4 border-2 border-indigo-200 text-indigo-900 focus:border-pink-300 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100"
+                            className="block w-full focus:outline-none rounded p-4 border-2 border-indigo-200 text-indigo-900 focus:border-pink-300 gradient-100 placeholder:text-center placeholder:p-12"
                             onChange={(e) => setDescription(e.target.value)}
+                            placeholder="Description"
                         />
-
                     </div>
                 </div>
 
                 <div className='mt-7 mb-5'>
-                <Dropzone
-                    name={name}
-                    description={description}
-                    price={price}
-                    uploadToIPFS={uploadToIPFS}
-                    setFileUrl={setFileUrl}
-                />
-            </div>
+                    <Dropzone
+                        name={name}
+                        description={description}
+                        price={price}
+                        uploadToIPFS={uploadToIPFS}
+                        setFileUrl={setFileUrl}
+                    />
+                </div>
                 
                 {/* BUTTON */}
                 <div className='flex flex-wrap'>
-                    <button 
+                    <button
+                        type="submit"
                         className="block w-full font-mono mt-4 bg-indigo-400 text-white rounded p-4 shadow-lg hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
-                        onClick={async () => {
-                            createNFT(
-                                name,
-                                description,
-                                price,
-                                fileUrl,
-                                router
-                            )}
-                        }>
+                        >
                             Create NFT
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
     )
 }

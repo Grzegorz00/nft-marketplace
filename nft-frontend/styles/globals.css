@@ -172,4 +172,42 @@
         font-custom
         text-indigo-500
     }
+
+    .errorForm{
+        @apply
+        border-red-500
+        bg-red-100
+    }
+
+    .inputForm{
+        @apply
+        block 
+        w-full 
+        py-3 
+        mb-3 
+        p-4 
+        rounded 
+        focus:outline-none 
+        border-2 
+        border-indigo-200
+        text-indigo-900 
+        focus:border-pink-300 
+        gradient-100
+    }
+
+    .inputFormInvalid{
+        @apply
+        block 
+        w-full 
+        py-3 
+        mb-3 
+        p-4 
+        rounded 
+        focus:outline-none 
+        border-2 
+        border-pink-400
+        text-indigo-900 
+        focus:border-pink-300 
+        bg-pink-100
+    }
   }
