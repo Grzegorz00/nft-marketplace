@@ -1,18 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, } from "react";
 import Link from 'next/link'
+import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 
 export default function Navbar(){
+    const router = useRouter();
+    const currentRoute = router.pathname;
     const {  currentAccount, connectWallet } = useContext(NFTMarketplaceContext);
 
     return(
         <nav className=" py-4 bg-gray-100 shadow-lg text-2xl">
             
-            <div className="flex justify-between items-center mr-10 ml-10"> 
+            <div className="flex justify-between items-center mx-10"> 
                 {/* LOGO */}
-                <Link className='flex items-center space-x-5' href="/">
+                <Link 
+                    className='flex items-center space-x-5' 
+                    href="/"
+                >
+
                     <svg className='w-11 h-11'>
                         <FontAwesomeIcon icon={solid('store')} className='text-indigo-500'/>
                     </svg>
@@ -20,24 +27,19 @@ export default function Navbar(){
                 </Link>
 
                 <div className="flex items-center mr-72">
-                    <ul className='flex items-center space-x-5'>
-                        <li>
-                            <Link 
-                                href="marketplace" 
-                                className="text-transparent bg-clip-text hover:gradient focus:gradient bg-indigo-500 font-custom">
-                                Marketplace
-                            </Link>
-                        </li>
+                    <div className='flex items-center space-x-5'>
+                    <Link href="marketplace"
+                        className={currentRoute === "/marketplace" ? "linkActive" : "link"}>
+                        Marketplace
+                    </Link>
                         {currentAccount != "" ? (
-                            <li>
-                                <Link
-                                    href="create-nft" 
-                                    className="text-transparent bg-clip-text hover:gradient focus:gradient bg-indigo-500 font-custom">
-                                    Create Nft
-                                </Link>
-                            </li>
+                            <Link
+                                href="create-nft" 
+                                className={currentRoute === "/create-nft" ? "linkActive" : "link"}>
+                                Create Nft
+                            </Link>
                         ):""}
-                    </ul>
+                    </div >
                 </div>
 
                 {/* WALLET / PROFILE */}
@@ -63,5 +65,3 @@ export default function Navbar(){
         </nav>
     )
 }
-
-

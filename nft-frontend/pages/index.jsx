@@ -12,7 +12,7 @@ export default function Home() {
   },[])
 
   return (
-    <div className="">
+    <div>
       { nfts.length == 0 ? <Loader /> :
         <h1>Home</h1>
       }

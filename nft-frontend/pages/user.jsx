@@ -1,4 +1,4 @@
-import  React, { useEffect, useState, useContext, useRef } from 'react'
+import  React, { useEffect, useState, useContext } from 'react'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 import { NotLoggedIn, DisplayNftGrid, SortButton, SearchBar, ResizeCart, UserBackgroundDropzone, UserAvatarDropzone } from "../components/componentsIndex";
 
@@ -9,11 +9,6 @@ export default function Marketplace() {
   const [active, setactive] = useState("Owned")
   const [sort, setSort] = useState("");
   const [cardSize, setCardSize] = useState("lg")
-  const ref = useRef(null);
-
-  const handleFocus = () => {
-    ref.current.focus();
-  };
 
 
   useEffect(()=> {
@@ -48,7 +43,7 @@ export default function Marketplace() {
             <UserAvatarDropzone/>
           </div>
           
-          <p className='text-xl ml-80 mt-2 text-indigo-800'> Unnamed </p>
+          <p className='text-3xl ml-80 mt-2 text-indigo-800'> Unnamed </p>
           <p className='text-lg ml-[19rem] text-indigo-700'> 0x71bE63f3384f5fb98995898A86B02Fb2426c5788 </p>
       </div>
 
@@ -59,18 +54,15 @@ export default function Marketplace() {
               <div className='space-x-5 text-2xl text-indigo-500'>
                 <button
                   autoFocus
-                  ref={ref}
-                  className="userNav"
-                  onClick={() => {
-                    setactive("Owned") 
-                    handleFocus()}}> Owned
+                  className={active == "Owned" ? "userNavActive" : "userNav"}
+                  onClick={() => setactive("Owned")}> Owned
                 </button>
                 <button 
-                  className="userNav"
+                   className={active == "Listed" ? "userNavActive" : "userNav"}
                   onClick={() => setactive("Listed")}> Listed
                 </button>
                 <button 
-                  className="userNav"
+                   className={active == "Created" ? "userNavActive" : "userNav"}
                   onClick={() => setactive("Created")}> Created
                 </button>
               </div>

@@ -22,14 +22,26 @@ export default function Marketplace() {
     }
   },[])
 
-  return (
-    <div>
-      <div className='flex justify-center py-4 text-2xl'>
-        <SearchBar nfts={nfts} setNfts={setNfts} nftsCopy={nftsCopy} />
-        <ResizeCart setCardSize={setCardSize}/>
-        <SortButton setSort={setSort}/>
+  return(
+    <>
+      <div className='bg-gray-100 shadow-lg'>
+        <div className='mx-10 flex justify-between pb-4 py-5 border-t-2 border-indigo-200'>
+          <div>
+            <SearchBar nfts={nfts} setNfts={setNfts} nftsCopy={nftsCopy} />
+          </div>
+
+          <div className='flex space-x-3'>
+            <ResizeCart setCardSize={setCardSize}/>
+            <SortButton setSort={setSort}/>
+          </div>
+        </div>
       </div>
-        <DisplayNftGrid nftList={nfts} sortType={sort} cardSize={cardSize}/>
-    </div>
+
+      <div className='mx-8 mt-5'>
+          <DisplayNftGrid nftList={nfts} sortType={sort} cardSize={cardSize}/>
+      </div>
+
+    </>
   )
 }
+

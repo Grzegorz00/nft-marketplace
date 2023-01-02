@@ -15,8 +15,6 @@ export default function CartNFT({nftDetails, cardSize}){
         return description
     }
 
-    console.log("cart cart    :" + cardSize)
-
     return(
         <div className="flex justify-center">
             <div className="rounded-xl overflow-hidden group shadow-lg shadow-cyan-500/50">
