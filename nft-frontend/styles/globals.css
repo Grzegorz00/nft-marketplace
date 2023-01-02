@@ -37,6 +37,17 @@
         border-indigo-500
     }
 
+    .userNavActive{
+        @apply
+        relative 
+        ml-0
+        font-bold
+        tracking-[1px]
+        text-transparent 
+        bg-clip-text 
+        gradient
+    }
+
     .userNav{
         @apply
         relative 
