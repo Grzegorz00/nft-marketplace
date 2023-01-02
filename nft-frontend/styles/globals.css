@@ -139,4 +139,26 @@
         group-hover:text-pink-100
         group-hover:bg-cyan-600/70
     }
+    
+    .linkActive{
+        @apply
+        font-custom 
+        text-transparent 
+        bg-clip-text 
+        gradient
+    }
+
+    .linkActive{
+        @apply
+        font-custom 
+        text-transparent 
+        bg-clip-text 
+        gradient
+    }
+
+    .link{
+        @apply
+        font-custom
+        text-indigo-500
+    }
   }
