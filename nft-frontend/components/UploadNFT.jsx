@@ -16,11 +16,9 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
     return(
         <div className='justify-center flex mt-10'>
             <form className="w-full max-w-2xl" 
-                onSubmit={handleSubmit(
-                    (event) => {
-                        event.preventDefault();
-                        createNFT(name, description, price, fileUrl, router);
-                })}>
+                onSubmit={handleSubmit(() => {
+                    createNFT(name, description, price, fileUrl, router);
+                  })}>
                     
                 <div className="flex">
                     {/* NAME & PRICE */}
@@ -43,14 +41,16 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
                         </svg>
 
                         <input
-                            {...register('price', {required:true,  pattern:{value:/^\d+\.\d+$/}})}
+                            {...register('price', {required:true,  pattern:{value:/^\d+(\.\d+)?$/}, min:0.00001, max:10000})}
                             className={`bg-red px-4 pl-12 ${errors.price ? 'inputFormInvalid' : 'inputForm'}`}
-                            type="number"
+                            type="text"
                             placeholder="Asset Price"
                             onChange={(e) => setPrice(e.target.value)}
                         />
                         {errors.price && errors.price.type == "required" && <p className="text-red-500">Price cannot be blank</p>}
                         {errors.price && errors.price.type == "pattern" && <p className="text-red-500">Wrong input number</p>}
+                        {errors.price && errors.price.type == "min" && <p className="text-red-500">Price must be at least 0.00001 eth</p>}
+                        {errors.price && errors.price.type == "max" && <p className="text-red-500">Price cannot be higher than 10000 eth</p>}
 
                     </div>
                 </div>
@@ -59,7 +59,7 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
                 <div className="flex flex-wrap">
                     <div className="w-full">
                         <textarea
-                            {...register('description', {required:true, minLength:3, maxLength:200})} 
+                            {...register('description', {required:true, minLength:3, maxLength:1000})} 
                             rows="5"
                             className={`placeholder:text-center placeholder:p-12 ${errors.description ? 'inputFormInvalid' : 'inputForm'}`}  
                             onChange={(e) => setDescription(e.target.value)}
@@ -67,7 +67,7 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
                         />
                         {errors.description && errors.description.type == "required" && <p className="text-red-500">Description cannot be blank</p>}
                         {errors.description && errors.description.type == "minLength" && <p className="text-red-500">Description must be at least 3 characters long</p>}
-                        {errors.description && errors.description.type == "maxLength" && <p className="text-red-500">Description cannot be longet than 30 characters</p>}
+                        {errors.description && errors.description.type == "maxLength" && <p className="text-red-500">Description cannot be longer than 1000 characters</p>}
                     </div>
                 </div>
 
