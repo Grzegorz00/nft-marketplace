@@ -10,6 +10,11 @@
 
 @layer utilities {
 
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      @apply appearance-none;
+    }
+
     .searchBar{
         @apply
         text-indigo-900
@@ -209,5 +214,6 @@
         text-indigo-900 
         focus:border-pink-300 
         bg-pink-100
+        placeholder:text-red-500
     }
   }
