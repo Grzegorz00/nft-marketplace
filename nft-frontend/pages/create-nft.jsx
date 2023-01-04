@@ -7,7 +7,7 @@ export default function CreateNFT() {
 
   if (currentAccount == "") return (<NotLoggedIn />)
   return (
-    <div>
+    <div className="min-h-screen">
       <UploadNFT createNFT={createNFT} />
     </div>
   )

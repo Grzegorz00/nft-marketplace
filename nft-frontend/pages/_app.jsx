@@ -1,5 +1,6 @@
 import '../styles/globals.css'
-import Navbar from '../components/Navbar'
+import { Navbar, Footer } from "../components/componentsIndex";
+
 import Head from 'next/head'
 import { NFTMarketplaceProvider } from "../context/NFTMarketplaceContext"
 
@@ -15,6 +16,7 @@ const MyApp = ({ Component, pageProps }) => (
             <NFTMarketplaceProvider>
                 <Navbar/>
                 <Component {...pageProps}/>
+                <Footer/>
             </NFTMarketplaceProvider>
         </div>
     </>

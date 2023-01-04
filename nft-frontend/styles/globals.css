@@ -9,12 +9,6 @@
   }
 
 @layer utilities {
-
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-      @apply appearance-none;
-    }
-
     .searchBar{
         @apply
         text-indigo-900
@@ -47,6 +41,7 @@
         relative 
         ml-0
         font-bold
+        text-2xl
         tracking-[1px]
         text-transparent 
         bg-clip-text 
@@ -109,7 +104,6 @@
         from-indigo-500 
         via-purple-500
         to-pink-500 
-        bg-indigo-500
     }
 
     .gradient-100{
@@ -162,6 +156,7 @@
         text-transparent 
         bg-clip-text 
         gradient
+        text-2xl
     }
 
     .linkActive{
@@ -170,6 +165,7 @@
         text-transparent 
         bg-clip-text 
         gradient
+        text-2xl
     }
 
     .link{

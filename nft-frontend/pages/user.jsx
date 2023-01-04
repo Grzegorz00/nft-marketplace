@@ -35,7 +35,7 @@ export default function Marketplace() {
 
   if (currentAccount == "") return (<NotLoggedIn />)
   return (
-    <>
+    <div className='min-h-screen'>
       <div className='grid pb-28'>
           <UserBackgroundDropzone/>
 
@@ -47,7 +47,7 @@ export default function Marketplace() {
           <p className='text-lg ml-[19rem] text-indigo-700'> 0x71bE63f3384f5fb98995898A86B02Fb2426c5788 </p>
       </div>
 
-      <div className='mx-14 py-10'>
+      <div className='mx-14'>
         <nav className="px-2 border-b-2 rounded border-indigo-300 pb-1">
           <div className="flex items-center justify-between">
             <div>
@@ -80,6 +80,6 @@ export default function Marketplace() {
         </div>
 
       </div>
-    </>
+    </div>
   )
 }

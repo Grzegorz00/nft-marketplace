@@ -13,6 +13,7 @@ export default function UploadNFT({ uploadToIPFS, createNFT }){
     const [fileUrl, setFileUrl] = useState(null)
     const router = useRouter()
     const {register, handleSubmit, formState:{errors}} = useForm()
+    
     return(
         <div className='justify-center flex mt-10'>
             <form className="w-full max-w-2xl" 

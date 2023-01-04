@@ -95,7 +95,7 @@ export default function DetailsNFT({data}) {
 
 
     return (    
-        <div className="flex justify-center">
+        <div className="flex justify-center min-h-screen">
 
           <div className="flex items-start gap-10 mt-10"> 
             <Image 
