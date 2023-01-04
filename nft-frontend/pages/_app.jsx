@@ -1,5 +1,6 @@
 import '../styles/globals.css'
-import Navbar from '../components/Navbar'
+import { Navbar, Footer } from "../components/componentsIndex";
+
 import Head from 'next/head'
 import { ApolloProvider } from '@apollo/react-hooks';
 import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
@@ -25,6 +26,7 @@ const MyApp = ({ Component, pageProps }) => (
                 <NFTMarketplaceProvider>
                     <Navbar/>
                     <Component {...pageProps}/>
+                    <Footer/>
                 </NFTMarketplaceProvider>
             </ApolloProvider>
         </div>

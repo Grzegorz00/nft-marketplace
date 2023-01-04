@@ -24,8 +24,8 @@ export default function UserAvatarDropzone ({avatarUrl}) {
             {imageUrl &&
             <Image 
                 src={imageUrl}
-                className="object-cover w-screen h-80 hover:brightness-50"
-                width={500} height={500} alt='NFT'/> }
+                className="object-cover w-full h-72 hover:brightness-50"
+                width={864} height={864} alt='NFT'/> }
       </div>
     </div>
   )

@@ -9,6 +9,7 @@ export default function DetailsNFT({data}) {
     const router = useRouter();
     const [showWindow, setWindow] = useState(false)
     const [nft, setNft] = useState({});
+    const [activeDrop, setActiveDrop] = useState(false)
     useEffect(() => {
         if (!router.isReady) return;
         setNft(router.query);
@@ -94,7 +95,7 @@ export default function DetailsNFT({data}) {
 
 
     return (    
-        <div className="flex justify-center">
+        <div className="flex justify-center min-h-screen">
 
           <div className="flex items-start gap-10 mt-10"> 
             <Image 
@@ -111,16 +112,27 @@ export default function DetailsNFT({data}) {
                 </div>
                 
                 <div className="rounded-lg overflow-hidden border-2 border-indigo-200 bg-indigo-50 text-xl mb-10">
-                    
-                        <div className="px-4 py-3 border-b-2 border-indigo-200 flex items-center bg-white">
-                            <svg className='w-5 h-5'>
-                                <FontAwesomeIcon icon={solid('book-open')} className='text-indigo-500'/>
-                            </svg>
-                            <p className="text-indigo-900 font-bold px-3">Description</p>
-                        </div>
+                        <div className='group'>
+                            <button 
+                                className='px-4 py-3 border-b-2 border-indigo-200 flex items-center bg-white duration-50 w-full'
+                                onClick={() => setActiveDrop(!activeDrop)}>
 
-                        <div className='p-4 bg-indigo-50 border-b-2 border-indigo-200'>
-                            <p className="text-indigo-900">{nft.description}</p> 
+                                <svg className='w-5 h-5'>
+                                    <FontAwesomeIcon icon={solid('book-open')} className='text-indigo-500'/>
+                                </svg>
+
+                                <p className="text-indigo-900 font-bold px-3">Description</p>
+
+                                <svg className={`duration-50 w-4 h-5 ml-[450px] ${activeDrop ? 'rotate-180' : ' '}`}>
+                                    <FontAwesomeIcon icon={solid('chevron-down')} className='text-indigo-300 group-hover:text-indigo-500'/>
+                                </svg>
+
+                            </button>
+
+                            <div className={`p-4 bg-indigo-50 border-b-2 border-indigo-200 ${activeDrop ? '' : 'hidden'}`}>
+                                <p className="text-indigo-900">{nft.description}</p> 
+                            </div>
+
                         </div>
 
                         <div className="px-4 py-3 flex items-center border-b-2 border-indigo-200 bg-white">

@@ -11,6 +11,7 @@ import SortButton from "./SortButton"
 import ResizeCart from "./ResizeCart"
 import UserBackgroundDropzone from "./UserBackgroundDropzone"
 import UserAvatarDropzone from "./UserAvatarDropzone"
+import Footer from "./Footer"
 
 export {
   Dropzone,
@@ -25,5 +26,6 @@ export {
   SortButton,
   ResizeCart,
   UserBackgroundDropzone,
-  UserAvatarDropzone
+  UserAvatarDropzone,
+    Footer
 };

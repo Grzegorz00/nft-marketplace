@@ -1,5 +1,5 @@
-import  React, { useEffect, useState, useContext, useRef } from 'react'
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import  React, { useEffect, useState, useContext } from 'react'
+import { useQuery, useMutation } from '@apollo/react-hooks'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 import { NotLoggedIn, DisplayNftGrid, SortButton, SearchBar, ResizeCart, UserBackgroundDropzone, UserAvatarDropzone } from "../components/componentsIndex";
 import { GET_USER, CREATE_USER } from '../queries/users';
@@ -13,11 +13,6 @@ export default function Marketplace() {
   const [active, setactive] = useState("Owned")
   const [sort, setSort] = useState("");
   const [cardSize, setCardSize] = useState("lg")
-  const ref = useRef(null);
-
-  const handleFocus = () => {
-    ref.current.focus();
-  };
 
   if(!loading && !error){
     if(!data.user){
@@ -52,7 +47,7 @@ export default function Marketplace() {
 
   if (currentAccount == "") return (<NotLoggedIn />)
   return (
-    <>
+    <div className='min-h-screen'>
       <div className='grid pb-28'>
           <UserBackgroundDropzone backgroundUrl={data.user.backgroundUrl}/>
 
@@ -63,25 +58,22 @@ export default function Marketplace() {
           <p className='text-lg ml-[19rem] text-indigo-700'>{data.user.address} </p>
       </div>
 
-      <div className='mx-14 py-10'>
+      <div className='mx-14'>
         <nav className="px-2 border-b-2 rounded border-indigo-300 pb-1">
           <div className="flex items-center justify-between">
             <div>
               <div className='space-x-5 text-2xl text-indigo-500'>
                 <button
                   autoFocus
-                  ref={ref}
-                  className="userNav"
-                  onClick={() => {
-                    setactive("Owned") 
-                    handleFocus()}}> Owned
+                  className={active == "Owned" ? "userNavActive" : "userNav"}
+                  onClick={() => setactive("Owned")}> Owned
                 </button>
                 <button 
-                  className="userNav"
+                   className={active == "Listed" ? "userNavActive" : "userNav"}
                   onClick={() => setactive("Listed")}> Listed
                 </button>
                 <button 
-                  className="userNav"
+                   className={active == "Created" ? "userNavActive" : "userNav"}
                   onClick={() => setactive("Created")}> Created
                 </button>
               </div>
@@ -99,6 +91,6 @@ export default function Marketplace() {
         </div>
 
       </div>
-    </>
+    </div>
   )
 }

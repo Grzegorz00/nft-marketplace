@@ -5,7 +5,7 @@ import { useState } from 'react';
 export default function CartNFT({setCardSize}){
     const [activeButton, setActiveButton] = useState(1);
     return(
-        <div className='flex items-center border-2 rounded-full border-indigo-300 h-12 overflow-hidden'>
+        <div className='flex items-center border-2 rounded-full border-indigo-300 h-10 overflow-hidden'>
             <button className={`hover:bg-indigo-50 w-full h-full px-4 outline-none border-r-2 border-indigo-300 ${activeButton == "1" ? 'bg-indigo-100' : 'bg-transparent'}`}
                     onClick={() => {
                         setCardSize("lg")
