@@ -38,6 +38,14 @@ const CREATE_USER = gql`
   }
 `;
 
+const UPDATE_NAME = gql`
+  mutation updateName($address: String!, $name: String) {
+    updateName(address: $address, name: $name) {
+      name
+    }
+  }
+`;
+
 const ADD_BACKGROUND = gql`
   mutation updateImage($address: String!, $backgroundUrl: String) {
     updateImage(address: $address, backgroundUrl: $backgroundUrl) {
@@ -54,4 +62,4 @@ const ADD_AVATAR = gql`
   }
 `;
 
-export { GET_USER, GET_USERS, CREATE_USER, ADD_BACKGROUND, ADD_AVATAR };
+export { GET_USER, GET_USERS, CREATE_USER, UPDATE_NAME, ADD_BACKGROUND, ADD_AVATAR };

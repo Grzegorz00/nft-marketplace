@@ -16,6 +16,7 @@ const typeDefs = gql`
 
   type Mutation {
     createUser(address: String!, name: String, backgroundUrl: String, avatarUrl: String): User!
+    updateName(address: String!, name: String): User!
     updateImage(address: String!, backgroundUrl: String, avatarUrl: String): User!
   }
 `

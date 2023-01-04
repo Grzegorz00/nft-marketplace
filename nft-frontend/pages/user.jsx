@@ -2,7 +2,7 @@ import  React, { useEffect, useState, useContext } from 'react'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 import { NotLoggedIn, DisplayNftGrid, SortButton, SearchBar, ResizeCart, UserBackgroundDropzone, UserAvatarDropzone } from "../components/componentsIndex";
-import { GET_USER, CREATE_USER } from '../queries/users';
+import { GET_USER, CREATE_USER, UPDATE_NAME } from '../queries/users';
 
 export default function Marketplace() {
   const { fetchMyOrListedOrCreatedNFTs, currentAccount } = useContext(NFTMarketplaceContext)

@@ -31,6 +31,14 @@ const resolvers = {
           }
         });
       },
+      updateName: (parent, args) => {
+        return prisma.user.update({
+          where: { address: args.address },
+          data: {
+            name: args.name,
+          }
+        });
+      },
       updateImage: (parent, args) => {
         return prisma.user.update({
           where: { address: args.address },
