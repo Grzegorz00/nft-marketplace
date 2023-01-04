@@ -1,19 +1,23 @@
 import React, { useState, useCallback, useContext } from 'react'
+import { useMutation } from '@apollo/react-hooks';
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 import { useDropzone } from 'react-dropzone'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { ADD_BACKGROUND } from '../queries/users';
 
 import Image from 'next/image'
 
-export default function UserBackgroundDropzone () {
-    const { uploadToIPFS } = useContext(NFTMarketplaceContext);
-    const [imageUrl, setImageUrl] = useState(null)
+export default function UserBackgroundDropzone ({backgroundUrl}) {
+  const [addImage] = useMutation(ADD_BACKGROUND)
+  const { uploadToIPFS, currentAccount } = useContext(NFTMarketplaceContext);
+  const [imageUrl, setImageUrl] = useState(backgroundUrl)
 
-    const onDrop = useCallback(async (acceptedFile) => {
-        const url = await uploadToIPFS(acceptedFile[0])
-        setImageUrl(url)
-    })
+  const onDrop = useCallback(async (acceptedFile) => {
+      const url = await uploadToIPFS(acceptedFile[0])
+      addImage({variables: {address: currentAccount, backgroundUrl: url}})
+      setImageUrl(url)
+  })
 
   const { getRootProps, getInputProps } = useDropzone({onDrop})
 
@@ -29,10 +33,10 @@ export default function UserBackgroundDropzone () {
             </div>
             
             {imageUrl &&
-            <Image 
-                src={imageUrl}
-                className="object-cover w-screen h-80 group-hover:brightness-50"
-                width={500} height={500} alt='NFT'/>
+              <Image 
+                  src={imageUrl}
+                  className="object-cover w-screen h-80 group-hover:brightness-50"
+                  width={500} height={500} alt='NFT'/>
             }
             
       </div>

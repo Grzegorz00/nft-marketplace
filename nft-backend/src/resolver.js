@@ -3,9 +3,10 @@ const { prisma } =  require('./database.js');
 const resolvers = {
 
     User: {
-        id: (parent, args, context, info) => parent.id,
-        name: (parent) => parent.name,
         address: (parent) => parent.address,
+        name: (parent) => parent.name,
+        backgroundUrl: (parent) => parent.backgroundUrl,
+        avatarUrl: (parent) => parent.avatarUrl,
       },
 
     Query: {
@@ -20,14 +21,25 @@ const resolvers = {
     },
 
     Mutation: {
-      addUser: (parent, args) => {
+      createUser: (parent, args) => {
         return prisma.user.create({
           data: {
             address: args.address,
             name: args.name,
-          },
+            backgroundUrl: args.backgroundUrl,
+            avatarUrl: args.avatarUrl
+          }
         });
       },
+      updateImage: (parent, args) => {
+        return prisma.user.update({
+          where: { address: args.address },
+          data: {
+            backgroundUrl: args.backgroundUrl,
+            avatarUrl: args.avatarUrl
+          }
+        });
+      }
     },
 
   }

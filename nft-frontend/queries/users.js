@@ -3,9 +3,10 @@ import gql from 'graphql-tag';
 const GET_USER = gql`
   query user($address: String!) {
     user(address: $address) {
-      id
       address
       name
+      backgroundUrl
+      avatarUrl
     }
   }
 `;
@@ -13,22 +14,44 @@ const GET_USER = gql`
 const GET_USERS = gql`
     query users {
         users {
-        id,
         address,
-        name
+        name,
+        backgroundUrl,
+        avatarUrl
         }
     }
 `;
 
-
-const ADD_USER = gql`
-    mutation addUser($address: String!, $name: String = "Unnamed") {
-        addUser(address: $address, name: $name) {
-        id
-        address
-        name
-        }
+const CREATE_USER = gql`
+  mutation CreateUser($address: String!, $name: String, $backgroundUrl: String, $avatarUrl: String) {
+    createUser(
+      address: $address,
+      name: $name,
+      backgroundUrl: $backgroundUrl,
+      avatarUrl: $avatarUrl
+    ) {
+      address
+      name
+      backgroundUrl
+      avatarUrl
     }
+  }
 `;
 
-export { GET_USER, GET_USERS, ADD_USER };
+const ADD_BACKGROUND = gql`
+  mutation updateImage($address: String!, $backgroundUrl: String) {
+    updateImage(address: $address, backgroundUrl: $backgroundUrl) {
+      backgroundUrl
+    }
+  }
+`;
+
+const ADD_AVATAR = gql`
+  mutation UpdateImage($address: String!, $avatarUrl: String) {
+    updateImage(address: $address, avatarUrl: $avatarUrl) {
+      avatarUrl
+    }
+  }
+`;
+
+export { GET_USER, GET_USERS, CREATE_USER, ADD_BACKGROUND, ADD_AVATAR };

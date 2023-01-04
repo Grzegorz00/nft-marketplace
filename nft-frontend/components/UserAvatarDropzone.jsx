@@ -1,19 +1,22 @@
 import React, { useState, useCallback, useContext } from 'react'
+import { useMutation } from '@apollo/react-hooks';
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 import { useDropzone } from 'react-dropzone'
 import Image from 'next/image'
+import { ADD_AVATAR } from '../queries/users';
 
-export default function UserAvatarDropzone () {
-    const { uploadToIPFS } = useContext(NFTMarketplaceContext);
-    const [imageUrl, setImageUrl] = useState(null)
+export default function UserAvatarDropzone ({avatarUrl}) {
+  const [addImage] = useMutation(ADD_AVATAR)
+  const { uploadToIPFS, currentAccount } = useContext(NFTMarketplaceContext);
+  const [imageUrl, setImageUrl] = useState(avatarUrl)
 
-    const onDrop = useCallback(async (acceptedFile) => {
-        const url = await uploadToIPFS(acceptedFile[0])
-        setImageUrl(url)
-    })
+  const onDrop = useCallback(async (acceptedFile) => {
+      const url = await uploadToIPFS(acceptedFile[0])
+      addImage({variables: {address: currentAccount, avatarUrl: url}})
+      setImageUrl(url)
+  })
 
   const { getRootProps, getInputProps } = useDropzone({onDrop})
-
   return (
     <div{...getRootProps()}>
       <input{...getInputProps()} />

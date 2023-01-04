@@ -1,12 +1,13 @@
 import  React, { useEffect, useState, useContext, useRef } from 'react'
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 import { NotLoggedIn, DisplayNftGrid, SortButton, SearchBar, ResizeCart, UserBackgroundDropzone, UserAvatarDropzone } from "../components/componentsIndex";
-import { GET_USER } from '../queries/users';
+import { GET_USER, CREATE_USER } from '../queries/users';
 
 export default function Marketplace() {
   const { fetchMyOrListedOrCreatedNFTs, currentAccount } = useContext(NFTMarketplaceContext)
   const { loading, error, data } = useQuery(GET_USER, {variables: {address: currentAccount}})
+  const [createUser] = useMutation(CREATE_USER)
   const [nfts, setNfts] = useState([])
   const [nftsCopy, setNftsCopy] = useState([])
   const [active, setactive] = useState("Owned")
@@ -17,6 +18,13 @@ export default function Marketplace() {
   const handleFocus = () => {
     ref.current.focus();
   };
+
+  if(!loading && !error){
+    if(!data.user){
+      console.log("New user")
+      createUser({variables: {address: currentAccount, name: "Unnamed", backgroundUrl: "", avatarUrl: ""}})
+    }
+  }
 
   useEffect(()=> {
     try{
@@ -46,12 +54,11 @@ export default function Marketplace() {
   return (
     <>
       <div className='grid pb-28'>
-          <UserBackgroundDropzone/>
+          <UserBackgroundDropzone backgroundUrl={data.user.backgroundUrl}/>
 
           <div className='absolute transform pt-40 px-6'>
-            <UserAvatarDropzone/>
+            <UserAvatarDropzone avatarUrl={data.user.avatarUrl}/>
           </div>
-          
           <p className='text-xl ml-80 mt-2 text-indigo-800'>{data.user.name} </p>
           <p className='text-lg ml-[19rem] text-indigo-700'>{data.user.address} </p>
       </div>

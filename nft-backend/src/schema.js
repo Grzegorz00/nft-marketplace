@@ -3,9 +3,10 @@ const { gql } = require('apollo-server')
 const typeDefs = gql`
 
   type User {
-    id: ID!
     address: String!
     name: String
+    backgroundUrl: String
+    avatarUrl: String
   }
 
   type Query {
@@ -14,7 +15,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(address: String!, name: String): User!
+    createUser(address: String!, name: String, backgroundUrl: String, avatarUrl: String): User!
+    updateImage(address: String!, backgroundUrl: String, avatarUrl: String): User!
   }
 `
 module.exports = {

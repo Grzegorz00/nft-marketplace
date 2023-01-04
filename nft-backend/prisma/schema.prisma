@@ -11,8 +11,7 @@ datasource db {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  address  String
+  address  String @id
   name     String
   backgroundUrl String
   avatarUrl String
