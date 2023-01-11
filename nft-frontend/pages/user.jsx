@@ -47,17 +47,41 @@ export default function Marketplace() {
           <div className='absolute transform pt-40 px-6'>
             <UserAvatarDropzone/>
           </div>
-          <div className='flex group'>
-            <button
-              className="text-3xl ml-80 mt-2 text-indigo-800 p-2 rounded-full group-hover:underline flex items-center group-hover:text-indigo-500"
-              onMouseEnter={() => setButtonUserName('Change Name' )}
-              onMouseLeave={() => setButtonUserName(userName)}
-              >
-              {buttonUserName} 
-              <svg className='w-5 h-5 ml-3 mt-2'>
-              <FontAwesomeIcon icon={solid('pencil')} className='text-transparent group-hover:text-indigo-500'/>
-              </svg>
-            </button>
+          <div className='flex group pt-2'>
+            {showTextField ? (
+              <div className='flex items-center border-indigo-300 border-2 ml-80 bg-indigo-50 rounded-full group pl-3'>
+                <input
+                  autoFocus
+                  className='text-3xl mt-2 text-indigo-800 p-2 bg-transparent outline-none'
+                  type="text"
+                  value={userName}
+                  onChange={(event) => {  
+                    setUserName(event.target.value)
+                    }}
+                />
+                <button className='flex items-center text-indigo-500 text-2xl bg-white rounded-full w-full h-full p-3 border-l-2 border-l-indigo-300 group-hover:bg-indigo-500 group-hover:text-white'
+                  onClick={() => {
+                    setShowTextField(false)
+                    setButtonUserName(userName)
+                    }}>
+                  Change
+                  <svg className='w-5 h-5 ml-3'>
+                    <FontAwesomeIcon icon={solid('pencil')} className='text-indigo-500 group-hover:text-white'/>
+                  </svg>
+                </button>
+              </div>
+            ) : (
+              <button
+                className="text-3xl ml-80 mt-2 text-indigo-800 p-2 rounded-full group-hover:underline flex items-center group-hover:text-indigo-500"
+                onMouseEnter={() => setButtonUserName('Change Name')}
+                onMouseLeave={() => setButtonUserName(userName)}
+                onClick={() => setShowTextField(true)}>
+                {buttonUserName} 
+                <svg className='w-5 h-5 ml-3 mt-2'>
+                  <FontAwesomeIcon icon={solid('pencil')} className='text-transparent group-hover:text-indigo-500'/>
+                </svg>
+              </button>
+      )}
           </div>
           <p className='text-lg ml-[19rem] text-indigo-700'> 0x71bE63f3384f5fb98995898A86B02Fb2426c5788 </p>
       </div>
