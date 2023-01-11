@@ -20,7 +20,7 @@ export default function UserBackgroundDropzone () {
   return (
     <div{...getRootProps()}>
       <input{...getInputProps()} />
-      <div className='outline-none w-screen h-80 cursor-pointer focus:outline-none shadow-lg shadow-grey-700/50 group'>
+      <div className='outline-none h-80 cursor-pointer focus:outline-none shadow-lg shadow-grey-700/50 group w-screen'>
             
             <div className='flex justify-center'>
                 <svg className="absolute w-8 h-8 mt-40">

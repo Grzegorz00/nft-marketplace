@@ -1,6 +1,8 @@
 import  React, { useEffect, useState, useContext } from 'react'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 import { NotLoggedIn, DisplayNftGrid, SortButton, SearchBar, ResizeCart, UserBackgroundDropzone, UserAvatarDropzone } from "../components/componentsIndex";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 export default function Marketplace() {
   const { fetchMyOrListedOrCreatedNFTs, currentAccount } = useContext(NFTMarketplaceContext);
@@ -9,6 +11,9 @@ export default function Marketplace() {
   const [active, setactive] = useState("Owned")
   const [sort, setSort] = useState("");
   const [cardSize, setCardSize] = useState("lg")
+  const [userName, setUserName] = useState("Unnamed")
+  const [buttonUserName, setButtonUserName] = useState(userName)
+  const [showTextField, setShowTextField] = useState(false);
 
 
   useEffect(()=> {
@@ -42,8 +47,18 @@ export default function Marketplace() {
           <div className='absolute transform pt-40 px-6'>
             <UserAvatarDropzone/>
           </div>
-          
-          <p className='text-3xl ml-80 mt-2 text-indigo-800'> Unnamed </p>
+          <div className='flex group'>
+            <button
+              className="text-3xl ml-80 mt-2 text-indigo-800 p-2 rounded-full group-hover:underline flex items-center group-hover:text-indigo-500"
+              onMouseEnter={() => setButtonUserName('Change Name' )}
+              onMouseLeave={() => setButtonUserName(userName)}
+              >
+              {buttonUserName} 
+              <svg className='w-5 h-5 ml-3 mt-2'>
+              <FontAwesomeIcon icon={solid('pencil')} className='text-transparent group-hover:text-indigo-500'/>
+              </svg>
+            </button>
+          </div>
           <p className='text-lg ml-[19rem] text-indigo-700'> 0x71bE63f3384f5fb98995898A86B02Fb2426c5788 </p>
       </div>
 
