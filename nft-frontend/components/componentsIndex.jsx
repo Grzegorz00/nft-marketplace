@@ -12,6 +12,8 @@ import ResizeCart from "./ResizeCart"
 import UserBackgroundDropzone from "./UserBackgroundDropzone"
 import UserAvatarDropzone from "./UserAvatarDropzone"
 import Footer from "./Footer"
+import IndexNftDisplay from "./IndexNftDisplay"
+import CartNFTHomePage from "./CartNftHomePage"
 
 export {
     Dropzone,
@@ -27,5 +29,7 @@ export {
     ResizeCart,
     UserBackgroundDropzone,
     UserAvatarDropzone,
-    Footer
+    Footer,
+    IndexNftDisplay,
+    CartNFTHomePage,
   };

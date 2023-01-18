@@ -117,7 +117,6 @@ export default function Marketplace() {
         <div className='pt-5'>
           <DisplayNftGrid nftList={nfts} sortType={sort} cardSize={cardSize}/>
         </div>
-
       </div>
     </div>
   )

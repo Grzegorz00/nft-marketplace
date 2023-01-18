@@ -8,7 +8,7 @@ import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 export default function Navbar(){
     const router = useRouter();
     const currentRoute = router.pathname;
-    const {  currentAccount, connectWallet } = useContext(NFTMarketplaceContext);
+    const { currentAccount, connectWallet } = useContext(NFTMarketplaceContext);
 
     return(
         <nav className=" py-3 bg-gray-100 shadow-lg text-2xl">

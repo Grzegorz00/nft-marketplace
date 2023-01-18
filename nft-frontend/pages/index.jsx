@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
-import { Loader } from "../components/componentsIndex";
+
+import {IndexNftDisplay } from "../components/componentsIndex";
 
 export default function Home() {
   const { checkIfWalletIsConnected } = useContext(NFTMarketplaceContext)
-  const [nfts, setNfts] = useState([])
 
 
   useEffect(() => {
@@ -12,10 +12,11 @@ export default function Home() {
   },[])
 
   return (
-    <div className="min-h-screen">
-      { nfts.length == 0 ? <Loader /> :
-        <h1>Home</h1>
-      }
-    </div>
-  )
+      <div className="mt-5 min-h-screen mx-10">
+        <p className="text-4xl text-center text-indigo-500 font-bold">Explore Marketplace</p>
+        <div className="mt-7">
+          <IndexNftDisplay/>
+        </div>
+      </div>
+    )
 }
