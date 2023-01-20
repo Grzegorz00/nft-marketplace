@@ -9,7 +9,8 @@ import { NFTMarketplaceProvider } from "../context/NFTMarketplaceContext"
 const client = new ApolloClient({
     cache: new InMemoryCache(),
     link: new HttpLink({
-      uri: 'http://localhost:9090/'
+      uri: 'http://localhost:9090/',
+      cache: new InMemoryCache()
     })
   });
 

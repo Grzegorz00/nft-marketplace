@@ -1,6 +1,6 @@
 export default function Footer(){
     return(
-        <footer class="p-6 bg-gray-100 shadow-inner w-full mt-10 bottom-0 realtive">
+        <footer className="p-6 bg-gray-100 shadow-inner w-full mt-10 bottom-0 realtive">
             <div className="flex space-x-64">
                 <div className="flex items-center space-x-6">
                     <div className="text-3xl font-custom text-transparent gradient bg-clip-text">

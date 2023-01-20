@@ -166,12 +166,16 @@
         bg-clip-text 
         gradient
         text-2xl
+        outline-none
+        focus:outline-none
     }
 
     .link{
         @apply
         font-custom
         text-indigo-500
+        outline-none
+        focus:outline-none
     }
 
     .errorForm{
@@ -212,4 +216,5 @@
         bg-pink-100
         placeholder:text-red-500
     }
+        
   }
