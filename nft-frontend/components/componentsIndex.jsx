@@ -3,17 +3,17 @@ import Loader from "./Loader"
 import Navbar from "./Navbar"
 import NotLoggedIn from "./NotLoggedIn"
 import UploadNFT from "./UploadNFT"
-import CartNFT from "./CartNFT"
+import CardNFT from "./CardNFT"
 import SearchBar from "./SearchBar"
 import TransactWindow from "./TransactWindow"
 import DisplayNftGrid from "./DisplayNftGrid"
 import SortButton from "./SortButton"
-import ResizeCart from "./ResizeCart"
+import ResizeCard from "./ResizeCard"
 import UserBackgroundDropzone from "./UserBackgroundDropzone"
 import UserAvatarDropzone from "./UserAvatarDropzone"
 import Footer from "./Footer"
 import IndexNftDisplay from "./IndexNftDisplay"
-import CartNFTHomePage from "./CartNftHomePage"
+import CardNFTHomePage from "./CardNftHomePage"
 
 export {
     Dropzone,
@@ -22,14 +22,14 @@ export {
     SearchBar,
     NotLoggedIn,
     UploadNFT,
-    CartNFT,
+    CardNFT,
     TransactWindow,
     DisplayNftGrid,
     SortButton,
-    ResizeCart,
+    ResizeCard,
     UserBackgroundDropzone,
     UserAvatarDropzone,
     Footer,
     IndexNftDisplay,
-    CartNFTHomePage,
+    CardNFTHomePage,
   };

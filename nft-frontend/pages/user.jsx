@@ -1,6 +1,6 @@
 import  React, { useEffect, useState, useContext } from 'react'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
-import { NotLoggedIn, DisplayNftGrid, SortButton, SearchBar, ResizeCart, UserBackgroundDropzone, UserAvatarDropzone } from "../components/componentsIndex";
+import { NotLoggedIn, DisplayNftGrid, SortButton, SearchBar, ResizeCard, UserBackgroundDropzone, UserAvatarDropzone } from "../components/componentsIndex";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 
@@ -108,7 +108,7 @@ export default function Marketplace() {
             </div>
             <div className='flex items-center space-x-3'>
               <SearchBar nfts={nfts} setNfts={setNfts} nftsCopy={nftsCopy} />
-              <ResizeCart setCardSize={setCardSize}/>
+              <ResizeCard setCardSize={setCardSize}/>
               <SortButton setSort={setSort}/>
             </div>
           </div>

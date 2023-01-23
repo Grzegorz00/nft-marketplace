@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext"
-import { SearchBar, DisplayNftGrid, SortButton, ResizeCart } from "../components/componentsIndex"
+import { SearchBar, DisplayNftGrid, SortButton, ResizeCard } from "../components/componentsIndex"
 
 
 export default function Marketplace() {
@@ -31,7 +31,7 @@ export default function Marketplace() {
           </div>
 
           <div className='flex space-x-3 items-center'>
-            <ResizeCart setCardSize={setCardSize}/>
+            <ResizeCard setCardSize={setCardSize}/>
             <SortButton setSort={setSort}/>
           </div>
         </div>
