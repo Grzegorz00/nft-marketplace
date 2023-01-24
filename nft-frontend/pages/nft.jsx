@@ -10,27 +10,33 @@ export default function DetailsNFT({data}) {
     const [showWindow, setWindow] = useState(false)
     const [nft, setNft] = useState({});
     const [activeDrop, setActiveDrop] = useState(false)
+    const ethereumExchangeRate = data.map((eth) => eth.current_price)
+    const priceDollars = (ethereumExchangeRate * nft.price).toFixed(2)
+
+    let formatter = new Intl.NumberFormat('en-US', {
+        style: 'decimal',
+        useGrouping: true,
+      });
+
+
     useEffect(() => {
         if (!router.isReady) return;
         setNft(router.query);
     }, [router.isReady]);
-
-    const ethereumExchangeRate = data.map((eth) => eth.current_price)
-    const priceDollars = (ethereumExchangeRate * nft.price).toFixed(2)
 
     function buyButton(){
             return(
                 <div className="border-indigo-200 border-2 rounded-lg bg-indigo-100 w-160">
                         <div className='px-5 pt-7 pb-3 flex items-baseline space-x-3'>
                             <div className="flex items-center">
-                                <p className="text-indigo-900 text-4xl">{nft.price} ETH</p>
+                                <p className="text-indigo-900 text-4xl">{formatter.format(nft.price)} ETH</p>
                                 <svg className='w-5 h-6 '>
                                         <FontAwesomeIcon icon={brands('ethereum')} className='text-indigo-500'/>
                                 </svg>
                             </div>
 
                             <div className="flex items-center pb-3"> 
-                                <p className="text-indigo-700 text-lg">{priceDollars}</p>
+                                <p className="text-indigo-700 text-lg">{formatter.format(priceDollars)}</p>
                                 <svg className='w-3 h-3'>
                                         <FontAwesomeIcon icon={solid('dollar-sign')} className='text-indigo-400'/>
                                 </svg> 
@@ -175,4 +181,4 @@ export async function getServerSideProps(){
     return {
          props : { data }
     }
-  }
+}
