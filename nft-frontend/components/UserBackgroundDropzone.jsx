@@ -36,7 +36,7 @@ export default function UserBackgroundDropzone ({backgroundUrl}) {
               <Image 
                   src={imageUrl}
                   className="object-cover w-screen h-80 group-hover:brightness-50"
-                  width={500} height={500} alt='NFT'/>
+                  width={4000} height={4000} alt='NFT'/>
             }
             
       </div>
