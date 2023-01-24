@@ -22,7 +22,7 @@ const MyApp = ({ Component, pageProps }) => (
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
             <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet"/>
         </Head> 
-        <div>
+        <div className="bg-gradient-to-b from-white via-indigo-100 to-white min-h-screen">
             <ApolloProvider client={client}>
                 <NFTMarketplaceProvider>
                     <Navbar/>
