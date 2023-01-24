@@ -26,7 +26,7 @@ export default function Marketplace() {
         createUser({variables: {address: currentAccount, name: "Unnamed", backgroundUrl: "", avatarUrl: ""}})
       }else{
         setUserName(data.user.name)
-        setButtonUserName(userName)
+        setButtonUserName(data.user.name)
       }
     }
   }, data);
