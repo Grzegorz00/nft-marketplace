@@ -151,33 +151,29 @@
         group-hover:text-pink-100
         group-hover:bg-cyan-600/70
     }
-    
-    .linkActive{
-        @apply
-        font-custom 
-        text-transparent 
-        bg-clip-text 
-        gradient
-        text-2xl
-    }
 
     .linkActive{
         @apply
-        font-custom 
+        font-custom
         text-transparent 
         bg-clip-text 
+        hover:gradient 
         gradient
-        text-2xl
-        outline-none
+        focus:gradient
         focus:outline-none
+        text-2xl
     }
-
+    
     .link{
         @apply
         font-custom
-        text-indigo-500
-        outline-none
+        text-transparent 
+        bg-clip-text 
+        hover:gradient 
+        bg-indigo-500 
+        focus:gradient
         focus:outline-none
+        text-2xl
     }
 
     .errorForm{

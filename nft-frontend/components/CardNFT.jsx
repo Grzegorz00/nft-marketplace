@@ -17,15 +17,15 @@ export default function CartNFT({nftDetails, cardSize}){
     
     return(
         <div className="flex justify-center">
-            <div className="rounded-xl overflow-hidden group shadow-lg shadow-cyan-500/50">
+            <div className="rounded-xl overflow-hidden group shadow-lg shadow-cyan-500/50 md:max-w-m lg:max-w-sm">
                 <Link href={typeof(nftDetails.sold) === "undefined" ? "" : { pathname: "/nft", query: nftDetails}}>
                     <Image src={nftDetails.fileUrl}
-                        className={`object-cover transition-transform duration-300 group-hover:scale-110 object-top ${cardSize == 'sm' ? 'h-52 w-52' : 'h-80 w-80'}`}
+                        className={`object-cover transition-transform duration-300 group-hover:scale-110 object-top ${cardSize == 'sm' ? 'h-52 w-52' : 'h-80 w-80 md:h-64 md:w-64'}`}
                         width={500} height={500} alt='NFT'/>
                     <div 
-                        className={`p-4 relative bg-white ${cardSize == 'sm' ? 'w-52' : 'w-80'}`}>
-                        <p className="text-2xl text-indigo-900 font-custom">{stringMaxLengthAdjuster(nftDetails.name,18)}</p>
-                        <p className="text-gray-500">{stringMaxLengthAdjuster(nftDetails.description, 32)}</p>
+                        className={`p-4 md:p-2 relative bg-white ${cardSize == 'sm' ? 'w-52' : 'w-80'}`}>
+                        <p className="text-2xl text-indigo-900 font-custom md:text-lg">{stringMaxLengthAdjuster(nftDetails.name,18)}</p>
+                        <p className="text-gray-500 md:text-sm">{stringMaxLengthAdjuster(nftDetails.description, 32)}</p>
                     </div>
                 </Link>
 
@@ -33,10 +33,10 @@ export default function CartNFT({nftDetails, cardSize}){
                     <div className='flex items-center space-x-1 relative px-4'>
                         {(() => {
                             if (nftDetails.sold == true) {
-                                return (<p className="px-0 text-2xl text-indigo-900">{nftDetails.price} ETH</p>)
+                                return (<p className="px-0 text-2xl md:text-base text-indigo-900">{nftDetails.price} ETH</p>)
                             }
                             else {
-                                return (<p className="px-0 text-2xl text-indigo-900">{nftDetails.price} ETH</p>)
+                                return (<p className="px-0 text-2xl md:text-base text-indigo-900">{nftDetails.price} ETH</p>)
                             }
                         })()}
                         <svg className='w-5 h-5'>

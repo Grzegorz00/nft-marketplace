@@ -48,20 +48,20 @@ export default function DetailsNFT() {
                    
                     <div className='px-5 pb-3 pt-7 flex items-center justify-between'>
 
-                        <div className="text-4xl text-indigo-900">
+                        <div className="text-4xl md:text-2xl text-indigo-900">
                             <p>Bought for</p>
                         </div>
                         
                         <div>
                             <div className="flex items-center">
-                                <p className="text-indigo-900 text-3xl">{formatter.format(nft.price)} ETH</p>
+                                <p className="text-indigo-900 text-3xl md:text-xl">{formatter.format(nft.price)} ETH</p>
                                 <svg className='w-5 h-6 '>
                                         <FontAwesomeIcon icon={brands('ethereum')} className='text-indigo-500'/>
                                 </svg>
                             </div>
 
                             <div className="flex items-center"> 
-                                <p className="text-indigo-700 text-lg">{formatter.format(priceDollars)}</p>
+                                <p className="text-indigo-700 text-lg md:text-sm">{formatter.format(priceDollars)}</p>
                                 <svg className='w-3 h-3'>
                                         <FontAwesomeIcon icon={solid('dollar-sign')} className='text-indigo-400'/>
                                 </svg> 
@@ -89,14 +89,14 @@ export default function DetailsNFT() {
                    
                     <div className='px-5 pb-3 pt-7 flex items-baseline space-x-4'>
                         <div className="flex items-center">
-                            <p className="text-indigo-900 text-3xl">{formatter.format(nft.price)} ETH</p>
+                            <p className="text-indigo-900 text-3xl md:text-xl">{formatter.format(nft.price)} ETH</p>
                             <svg className='w-5 h-6 '>
                                     <FontAwesomeIcon icon={brands('ethereum')} className='text-indigo-500'/>
                             </svg>
                         </div>
 
                         <div className="flex items-center"> 
-                            <p className="text-indigo-700 text-xl">{formatter.format(priceDollars)}</p>
+                            <p className="text-indigo-700 text-xl md:text-base">{formatter.format(priceDollars)}</p>
                             <svg className='w-3 h-3'>
                                     <FontAwesomeIcon icon={solid('dollar-sign')} className='text-indigo-400'/>
                             </svg> 
@@ -120,19 +120,19 @@ export default function DetailsNFT() {
 
 
     return (    
-    <div className="container px-5 py-24 mx-auto">
+    <div className="container px-5 py-24 mx-auto md:py-12">
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <Image 
             src={nft.fileUrl} 
             width={450} height={450}
             alt="NFT"
-            className="lg:w-1/2 h-728 w-full object-cover object-center rounded border border-gray-200"
+            className="lg:w-1/2 md:h-650 h-728 w-full object-cover object-center rounded border border-gray-200"
             />
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                 <h2 className="text-xl title-font text-gray-500 tracking-widest">NAME</h2>
                 <h1 className="text-indigo-900 text-3xl font-custom">{nft.name}</h1>
                 
-                <div className="rounded-lg overflow-hidden border-2 border-indigo-200 bg-indigo-50 text-lg my-4">
+                <div className="rounded-lg overflow-hidden border-2 border-indigo-200 bg-indigo-50 md:text-base text-lg my-4">
                         <div className='group relative'>
                             <button 
                                 className='px-4 py-3 border-b-2 border-indigo-200 flex items-center bg-white duration-50 w-full'
@@ -151,7 +151,7 @@ export default function DetailsNFT() {
                             </button>
 
                             <div className={`p-4 bg-indigo-50 border-b-2 border-indigo-200 ${activeDrop ? '' : 'hidden'}`}>
-                                <p className="text-indigo-900">{nft.description}</p> 
+                                <p className="text-indigo-900 md:text-sm">{nft.description}</p> 
                             </div>
 
                         </div>
@@ -163,11 +163,11 @@ export default function DetailsNFT() {
                             <p className="text-indigo-900 font-bold px-3">Details</p>
                         </div>
 
-                        <div className='p-4 text-indigo-900 '>
+                        <div className='p-4 text-indigo-900 md:text-sm'>
                             <table class="table-fixed">
                                 <tbody>
                                     <tr>
-                                        <td className="font-bold pr-16">ID</td>
+                                        <td className="font-bold pr-16 md:pr-12">ID</td>
                                         <td>{nft.tokenId}</td>
                                     </tr>
                                     <tr>

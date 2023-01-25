@@ -39,7 +39,7 @@ export default function Dropzone ({setFileUrl, name, description, price}) {
             (
               <CardNFT
                 nftDetails={{
-                  price: price ? price : " Asset Price",
+                  price: price ? price : "Asset Price",
                   fileUrl: imageUrl,
                   name: name ? name: "Asset Name",
                   description

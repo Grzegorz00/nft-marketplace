@@ -17,10 +17,16 @@ module.exports = {
         '185' : '11.563rem',
         '500' : '28.125rem',
         '600' : '44.125rem',
-        '728' : '43rem'
+        '728' : '43rem',
+        '650' : '38rem',
+        '320' : '20rem',
+        '472' : '29.5rem'
       },
       fontFamily: {
         custom: "'Audiowide', cursive"
+      },
+      maxWidth: {
+        'm': '16rem'
       }
     }
   },
