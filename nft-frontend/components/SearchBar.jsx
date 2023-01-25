@@ -34,8 +34,8 @@ export default function SearchBar({nfts, setNfts, nftsCopy}) {
 
     return (
       <div className='relative w-max mx-auto'>
-        <svg className='absolute w-12 h-7 inset-y-0 my-auto mt-2.5'>
-            <FontAwesomeIcon icon={solid('magnifying-glass-dollar')} className='text-indigo-500 group-focus:outline-none'/>
+        <svg className='absolute w-12 h-6 inset-y-0 my-auto mt-3'>
+            <FontAwesomeIcon icon={solid('magnifying-glass')} className='text-indigo-500 group-focus:outline-none'/>
         </svg>
         <input 
           type="search" 

@@ -150,8 +150,8 @@ export default function SellWindow({showWindow, onClose, nft}){
 
                     <p className="text-indigo-900 text-3xl group-hover:text-cyan-900">Sell</p>
                     
-                    <svg className='w-10 h-10 ml-2'>
-                        <FontAwesomeIcon icon={solid('gavel')} className='text-indigo-900 group-hover:text-cyan-900'/>
+                    <svg className='w-8 h-8 ml-2'>
+                        <FontAwesomeIcon icon={solid('cart-shopping')} className='text-indigo-900 group-hover:text-cyan-900'/>
                     </svg>
                 </div>
             </button>
@@ -166,8 +166,8 @@ export default function SellWindow({showWindow, onClose, nft}){
                 className="w-full border-2 border-indigo-500 rounded-b-lg p-3 group-hover:text-pink-600 group-hover:bg-pink-50 group-hover:border-pink-600"
                 onClick={() => buyNFT(nft, router)}>
                 <div className="flex items-center justify-center space-x-3">
-                    <svg className='w-10 h-10 ml-2'>
-                            <FontAwesomeIcon icon={solid('sack-dollar')} className='text-indigo-900 group-hover:text-pink-900'/>
+                    <svg className='w-7 h-7 ml-2'>
+                            <FontAwesomeIcon icon={solid('bolt')} className='text-indigo-900 group-hover:text-pink-900'/>
                     </svg>
 
                     <p className="text-indigo-900 text-3xl group-hover:text-pink-900">Buy</p>
