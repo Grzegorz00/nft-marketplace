@@ -11,7 +11,6 @@ export default function UserAvatarDropzone ({avatarUrl}) {
   const { uploadToIPFS, currentAccount } = useContext(NFTMarketplaceContext);
   const [imageUrl, setImageUrl] = useState(avatarUrl)
   
-
   const onDrop = useCallback(async (acceptedFile) => {
       const url = await uploadToIPFS(acceptedFile[0])
       addImage({variables: {address: currentAccount, avatarUrl: url}})

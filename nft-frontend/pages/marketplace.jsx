@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from 'react'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext"
 import { SearchBar, DisplayNftGrid, SortButton, ResizeCart } from "../components/componentsIndex"
 
+var isLoaded = false
 
 export default function Marketplace() {
   const { fetchNFTs } = useContext(NFTMarketplaceContext)
@@ -9,17 +10,23 @@ export default function Marketplace() {
   const [nftsCopy, setNftsCopy] = useState([])
   const [sort, setSort] = useState("");
   const [cardSize, setCardSize] = useState("lg")
+  
 
   useEffect(()=> {
+    if(isLoaded)
+      return
+      
     try{
       fetchNFTs().then((items) => {
         setNfts(items)
         setNftsCopy(items)
+        isLoaded = true
       })
     } catch (error){
       alert("Please reload browser")
       console.log("Marketplace error: " + error)
     }
+    return () => isLoaded = false
   },[])
 
   return(
@@ -44,4 +51,3 @@ export default function Marketplace() {
     </div>
   )
 }
-

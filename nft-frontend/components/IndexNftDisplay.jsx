@@ -6,25 +6,31 @@ import { CartNFTHomePage } from "../components/componentsIndex";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 
+var isLoaded = false
+
 export default function IndexNftDisplay(){
     const { fetchNFTs } = useContext(NFTMarketplaceContext)
     const [nfts, setNfts] = useState([])
     const [index, setIndex] = useState(0)
 
     useEffect(()=> {
+      if(isLoaded)
+        return
+
       try{
         fetchNFTs().then((items) => {
           setNfts(items)
+          isLoaded = true
         })
       } catch (error){
         alert("Please reload browser")
         console.log("Marketplace error: " + error)
       }
+      return () => isLoaded = false
     },[], index)
       
     
       function getNext4() {
-        console.log(index)
         const next4 = [];
         for (let i = 0; i < 4; i++) {
             next4.push(nfts[(index + i) % nfts.length]);
