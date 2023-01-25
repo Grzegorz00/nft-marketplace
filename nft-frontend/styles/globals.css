@@ -48,6 +48,7 @@
         text-transparent 
         bg-clip-text 
         gradient
+        md:text-lg
     }
 
     .userNav{
@@ -62,6 +63,7 @@
         bg-indigo-500 
         focus:gradient
         focus:outline-none
+        md:text-lg
     }
 
     .userNav::after {
