@@ -12,11 +12,15 @@ export default function DisplayNftGrid({nftList, sortType, cardSize}){
           newList.sort((a, b) => b.price - a.price);
         } else if (sortType === 'Low to High') {
           newList.sort((a, b) => a.price - b.price);
-        } else if (sortType === 'By Name') {
+        } else if (sortType === 'A-Z') {
           newList.sort((a, b) => {    
             return a.name.localeCompare(b.name);
-          })
-        } 
+          }) 
+        } else if (sortType === 'Z-A') {
+          newList.sort((a, b) => {
+            return a.name.localeCompare(b.name);
+          }).reverse()
+        }
         return newList;
       };
     
