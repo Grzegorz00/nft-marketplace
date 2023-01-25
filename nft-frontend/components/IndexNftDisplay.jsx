@@ -2,7 +2,7 @@ import React from "react"
 import { useEffect, useState, useContext, useCallback } from 'react'
 import { Loader } from "./componentsIndex"
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext"
-import { CartNFTHomePage } from "../components/componentsIndex";
+import { CardNFTHomePage } from "../components/componentsIndex";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 
@@ -52,7 +52,7 @@ export default function IndexNftDisplay(){
             {
                 getNext4().map((nft, i) => (
                 <div key={i}>
-                    <CartNFTHomePage nftDetails={nft}/>
+                    <CardNFTHomePage nftDetails={nft}/>
                 </div>
                 ))
             }

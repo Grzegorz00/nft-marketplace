@@ -1,6 +1,6 @@
 import React from "react"
 import { useState, useEffect } from "react"
-import { Loader, CartNFT } from "../components/componentsIndex"
+import { Loader, CardNFT } from "../components/componentsIndex"
 
 export default function DisplayNftGrid({nftList, sortType, cardSize}){
     const [sortedList, setSortedList] = useState([]);
@@ -12,11 +12,15 @@ export default function DisplayNftGrid({nftList, sortType, cardSize}){
           newList.sort((a, b) => b.price - a.price);
         } else if (sortType === 'Low to High') {
           newList.sort((a, b) => a.price - b.price);
-        } else if (sortType === 'By Name') {
+        } else if (sortType === 'A-Z') {
           newList.sort((a, b) => {    
             return a.name.localeCompare(b.name);
-          })
-        } 
+          }) 
+        } else if (sortType === 'Z-A') {
+          newList.sort((a, b) => {
+            return a.name.localeCompare(b.name);
+          }).reverse()
+        }
         return newList;
       };
     
@@ -34,7 +38,7 @@ export default function DisplayNftGrid({nftList, sortType, cardSize}){
                     {
                         sortedList.map((nft, i) => (
                         <div className="" key={i}>
-                            <CartNFT nftDetails={nft} cardSize={cardSize}/>
+                            <CardNFT nftDetails={nft} cardSize={cardSize}/>
                         </div>
                         ))
                     }

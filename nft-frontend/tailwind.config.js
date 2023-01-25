@@ -8,13 +8,16 @@ module.exports = {
   theme: {
     extend: {
       spacing: {
+        '01' : '0.02rem',
         '115': '30rem',
         '120': '32.25rem',
         '128': '32rem',
         '144': '36rem',
         '160' : '42rem',
-        '500' : '500px',
-        '600' : '600px'
+        '185' : '11.563rem',
+        '500' : '28.125rem',
+        '600' : '44.125rem',
+        '728' : '43rem'
       },
       fontFamily: {
         custom: "'Audiowide', cursive"

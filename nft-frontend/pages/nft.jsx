@@ -5,72 +5,63 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid, brands } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { TransactWindow } from "../components/componentsIndex";
 
-export default function DetailsNFT({data}) {
+export default function DetailsNFT() {
     const router = useRouter();
     const [showWindow, setWindow] = useState(false)
     const [nft, setNft] = useState({});
     const [activeDrop, setActiveDrop] = useState(false)
+    const [data, setData] = useState([]);
+    const [ethereumExchangeRate, setEthereumExchangeRate] = useState('')
+    const priceDollars = (ethereumExchangeRate * nft.price).toFixed(2)
+
+    let formatter = new Intl.NumberFormat('en-US', {
+        style: 'decimal',
+        useGrouping: true,
+      });
+
+
     useEffect(() => {
+        fetchData();
         if (!router.isReady) return;
         setNft(router.query);
     }, [router.isReady]);
 
-    const ethereumExchangeRate = data.map((eth) => eth.current_price)
-    const priceDollars = (ethereumExchangeRate * nft.price).toFixed(2)
+    useEffect(() => {
+        if(data)
+            setEthereumExchangeRate(data.map((eth) => eth.current_price))
+    },[data])
 
-    function buyButton(){
-            return(
-                <div className="border-indigo-200 border-2 rounded-lg bg-indigo-100 w-160">
-                        <div className='px-5 pt-7 pb-3 flex items-baseline space-x-3'>
-                            <div className="flex items-center">
-                                <p className="text-indigo-900 text-4xl">{nft.price} ETH</p>
-                                <svg className='w-5 h-6 '>
-                                        <FontAwesomeIcon icon={brands('ethereum')} className='text-indigo-500'/>
-                                </svg>
-                            </div>
 
-                            <div className="flex items-center pb-3"> 
-                                <p className="text-indigo-700 text-lg">{priceDollars}</p>
-                                <svg className='w-3 h-3'>
-                                        <FontAwesomeIcon icon={solid('dollar-sign')} className='text-indigo-400'/>
-                                </svg> 
-                            </div>
-                        </div>
-                    <div className="px-5 pb-3">
-                        <button
-                            onClick={() => setWindow(true)} 
-                            className="px-4 py-5 w-full rounded-xl bg-pink-500 hover:scale-105 duration-200 items-center flex justify-center text-pink-100 text-2xl hover:bg-pink-400">
-                            <svg className='w-7 h-7 mr-2'>
-                                <FontAwesomeIcon icon={solid('sack-dollar')} className='text-pink-100'/>
-                            </svg>
-                            Buy
-                        </button>
-                        <TransactWindow showWindow={showWindow} nft={nft} onClose={() => setWindow(false)}/>
-                    </div>
-                </div>
-        )
+    async function fetchData() {
+        const res = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum&order=market_cap_desc&per_page=10&page=1&sparkline=false')
+        if(!res.ok){
+            setData([]);
+            return
+        }
+        const data = await res.json()
+        setData(data);
     }
 
     function sellButton(){
         return(
-                <div className="border-indigo-200 border-2 rounded-lg bg-indigo-100 w-160">
+                <div className="border-indigo-200 border-2 rounded-lg bg-indigo-100">
                    
                     <div className='px-5 pb-3 pt-7 flex items-center justify-between'>
 
-                        <div className="text-5xl text-indigo-900">
+                        <div className="text-4xl text-indigo-900">
                             <p>Bought for</p>
                         </div>
                         
                         <div>
                             <div className="flex items-center">
-                                <p className="text-indigo-900 text-4xl">{nft.price} ETH</p>
+                                <p className="text-indigo-900 text-3xl">{formatter.format(nft.price)} ETH</p>
                                 <svg className='w-5 h-6 '>
                                         <FontAwesomeIcon icon={brands('ethereum')} className='text-indigo-500'/>
                                 </svg>
                             </div>
 
                             <div className="flex items-center"> 
-                                <p className="text-indigo-700 text-lg">{priceDollars}</p>
+                                <p className="text-indigo-700 text-lg">{formatter.format(priceDollars)}</p>
                                 <svg className='w-3 h-3'>
                                         <FontAwesomeIcon icon={solid('dollar-sign')} className='text-indigo-400'/>
                                 </svg> 
@@ -92,27 +83,57 @@ export default function DetailsNFT({data}) {
         )
     }
 
+    function buyButton(){
+        return(
+                <div className="border-indigo-200 border-2 rounded-lg bg-indigo-100">
+                   
+                    <div className='px-5 pb-3 pt-7 flex items-baseline space-x-4'>
+                        <div className="flex items-center">
+                            <p className="text-indigo-900 text-3xl">{formatter.format(nft.price)} ETH</p>
+                            <svg className='w-5 h-6 '>
+                                    <FontAwesomeIcon icon={brands('ethereum')} className='text-indigo-500'/>
+                            </svg>
+                        </div>
+
+                        <div className="flex items-center"> 
+                            <p className="text-indigo-700 text-xl">{formatter.format(priceDollars)}</p>
+                            <svg className='w-3 h-3'>
+                                    <FontAwesomeIcon icon={solid('dollar-sign')} className='text-indigo-400'/>
+                            </svg> 
+                        </div>
+                    </div>
+                    <div className="px-5 pb-3">
+                    <button
+                        onClick={() => setWindow(true)}
+                        className="px-4 py-5 w-full rounded-xl bg-pink-500 hover:scale-105 duration-200 items-center flex justify-center text-white text-2xl hover:bg-pink-400">
+                        Buy
+                        <svg className='w-7 h-7 ml-2'>
+                            <FontAwesomeIcon icon={solid('sack-dollar')} className='text-white'/>
+                        </svg>
+                    </button>
+                    <TransactWindow showWindow={showWindow} nft={nft} onClose={() => setWindow(false)}/>
+                    </div>
+                </div>
+        )
+    }
+
 
 
     return (    
-        <div className="flex justify-center min-h-screen">
-
-          <div className="flex items-start gap-10 mt-10"> 
+    <div className="container px-5 py-24 mx-auto">
+        <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <Image 
-                src={nft.fileUrl} 
-                width={450} height={450}
-                alt="NFT"
-                className="object-cover h-160 w-160 object-top mx-auto rounded-lg"
+            src={nft.fileUrl} 
+            width={450} height={450}
+            alt="NFT"
+            className="lg:w-1/2 h-728 w-full object-cover object-center rounded border border-gray-200"
             />
-
-            <div className="items-center w-160">
-
-                <div className="text-8xl text-indigo-900 pb-10 font-custom">
-                    {nft.name}
-                </div>
+            <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+                <h2 className="text-xl title-font text-gray-500 tracking-widest">NAME</h2>
+                <h1 className="text-indigo-900 text-3xl font-custom">{nft.name}</h1>
                 
-                <div className="rounded-lg overflow-hidden border-2 border-indigo-200 bg-indigo-50 text-xl mb-10">
-                        <div className='group'>
+                <div className="rounded-lg overflow-hidden border-2 border-indigo-200 bg-indigo-50 text-lg my-4">
+                        <div className='group relative'>
                             <button 
                                 className='px-4 py-3 border-b-2 border-indigo-200 flex items-center bg-white duration-50 w-full'
                                 onClick={() => setActiveDrop(!activeDrop)}>
@@ -123,7 +144,7 @@ export default function DetailsNFT({data}) {
 
                                 <p className="text-indigo-900 font-bold px-3">Description</p>
 
-                                <svg className={`duration-50 w-4 h-5 ml-[450px] ${activeDrop ? 'rotate-180' : ' '}`}>
+                                <svg className={`duration-50 w-4 h-5 absolute right-5 ${activeDrop ? 'rotate-180' : ' '}`}>
                                     <FontAwesomeIcon icon={solid('chevron-down')} className='text-indigo-300 group-hover:text-indigo-500'/>
                                 </svg>
 
@@ -142,37 +163,40 @@ export default function DetailsNFT({data}) {
                             <p className="text-indigo-900 font-bold px-3">Details</p>
                         </div>
 
-                        <div className='p-4 text-indigo-900'>
-                            <p>Token ID: {nft.tokenId}</p>
-                            <p>Owner: {nft.owner}</p>  
-                            <p>Seller: {nft.seller}</p>    
-                            <p>Created by: {nft.creator}</p>    
+                        <div className='p-4 text-indigo-900 '>
+                            <table class="table-fixed">
+                                <tbody>
+                                    <tr>
+                                        <td className="font-bold pr-16">ID</td>
+                                        <td>{nft.tokenId}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="font-bold">Owner</td>
+                                        <td>{nft.owner}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="font-bold">Seller</td>
+                                        <td>{nft.seller}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="font-bold">Author</td>
+                                        <td>{nft.creator}</td>
+                                    </tr>
+                                </tbody>
+                            </table>    
                         </div>
                     </div>
-
-                    <div>
-                    {(() => {
+               
+                {(() => {
                             if (nft.sold == "false") {
                                 return ( buyButton())
                             } 
                             else if (nft.sold == "true") {
                                 return ( sellButton())
                             }
-                    })()}
-                </div> 
-                    
+                })()}
             </div>
-
-
         </div>
     </div>
     )
 }
-
-export async function getServerSideProps(){
-    const res = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum&order=market_cap_desc&per_page=10&page=1&sparkline=false')
-    const data = await res.json()
-    return {
-         props : { data }
-    }
-  }

@@ -2,7 +2,7 @@ import React, { useState, useCallback, useContext } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
-import { CartNFT } from "../components/componentsIndex"
+import { CardNFT } from "../components/componentsIndex"
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
 
 
@@ -37,11 +37,11 @@ export default function Dropzone ({setFileUrl, name, description, price}) {
           </div>
           {imageUrl && 
             (
-              <CartNFT
+              <CardNFT
                 nftDetails={{
-                  price,
+                  price: price ? price : " Asset Price",
                   fileUrl: imageUrl,
-                  name,
+                  name: name ? name: "Asset Name",
                   description
                 }}
               />
