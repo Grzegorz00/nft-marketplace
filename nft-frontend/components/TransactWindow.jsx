@@ -123,7 +123,6 @@ export default function SellWindow({showWindow, onClose, nft}){
                             }
                          })()}
                     </div>
-
                 </div>
             </div>
         )

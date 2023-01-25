@@ -1,11 +1,12 @@
 import React, { useEffect, useContext } from "react";
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext";
+import { Loader } from "../components/componentsIndex";
 
 import {IndexNftDisplay } from "../components/componentsIndex";
 
 export default function Home() {
   const { checkIfWalletIsConnected } = useContext(NFTMarketplaceContext)
-
+  const [nfts, setNfts] = useState([])
 
   useEffect(() => {
     checkIfWalletIsConnected
