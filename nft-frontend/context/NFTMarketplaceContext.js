@@ -150,7 +150,7 @@ export const NFTMarketplaceProvider = ({children}) => {
 
             const items = await Promise.all(
                 data.map(
-                    async({tokenId, seller, owner, price: unformattedPrice, sold}) => {
+                    async({tokenId, seller, owner, creator, price: unformattedPrice, sold}) => {
                         const tokenURI = await contract.tokenURI(tokenId)
 
                         const {
@@ -166,6 +166,7 @@ export const NFTMarketplaceProvider = ({children}) => {
                             tokenId: tokenId.toNumber(),
                             seller,
                             owner,
+                            creator,
                             fileUrl,
                             name,
                             description,
@@ -188,16 +189,19 @@ export const NFTMarketplaceProvider = ({children}) => {
         }
       }, []);
 
-    const fetchMyOrListedNFTs = async(type) => {
+    const fetchMyOrListedOrCreatedNFTs = async(type) => {
         try {
             const contract = await connectWithSmartContract()
-            const data = 
-            type == "FetchItemsListed" 
-            ? await contract.fetchItemsListed() 
-            : await contract.fetchMyNFTs() 
-
+            let data = []
+            if (type == "FetchMyNFTs") {
+                data = await contract.fetchMyNFTs()
+            } else if (type == "FetchListedNFTs") {
+                data = await contract.fetchItemsListed()
+            } else if (type == "FetchCreatedNFTs") {
+                data = await contract.fetchMyCreatedNFTs()
+            }
             const items = await Promise.all(
-                data.map(async ({tokenId, seller, owner, price: unformattedPrice, sold}) => {
+                data.map(async ({tokenId, seller, owner, creator, price: unformattedPrice, sold}) => {
                     const tokenURI = await contract.tokenURI(tokenId)
                     const {
                         data: {fileUrl, name, description}
@@ -212,6 +216,7 @@ export const NFTMarketplaceProvider = ({children}) => {
                         tokenId: tokenId.toNumber(),
                         seller,
                         owner,
+                        creator,
                         fileUrl,
                         name,
                         description,
@@ -223,12 +228,12 @@ export const NFTMarketplaceProvider = ({children}) => {
 
             return items
         } catch (error) {
-            console.log("Error while fetching NFTs")
+            console.log("Error while fetching NFTs", error)
         }
     }
 
     useEffect(() => {
-        fetchMyOrListedNFTs();
+        fetchMyOrListedOrCreatedNFTs();
       }, []);
 
     const buyNFT = async(nft, router,) => {
@@ -256,7 +261,7 @@ export const NFTMarketplaceProvider = ({children}) => {
                 createNFT,
                 createSale,
                 fetchNFTs,
-                fetchMyOrListedNFTs,
+                fetchMyOrListedOrCreatedNFTs,
                 buyNFT,
                 currentAccount
             }}>

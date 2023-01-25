@@ -8,6 +8,87 @@
     }
   }
 
+@layer utilities {
+
+    
+    .searchBar{
+        @apply
+        text-indigo-900
+        border-2
+        border-indigo-300
+        bg-transparent
+        relative
+        rounded-full
+        outline-none 
+        ml-0
+        tracking-[1px]
+        pl-11
+        w-12
+        h-12
+        duration-300
+        cursor-pointer
+        caret-indigo-900
+    }
+
+    .searchBar:focus {
+        @apply
+        pl-12
+        w-80
+        pr-4
+        border-indigo-500
+    }
+
+    .userNavActive{
+        @apply
+        relative 
+        ml-0
+        font-bold
+        text-2xl
+        tracking-[1px]
+        text-transparent 
+        bg-clip-text 
+        gradient
+        md:text-lg
+    }
+
+    .userNav{
+        @apply
+        relative 
+        ml-0
+        font-bold
+        tracking-[1px]
+        text-transparent 
+        bg-clip-text 
+        hover:gradient 
+        bg-indigo-500 
+        focus:gradient
+        focus:outline-none
+        md:text-lg
+    }
+
+    .userNav::after {
+        @apply
+        content-['']
+        bg-pink-500
+        h-[4px]
+        w-[0%]
+        left-0
+        -bottom-[7px]
+        rounded-xl
+        absolute
+        duration-300
+    }
+
+     .userNav:hover::after {
+        @apply
+        w-[100%]
+    } 
+
+    .userNav:focus::after {
+        @apply
+        w-[100%]
+    }
+}
 
 @layer components {
     .button {
@@ -27,7 +108,6 @@
         from-indigo-500 
         via-purple-500
         to-pink-500 
-        bg-indigo-500
     }
 
     .gradient-100{
@@ -73,4 +153,67 @@
         group-hover:text-pink-100
         group-hover:bg-cyan-600/70
     }
+
+    .linkActive{
+        @apply
+        font-custom
+        text-transparent 
+        bg-clip-text 
+        hover:gradient 
+        gradient
+        focus:gradient
+        focus:outline-none
+        text-2xl
+    }
+    
+    .link{
+        @apply
+        font-custom
+        text-transparent 
+        bg-clip-text 
+        hover:gradient 
+        bg-indigo-500 
+        focus:gradient
+        focus:outline-none
+        text-2xl
+    }
+
+    .errorForm{
+        @apply
+        border-red-500
+        bg-red-100
+    }
+
+    .inputForm{
+        @apply
+        block 
+        w-full 
+        py-3 
+        mb-3 
+        p-4 
+        rounded 
+        focus:outline-none 
+        border-2 
+        border-indigo-200
+        text-indigo-900 
+        focus:border-pink-300 
+        gradient-100
+    }
+
+    .inputFormInvalid{
+        @apply
+        block 
+        w-full 
+        py-3 
+        mb-3 
+        p-4 
+        rounded 
+        focus:outline-none 
+        border-2 
+        border-pink-400
+        text-indigo-900 
+        focus:border-pink-300 
+        bg-pink-100
+        placeholder:text-red-500
+    } 
   }

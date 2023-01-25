@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/react-hooks": "^4.0.0",
     "@babel/helper-module-imports": "^7.18.6",
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-brands-svg-icons": "^6.2.1",
@@ -16,16 +17,21 @@
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@openzeppelin/contracts": "^4.8.0",
+    "apollo-cache-inmemory": "^1.6.6",
+    "apollo-client": "^2.6.10",
+    "apollo-link-http": "^1.5.17",
     "axios": "^1.1.3",
     "babel-plugin-macros": "^3.1.0",
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.3",
     "ether": "^0.0.9",
+    "graphql": "^15.8.0",
     "ipfs-http-client": "^59.0.0",
     "next": "13.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
+    "react-hook-form": "^7.41.3",
     "web3modal": "^1.9.9"
   },
   "devDependencies": {

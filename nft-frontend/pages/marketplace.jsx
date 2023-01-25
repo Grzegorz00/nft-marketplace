@@ -1,65 +1,53 @@
 import { useEffect, useState, useContext } from 'react'
 import { NFTMarketplaceContext } from "../context/NFTMarketplaceContext"
-import { Loader, CartNFT, SearchBar } from "../components/componentsIndex"
+import { SearchBar, DisplayNftGrid, SortButton, ResizeCard } from "../components/componentsIndex"
+
+var isLoaded = false
 
 export default function Marketplace() {
   const { fetchNFTs } = useContext(NFTMarketplaceContext)
   const [nfts, setNfts] = useState([])
   const [nftsCopy, setNftsCopy] = useState([])
+  const [sort, setSort] = useState("");
+  const [cardSize, setCardSize] = useState("lg")
+  
 
   useEffect(()=> {
+    if(isLoaded)
+      return
+      
     try{
       fetchNFTs().then((items) => {
         setNfts(items)
         setNftsCopy(items)
+        isLoaded = true
       })
     } catch (error){
       alert("Please reload browser")
       console.log("Marketplace error: " + error)
     }
+    return () => isLoaded = false
   },[])
 
-  const onHandleSearch = (value) => {
-    const filteredNFTS = nfts.filter(({ name }) =>
-      name.toLowerCase().includes(value.toLowerCase())
-    );
+  return(
+    <div className='min-h-screen'>
+      <div className='bg-gray-100 shadow-lg'>
+        <div className='mx-10 flex justify-between pb-4 py-3 border-t-2 border-indigo-200'>
+          <div>
+            <SearchBar nfts={nfts} setNfts={setNfts} nftsCopy={nftsCopy} />
+          </div>
 
-    if (filteredNFTS.length === 0) {
-      setNfts(nftsCopy);
-    } else {
-      setNfts(filteredNFTS);
-    }
-
-  };
-
-  const onClearSearch = () => {
-    if (nfts.length && nftsCopy.length) {
-      setNfts(nftsCopy);
-    }
-  };
-  return (
-    <div>
-      <div className='flex justify-center py-4 text-2xl'>
-        <SearchBar
-          onHandleSearch={onHandleSearch}
-          onClearSearch={onClearSearch}
-        />
-      </div>
-      { nfts.length == 0 ? <Loader /> :
-        <div className="flex justify-center">
-          <div className="px-4" style={{ maxWidth: '1600px' }}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
-              {
-                nfts.map((nft, i) => (
-                  <div key={i}>
-                    <CartNFT nftDetails = {nft}/>
-                  </div>
-                ))
-              }
-            </div>
+          <div className='flex space-x-3 items-center'>
+            <ResizeCard setCardSize={setCardSize}/>
+            <SortButton setSort={setSort}/>
           </div>
         </div>
-      }
+      </div>
+
+      <div className='mx-8 mt-5'>
+          <DisplayNftGrid nftList={nfts} sortType={sort} cardSize={cardSize}/>
+      </div>
+
     </div>
   )
 }
