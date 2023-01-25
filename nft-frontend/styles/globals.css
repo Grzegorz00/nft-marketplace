@@ -9,6 +9,8 @@
   }
 
 @layer utilities {
+
+    
     .searchBar{
         @apply
         text-indigo-900

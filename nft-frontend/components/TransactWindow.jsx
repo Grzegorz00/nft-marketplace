@@ -12,7 +12,7 @@ export default function SellWindow({showWindow, onClose, nft}){
     const { createSale } = useContext(NFTMarketplaceContext)
     const { buyNFT } = useContext(NFTMarketplaceContext)
     const [data, setData] = useState([]);
-    const ethereumExchangeRate = data?.map((eth) => eth.current_price)
+    const [ethereumExchangeRate, setEthereumExchangeRate] = useState('')
     const priceDollars = (ethereumExchangeRate * (nft.sold ? price : nft.price)).toFixed(2)
     
     
@@ -30,8 +30,18 @@ export default function SellWindow({showWindow, onClose, nft}){
         onClose();
     }
 
+    useEffect(() => {
+        if(data)
+            setEthereumExchangeRate(data.map((eth) => eth.current_price))
+    },[data])
+
+
     async function fetchData() {
         const res = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum&order=market_cap_desc&per_page=10&page=1&sparkline=false')
+        if(!res.ok){
+            setData([]);
+            return
+        }
         const data = await res.json()
         setData(data);
     }
@@ -40,14 +50,18 @@ export default function SellWindow({showWindow, onClose, nft}){
     function transactWindow(){
         return(
             <div className="w-full h-full flex justify-center items-center bg-center left-0 top-0 bg-black/70 fixed">
-                <div className="w-500 h-600 rounded-xl bg-gradient-to-b from-white via-indigo-100 to-white relative ">
+                <div className="w-500 rounded-xl bg-gradient-to-b from-white via-indigo-100 to-white">
                     
-                    <div className="relative flex justify-center items-center mt-4 mb-4 pb-4 border-b-2 border-indigo-500">
-                        <div>
-                            <p className="font-custom text-4xl text-transparent bg-clip-text gradient">{nft.name}</p>
+                    <div className="flex justify-between items-center mt-4 pb-4 border-b-2 border-indigo-500">
+                        <div className="w-6 h-6">
+
                         </div>
 
-                        <div className="right-0 bottom-6 group px-1 py-1 absolute">
+                        <div className="flex-1">
+                            <p className="font-custom text-2xl text-transparent bg-clip-text gradient break-words">{nft.name.trim()}</p>
+                        </div>
+
+                        <div className="right-0 bottom-6 group px-2">
                             <button className="bg-transparent rounded-full py-2 px-2 group-hover:bg-red-500" onClick={handleCLose}>
                                 <svg className='w-6 h-6'>
                                         <FontAwesomeIcon icon={solid('xmark')} className='text-indigo-900 group-hover:text-white'/>
@@ -56,18 +70,18 @@ export default function SellWindow({showWindow, onClose, nft}){
                         </div>
                     </div>
 
-                    <div className="grid justify-center pt-4">
-                        <div className="rounded-xl overflow-hidden bg-white shadow-cyan-500/50 shadow-lg">
+                    <div className="grid justify-center ">
+                        <div className="overflow-hidden bg-white">
                             <Image
                                 src={nft.fileUrl} 
-                                width={400} height={400}
+                                width={500} height={500}
                                 alt="NFT"
-                                className="object-cover w-72 h-72 object-top"
+                                className="object-cover w-500 h-500 object-to bg-center"
                             />
                         </div>
                     </div>
 
-                    <div className="absolute bottom-0 w-full">
+                    <div className="w-full">
 
                         <div className="border-t-2 border-r-2 border-l-2 border-indigo-500">
                             <div className="flex items-center">
@@ -83,7 +97,7 @@ export default function SellWindow({showWindow, onClose, nft}){
                                         return ( sellView())
                                     } 
                                     else {
-                                        return ( buyView())
+                                        return ( <p className="text-indigo-900 text-xl ml-4 ">{nft.price}</p> )
                                     }
                                 })()}
                             </div>
@@ -126,12 +140,6 @@ export default function SellWindow({showWindow, onClose, nft}){
         )
     }
 
-    function buyView(){
-        return(
-            <p className="text-indigo-900 text-xl ml-4">{nft.price}</p>
-        )
-    }
-
     function sellButton(){
         return(
         <div className="group w-full">
@@ -153,7 +161,7 @@ export default function SellWindow({showWindow, onClose, nft}){
 
     function buyButton(){
         return(
-        <div className="group w-full p-0 mb-01">
+        <div className="group w-full">
             <button 
                 className="w-full border-2 border-indigo-500 rounded-b-lg p-3 group-hover:text-pink-600 group-hover:bg-pink-50 group-hover:border-pink-600"
                 onClick={() => buyNFT(nft, router)}>
