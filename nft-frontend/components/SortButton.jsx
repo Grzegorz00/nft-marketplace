@@ -14,7 +14,7 @@ export default function SortButton({ setSort }){
     }
 
     return(
-            <div className='group z-10'>
+            <div className='group z-9'>
                 <button 
                     className='justify-center w-185 relative rounded-3xl text-lg bg-transparent border-2 border-indigo-300 pr-5 h-10 flex items-center text-indigo-300 group-hover:bg-indigo-50 group-hover:text-indigo-500 duration-50'
                     onClick={() => setActiveDrop(!activeDrop)}>
