@@ -47,25 +47,25 @@ export default function IndexNftDisplay(){
         )
       else
       return(
-        <div className="relative">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 pt-8 pb-8 px-8 resize-none">
+        <div className="relative flex justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 2xl:gap-10 gap-5 pt-8 pb-8 px-8 resize-none">
             {
                 getNext4().map((nft, i) => (
-                <div key={i}>
-                    <CardNFTHomePage nftDetails={nft}/>
-                </div>
+                  <div key={i}>
+                      <CardNFTHomePage nftDetails={nft}/>
+                  </div>
                 ))
             }
         
             <button className='group absolute right-0 top-60 w-14 h-14 bg-white rounded-full transition-transform duration-300 hover:scale-105' onClick={handleNext}> 
                 <svg className='w-14 h-14'>
-                    <FontAwesomeIcon icon={solid('circle-chevron-right')} className='text-pink-500 group-hover:text-cyan-500'/>
+                  <FontAwesomeIcon icon={solid('circle-chevron-right')} className='text-pink-500 group-hover:text-cyan-500'/>
               </svg>
             </button>
 
-            <button className='group absolute left-0 top-60 w-14 h-14 bg-white rounded-full transition-transform duration-300 hover:scale-105' onClick={handlePrevious}> 
+            <button className='group absolute left-0 2xl:left-10 top-60 w-14 h-14 bg-white rounded-full transition-transform duration-300 hover:scale-105' onClick={handlePrevious}> 
                 <svg className='w-14 h-14'>
-                    <FontAwesomeIcon icon={solid('circle-chevron-left')} className='text-pink-500 group-hover:text-cyan-500'/>
+                  <FontAwesomeIcon icon={solid('circle-chevron-left')} className='text-pink-500 group-hover:text-cyan-500'/>
               </svg>
             </button>
 

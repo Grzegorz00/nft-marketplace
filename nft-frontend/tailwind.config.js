@@ -21,6 +21,11 @@ module.exports = {
       },
       fontFamily: {
         custom: "'Audiowide', cursive"
+      },
+      screens: {
+        "1900" : "1800px",
+        "2200" : "2200px",
+        "2400" : "2400px"
       }
     }
   },
