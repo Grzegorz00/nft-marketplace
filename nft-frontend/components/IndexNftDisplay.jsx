@@ -41,7 +41,7 @@ export default function IndexNftDisplay(){
       const handleNext = useCallback(() => {setIndex(index+1)}, [index, setIndex])
       const handlePrevious = useCallback(() => {setIndex(index==0 ? nfts.length-1 : index-1)}, [index, setIndex])
 
-      if(nfts.length == 0)
+      if(nfts?.length == 0 || !nfts)
         return(
           <Loader/>
         )

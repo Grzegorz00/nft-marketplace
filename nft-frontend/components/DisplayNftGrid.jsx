@@ -28,7 +28,7 @@ export default function DisplayNftGrid({nftList, sortType, cardSize}){
         setSortedList(sortList());
       }, [nftList, sortType]);
 
-    if(nftList.length == 0)
+    if(nftList?.length == 0 || !nftList)
       return(<Loader/>)
     else
         return(
