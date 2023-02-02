@@ -86,24 +86,24 @@ export default function Marketplace() {
 
   return (
     <div className='min-h-screen'>
-      <div className='grid pb-28 md:pb-14'>
+      <div className='grid pb-28'>
       {data.user && <UserBackgroundDropzone backgroundUrl={data.user.backgroundUrl}/>}  
           <div className='absolute transform pt-40 px-6'>
           {data.user && <UserAvatarDropzone avatarUrl={data.user.avatarUrl}/>}
           </div>
           <div className='flex group pt-2'>
             {showTextField ? (
-              <div className='flex items-center border-indigo-300 border-2 ml-80 md:ml-[17rem] bg-indigo-50 rounded-full group pl-3'>
+              <div className='flex items-center border-indigo-300 border-2 ml-80 bg-indigo-50 rounded-full group pl-3'>
                 <input
                   autoFocus
-                  className='text-3xl md:text-xl mt-2 text-indigo-800 p-2 md:p-1 bg-transparent outline-none'
+                  className='text-3xl mt-2 text-indigo-800 p-2 bg-transparent outline-none'
                   type="text"
                   value={userName}
                   onChange={(event) => {  
                     setUserName(event.target.value)
                   }}
                 />
-                <button className='flex items-center text-indigo-500 md:text-lg text-2xl bg-white rounded-full w-full h-full p-3 border-l-2 border-l-indigo-300 group-hover:bg-indigo-500 group-hover:text-white'
+                <button className='flex items-center text-indigo-500 text-2xl bg-white rounded-full w-full h-full p-3 border-l-2 border-l-indigo-300 group-hover:bg-indigo-500 group-hover:text-white'
                   onClick={() => {
                     setShowTextField(false)
                     changeName()
@@ -116,7 +116,7 @@ export default function Marketplace() {
               </div>
             ) : (
               <button
-                className="text-3xl md:text-xl md:ml-[17rem] ml-80 mt-2 text-indigo-800 p-2 rounded-full group-hover:underline flex items-center group-hover:text-indigo-500"
+                className="text-3xl ml-80 mt-2 text-indigo-800 p-2 rounded-full group-hover:underline flex items-center group-hover:text-indigo-500"
                 onMouseEnter={() => setButtonUserName('Change Name')}
                 onMouseLeave={() => setButtonUserName(userName)}
                 onClick={() => setShowTextField(true)}>
@@ -127,7 +127,7 @@ export default function Marketplace() {
               </button>
             )}
           </div>
-          <p className='text-lg md:text-sm md:ml-[16rem] ml-[19rem] text-indigo-700'> {data.user && data.user.address}</p>
+          <p className='text-lg ml-[19rem] text-indigo-700'> {data.user && data.user.address}</p>
       </div>
 
       <div className='mx-14'>

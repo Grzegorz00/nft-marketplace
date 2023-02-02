@@ -41,31 +41,31 @@ export default function IndexNftDisplay(){
       const handleNext = useCallback(() => {setIndex(index+1)}, [index, setIndex])
       const handlePrevious = useCallback(() => {setIndex(index==0 ? nfts.length-1 : index-1)}, [index, setIndex])
 
-      if(nfts.length == 0)
+      if(nfts?.length == 0 || !nfts)
         return(
           <Loader/>
         )
       else
       return(
-        <div className="relative">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 pt-8 pb-8 px-8 resize-none">
+        <div className="relative flex justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 2xl:gap-10 gap-5 pt-8 pb-8 px-8 resize-none">
             {
                 getNext4().map((nft, i) => (
-                <div key={i}>
-                    <CardNFTHomePage nftDetails={nft}/>
-                </div>
+                  <div key={i}>
+                      <CardNFTHomePage nftDetails={nft}/>
+                  </div>
                 ))
             }
         
             <button className='group absolute right-0 top-60 w-14 h-14 bg-white rounded-full transition-transform duration-300 hover:scale-105' onClick={handleNext}> 
                 <svg className='w-14 h-14'>
-                    <FontAwesomeIcon icon={solid('circle-chevron-right')} className='text-pink-500 group-hover:text-cyan-500'/>
+                  <FontAwesomeIcon icon={solid('circle-chevron-right')} className='text-pink-500 group-hover:text-cyan-500'/>
               </svg>
             </button>
 
             <button className='group absolute left-0 top-60 w-14 h-14 bg-white rounded-full transition-transform duration-300 hover:scale-105' onClick={handlePrevious}> 
                 <svg className='w-14 h-14'>
-                    <FontAwesomeIcon icon={solid('circle-chevron-left')} className='text-pink-500 group-hover:text-cyan-500'/>
+                  <FontAwesomeIcon icon={solid('circle-chevron-left')} className='text-pink-500 group-hover:text-cyan-500'/>
               </svg>
             </button>
 

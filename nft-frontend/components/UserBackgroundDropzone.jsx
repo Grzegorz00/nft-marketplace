@@ -24,7 +24,7 @@ export default function UserBackgroundDropzone ({backgroundUrl}) {
   return (
     <div{...getRootProps()}>
       <input{...getInputProps()} />
-      <div className='outline-none h-80 md:h-64 cursor-pointer focus:outline-none shadow-lg shadow-grey-700/50 group w-screen'>
+      <div className='outline-none h-80 cursor-pointer focus:outline-none shadow-lg shadow-grey-700/50 group w-screen'>
             
             <div className='flex justify-center'>
                 <svg className="absolute w-8 h-8 mt-40">
@@ -35,7 +35,7 @@ export default function UserBackgroundDropzone ({backgroundUrl}) {
             {imageUrl &&
               <Image 
                   src={imageUrl}
-                  className="object-cover w-screen h-80 md:h-64 group-hover:brightness-50"
+                  className="object-cover w-screen h-80 group-hover:brightness-50"
                   width={4000} height={4000} alt='NFT'/>
             }
             

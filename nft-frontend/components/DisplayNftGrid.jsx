@@ -28,19 +28,19 @@ export default function DisplayNftGrid({nftList, sortType, cardSize}){
         setSortedList(sortList());
       }, [nftList, sortType]);
 
-    if(nftList.length == 0)
+    if(nftList?.length == 0 || !nftList)
       return(<Loader/>)
     else
         return(
             <div className="flex justify-start pb-8">
                 <div className="px-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 pt-4 resize-none">
+                    <div className={`grid ${cardSize !== 'sm' ? 'gridSizesSM' : 'gridSizesLG'} gap-10 pt-4 resize-none`}>
                     {
-                        sortedList.map((nft, i) => (
-                        <div className="" key={i}>
-                            <CardNFT nftDetails={nft} cardSize={cardSize}/>
-                        </div>
-                        ))
+                      sortedList.map((nft, i) => (
+                      <div className="" key={i}>
+                          <CardNFT nftDetails={nft} cardSize={cardSize}/>
+                      </div>
+                      ))
                     }
                     </div>
                 </div>
