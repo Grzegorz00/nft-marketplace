@@ -49,7 +49,7 @@ export default function SellWindow({showWindow, onClose, nft}){
 
     function transactWindow(){
         return(
-            <div className="w-full h-full flex justify-center items-center bg-center left-0 top-0 bg-black/70 fixed">
+            <div className="w-full h-full flex justify-center items-center bg-center left-0 top-0 bg-black/70 fixed z-10">
                 <div className="w-500 rounded-xl bg-gradient-to-b from-white via-indigo-100 to-white">
                     
                     <div className="flex justify-between items-center mt-4 pb-4 border-b-2 border-indigo-500">
@@ -57,8 +57,8 @@ export default function SellWindow({showWindow, onClose, nft}){
 
                         </div>
 
-                        <div className="flex-1">
-                            <p className="font-custom text-2xl text-transparent bg-clip-text gradient break-words">{nft.name.trim()}</p>
+                        <div className="flex-1 overflow-hidden">
+                            <p className="font-custom text-2xl text-transparent bg-clip-text gradient truncate">{nft.name.trim()}</p>
                         </div>
 
                         <div className="right-0 bottom-6 group px-2">

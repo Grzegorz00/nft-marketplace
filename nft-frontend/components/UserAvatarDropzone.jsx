@@ -21,10 +21,10 @@ export default function UserAvatarDropzone ({avatarUrl}) {
   return (
     <div{...getRootProps()}>
       <input{...getInputProps()} />
-      <div className='overflow-hidden outline-none w-72 h-72 md:h-56 md:w-56 rounded-full hover:bg cursor-pointer focus:outline-none border-4 border-white shadow-grey-700/50 shadow-lg'>
+      <div className='overflow-hidden outline-none w-72 h-72 rounded-full hover:bg cursor-pointer focus:outline-none border-4 border-white shadow-grey-700/50 shadow-lg'>
             <Image 
                 src={imageUrl ? imageUrl : avatar}
-                className="object-cover w-full h-72 md:h-56 md:w-56 hover:brightness-50"
+                className="object-cover w-full h-72 hover:brightness-50"
                 width={864} height={864} alt='NFT'/>
       </div>
     </div>

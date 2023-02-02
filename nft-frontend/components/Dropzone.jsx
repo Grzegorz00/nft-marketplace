@@ -35,18 +35,20 @@ export default function Dropzone ({setFileUrl, name, description, price}) {
                 </span>
             </label>
           </div>
-          {imageUrl && 
-            (
-              <CardNFT
-                nftDetails={{
-                  price: price ? price : "Asset Price",
-                  fileUrl: imageUrl,
-                  name: name ? name: "Asset Name",
-                  description
-                }}
-              />
-            )
-          }  
+            <div className='flex justify-center'>
+              {imageUrl && 
+                (
+                  <CardNFT
+                    nftDetails={{
+                      price: price ? price : " Asset Price",
+                      fileUrl: imageUrl,
+                      name: name ? name: "Asset Name",
+                      description: description ? description: "Asset Description",
+                    }}
+                  />
+                )
+              }
+          </div>  
         </div>
       )
     }

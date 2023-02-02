@@ -48,7 +48,6 @@
         text-transparent 
         bg-clip-text 
         gradient
-        md:text-lg
     }
 
     .userNav{
@@ -63,7 +62,6 @@
         bg-indigo-500 
         focus:gradient
         focus:outline-none
-        md:text-lg
     }
 
     .userNav::after {
@@ -153,29 +151,33 @@
         group-hover:text-pink-100
         group-hover:bg-cyan-600/70
     }
+    
+    .linkActive{
+        @apply
+        font-custom 
+        text-transparent 
+        bg-clip-text 
+        gradient
+        text-2xl
+    }
 
     .linkActive{
         @apply
-        font-custom
+        font-custom 
         text-transparent 
         bg-clip-text 
-        hover:gradient 
         gradient
-        focus:gradient
-        focus:outline-none
         text-2xl
+        outline-none
+        focus:outline-none
     }
-    
+
     .link{
         @apply
         font-custom
-        text-transparent 
-        bg-clip-text 
-        hover:gradient 
-        bg-indigo-500 
-        focus:gradient
+        text-indigo-500
+        outline-none
         focus:outline-none
-        text-2xl
     }
 
     .errorForm{
@@ -199,21 +201,29 @@
         focus:border-pink-300 
         gradient-100
     }
-
-    .inputFormInvalid{
+    
+    .gridSizesSM{
         @apply
-        block 
-        w-full 
-        py-3 
-        mb-3 
-        p-4 
-        rounded 
-        focus:outline-none 
-        border-2 
-        border-pink-400
-        text-indigo-900 
-        focus:border-pink-300 
-        bg-pink-100
-        placeholder:text-red-500
-    } 
+        grid-cols-1
+        sm:grid-cols-2
+        lg:grid-cols-3
+        2xl:grid-cols-4
+        1900:grid-cols-5
+        2200:grid-cols-6
+        2400:grid-cols-7
+    }
+
+    .gridSizesLG{
+        @apply
+        grid-cols-2
+        sm:grid-cols-2
+        md:grid-cols-3
+        lg:grid-cols-4
+        xl:grid-cols-5
+        2xl:grid-cols-6
+        1900:grid-cols-7
+        2000:grid-cols-8
+        2200:grid-cols-9
+        2400:grid-cols-10
+    }
   }
