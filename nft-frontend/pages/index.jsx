@@ -5,7 +5,6 @@ import {IndexNftDisplay } from "../components/componentsIndex";
 export default function Home() {
   const { checkIfWalletIsConnected } = useContext(NFTMarketplaceContext)
 
-
   useEffect(() => {
     checkIfWalletIsConnected
   },[])
