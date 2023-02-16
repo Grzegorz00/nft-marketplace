@@ -201,6 +201,23 @@
         focus:border-pink-300 
         gradient-100
     }
+
+    .inputFormInvalid{
+        @apply
+        block 
+        w-full 
+        py-3 
+        mb-3 
+        p-4 
+        rounded 
+        focus:outline-none 
+        border-2 
+        border-red-500
+        text-indigo-900 
+        focus:border-pink-300 
+        gradient-100
+        bg-red-100
+    }
     
     .gridSizesSM{
         @apply
