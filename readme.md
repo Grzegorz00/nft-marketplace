@@ -18,8 +18,8 @@
 
 ## Installation and Usage
 
-		1.  Clone the repository: `git clone [repository-url]`
-		2.  Navigate to the project directory: `cd nft-marketplace`
+		1. Clone the repository: `git clone [repository-url]`
+		2. Navigate to the project directory: `cd nft-marketplace`
 		3. Run Backend:
 			4. Navigate to the backend directory: `cd nft-backend`
 			5.  Run docker: `docker-compose up -d`
