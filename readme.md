@@ -3,7 +3,8 @@
 
 ## Description
 
-        Web app for users to create, buy, and sell their assets in the form of NFT on the Ethereum blockchain.  
+        Web app for users to create, buy, and sell their assets
+	in the form of NFT on the Ethereum blockchain.  
 
 ## Technologies Used
 
