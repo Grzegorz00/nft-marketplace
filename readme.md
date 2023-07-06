@@ -26,13 +26,14 @@
 			6. Install dependencies: `npm i`
 			7.  Start the development server: `npm start`
 		4. Run blockchain dev environment
-			5. Navigate to the fronted directory: `cd nft-frontend`
-			6. Install dependencies: `npm i`
-			7.  Start the hardhat development blockchain tool: `npx hardhat node`
+			4.1. Navigate to the fronted directory: `cd nft-frontend`
+			4.2. Install dependencies: `npm i`
+			4.3.  Start the hardhat development blockchain tool: `npx hardhat node`
 		5. Run Frontend
-			6. Deploy contract: `npx hardhat run scripts/deploy.js --network localhost`
-			7.  Start the development environment for the project: `npm run dev`
-			8. Open your browser and visit: `http://localhost:3000`
+  			5.1. Navigate to the fronted directory: `cd nft-frontend`
+			5.2. Deploy contract: `npx hardhat run scripts/deploy.js --network localhost`
+			5.3.  Start the development environment for the project: `npm run dev`
+			5.4. Open your browser and visit: `http://localhost:3000`
 
 ## How the app looks like
 
